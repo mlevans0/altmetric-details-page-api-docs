@@ -1,4 +1,4 @@
-name: build_docs_and_deploy_workflow
+name: build_docs_workflow
  
 # execute this workflow automatically when a we push to master
 on:
@@ -34,6 +34,7 @@ jobs:
           cd build/html/
           git init
           touch .nojekyll
+          echo "altmetric-details-page-api-docs.digital-river.co.uk" > CNAME
           git add -A
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
