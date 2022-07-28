@@ -1,4 +1,4 @@
-name: build_docs_workflow
+name: build-docs
  
 # execute this workflow automatically when a we push to master
 on:
@@ -8,10 +8,7 @@ on:
 jobs:
  
   build_docs_job:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
- 
+    runs-on: ubuntu-latest 
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
@@ -40,7 +37,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -m 'deploy'
       - name: Force push to destination branch
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages

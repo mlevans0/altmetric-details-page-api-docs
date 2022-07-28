@@ -151,38 +151,30 @@ Response object
 ===============
 A ``GET`` request to the ``/fetch/`` endpoint returns a JSON object.
 
-+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Section             | Notes                                                                                                                                                           |
-+=====================+=================================================================================================================================================================+
-|| ``counts``         || Provides the number of mentions and unique authors in each relevant source type, for example                                                                   |
-||                    || ``blogs`` ``twitter`` ``news`` as well as reference manager reader counts and downloads, where available.                                                      |
-+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|| ``citation``       || Bibliographic metadata about the output requested. You'll find third party                                                                                     |
-||                    || identifiers, for example ``doi`` ``pmid`` ``arxiv`` etc here.                                                                                                  |
-+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``altmetric_score`` | Contains details of the Altmetric score and, where possible, provides some context.                                                                             |
-+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|| ``demographics``   || Altmetric categorizes users from some sources based on their posting history and profile information.                                                          |
-||                    || Counts for each category are included in this section along with geolocation data.                                                                             |
-+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|| ``posts``          || The ``posts`` object has post types (blog post, tweet, Facebook wall post etc.) as keys and the posts of                                                       |
-||                    || that type where a mention was found in arrays of post objects as the values. Titles, snippets and author                                                       |
-||                    || information are included for each mention when available.                                                                                                      |
-||                    ||                                                                                                                                                                |
-||                    || Use the ``include_sources`` or ``exclude_sources`` parameter if you only want details from certain sources.                                                    |
-||                    ||                                                                                                                                                                |
-||                    || For tweets you'll receive only tweet IDs and user profile IDs, not the content of the tweet itself or other                                                    |
-||                    || details about user profiles. You should use tweet IDs to fetch more data from the Twitter API using your own                                                   |
-||                    || developer account or embed tweets directly on your website. A maximum of 1--500--000 tweet IDs can be                                                          |
-||                    || retrieved in any rolling 30 day period. Thereafter you'll get an error message: to continue using this call                                                    |
-||                    || use the ``exclude_sources`` parameter to exclude tweets from your results.                                                                                     |
-||                    ||                                                                                                                                                                |
-||                    || If you are interested in original tweets only you can use the ``post_types`` parameter to exclude retweets from                                                |
-||                    || your results and delay reaching the maximum tweet IDs limit.                                                                                                   |
-||                    ||                                                                                                                                                                |
-||                    || Note that when fetching and displaying tweets you should be adhering to Twitter's `display guidelines <https://dev.twitter.com/terms/display-guidelines>`_ and |
-||                    || `developer policy <https://developer.twitter.com/en/developer-terms/policy.html>`_.                                                                            |
-+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+.. list-table:: 
+   :widths: 20 80
+   :header-rows: 1
+
+   * - Parameter
+     - Descritpion
+   * - ``counts``
+     - Provides the number of mentions and unique authors in each relevant source type, for example ``blogs`` ``twitter`` ``news`` as well as reference manager reader counts and downloads, where available.
+   * - ``citation``
+     - Bibliographic metadata about the output requested. You'll find third party identifiers, for example ``doi`` ``pmid`` ``arxiv`` etc here.
+   * - ``altmetric_score``
+     - Contains details of the Altmetric score and, where possible, provides some context.
+   * - ``demographics``
+     - Altmetric categorizes users from some sources based on their posting history and profile information. Counts for each category are included in this section along with geolocation data.
+   * - ``posts``
+     - The ``posts`` object has post types (blog post, tweet, Facebook wall post etc.) as keys and the posts ofthat type where a mention was found in arrays of post objects as the values.
+
+       Titles, snippets and authorinformation are included for each mention when available. Use the ``include_sources`` or ``exclude_sources`` parameter if you only want details from certain sources. 
+
+       For tweets you'll receive only tweet IDs and user profile IDs, not the content of the tweet itself or otherdetails about user profiles. You should use tweet IDs to fetch more data from the Twitter API using your own  developer account or embed tweets directly on your website. 
+
+       A maximum of 1--500--000 tweet IDs can beretrieved in any rolling 30 day period. Thereafter you'll get an error message: to continue using this calluse the ``exclude_sources`` parameter to exclude tweets from your results. If you are interested in original tweets only you can use the ``post_types`` parameter to exclude retweets fromyour results and delay reaching the maximum tweet IDs limit.
+
+       Note that when fetching and displaying tweets you should be adhering to Twitter's `display guidelines <https://dev.twitter.com/terms/display-guidelines>`_ and `developer policy <https://developer.twitter.com/en/developer-terms/policy.html>`_.
 
 Example response
 ================
@@ -196,38 +188,45 @@ List research outputs with activity in a given timeframe (see the ``timeframe`` 
 
 Parameters
 ==========
-+-----------------+----------+-------------------------------------------------------+-------------------------------------------------------------+
-| Parameter       | Required | Accepts                                               | Description                                                 |
-+=================+==========+=======================================================+=============================================================+
-|| ``timeframe``  || Yes     || ``at`` ``1d`` ``2d`` ``3d``                          || Include only research outputs which have seen activity in  |
-||                ||         || ``4d`` ``5d`` ``6d`` ``1w``                          || the past x days / weeks / months.                          |
-||                ||         || ``1m`` ``3m`` ``1y``                                 ||                                                            |
-||                ||         ||                                                      ||                                                            |
-||                ||         ||                                                      || Use ``at`` for "all time": all of the research outputs     |
-||                ||         ||                                                      || in the Altmetric database.                                 |
-||                ||         ||                                                      ||                                                            |
-+-----------------+----------+-------------------------------------------------------+-------------------------------------------------------------+
-|| ``page``       ||         || integer                                              || Page number used to paginate through results. First page   |
-||                ||         ||                                                      || is page ``1``. The API will return an error if you ask for |
-||                ||         ||                                                      || a page number beyond                                       |
-||                ||         ||                                                      || (number of research outputs / ``num_results``)             |
-+-----------------+----------+-------------------------------------------------------+-------------------------------------------------------------+
-| ``num_results`` |          | integer > ``0`` and < ``100``                         | Number of research outputs per page. Defaults to 25.        |
-+-----------------+----------+-------------------------------------------------------+-------------------------------------------------------------+
-|| ``cited_in``   ||         || One or more comma delimited options from:            || Include only research outputs mentioned in the supplied    |
-||                ||         || ``facebook`` ``blogs`` ``linkedin`` ``video`` ``rh`` || list of sources.                                           |
-||                ||         || ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000``  ||                                                            |
-||                ||         || ``qna`` ``forum`` ``peerreview`` ``pinterest``       ||                                                            |
-+-----------------+----------+-------------------------------------------------------+-------------------------------------------------------------+
-|| ``doi_prefix`` ||         || A DOI prefix (for example 10.1038)                   || Include only research outputs with a DOI that contains     |
-||                ||         ||                                                      || the given prefix.                                          |
-+-----------------+----------+-------------------------------------------------------+-------------------------------------------------------------+
-|| ``order_by``   ||         || One of the following:                                || Specifies the order in which the returned research         |
-||                ||         ||                                                      || outputs are listed.                                        |
-||                ||         ||                                                      ||                                                            |
-||                ||         || ``score`` ``at_score``                               || If omitted, a value of ``score`` will be assumed.          |
-||                ||         || ``readers`` ``first_seen`` ``pubdate``               || For explanations of each value, see :ref:`Sorting`.        |
-+-----------------+----------+-------------------------------------------------------+-------------------------------------------------------------+
+
+.. list-table:: 
+   :widths: 20 10 35 35
+   :header-rows: 1 
+
+   * - Paramter
+     - Required
+     - Accepts
+     - Description
+   * - ``timeframe``
+     - Yes 
+     - ``at`` ``1d`` ``2d`` ``3d`` ``4d`` ``5d`` ``6d`` ``1w`` ``1m`` ``3m`` ``1y``
+     - Include only research outputs which have seen activity in the past x days / weeks / months. 
+       
+       Use ``at`` for "all time": all of the research outputs in the Altmetric database.
+   * - ``page``
+     -  
+     - integer
+     - Page number used to paginate through results. First page is page ``1``. 
+
+       The API will return an error if you ask for a page number beyond (number of research outputs / ``num_results``)
+   * - ``num_results``
+     -  
+     - integer > ``0`` and < ``100``
+     - Number of research outputs per page. Defaults to 25.
+   * - ``cited_in``
+     -  
+     - One or more comma delimited options from: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``rh`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``qna`` ``forum`` ``peerreview`` ``pinterest``
+     - Include only research outputs mentioned in the supplied list of sources.
+   * - ``doi_prefix``
+     -  
+     - A DOI prefix (for example 10.1038)
+     - Include only research outputs with a DOI that contains the given prefix.
+   * - ``order_by``
+     -  
+     - One of the following: ``score`` ``at_score`` ``readers`` ``first_seen`` ``pubdate``
+     - Specifies the order in which the returned research outputs are listed. 
+       
+       If omitted, a value of ``score`` will be assumed. For explanations of each value, see :ref:`Sorting`.
 
 Pagination
 ==========
