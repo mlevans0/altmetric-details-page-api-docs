@@ -5,7 +5,7 @@ Fetches a research output by the provided unique identifier. See below for a ful
 
 .. list-table:: 
    :widths: 10 10 30 50
-   :header-rows: 1
+   :header-rows: 1 
 
    * - Parameter
      - Required
@@ -119,7 +119,7 @@ Parameters
    :header-rows: 1
 
    * - Parameter
-     - URL
+     - Required
      - Accepts
      - Description
    * - ``identifier type``
@@ -320,6 +320,9 @@ Try it yourself
 ===============
 Click on any of the URLs below to view example responses for the listed scenarios. 
 
+API response samples
+--------------------
+
 .. list-table:: 
    :widths: 50 50 
    :header-rows: 1
@@ -336,3 +339,73 @@ Click on any of the URLs below to view example responses for the listed scenario
      - https://api.altmetric.com/v1/citations/1w?num_results=100&cited_in=reddit
    * - Get 25 research outputs mentioned on Twitter in the past week ordered by the all time altmetric attention score
      - https://api.altmetric.com/v1/citations/1w?&cited_in=twitter&order_by=at_score
+   * - Get the top 10 research outputs where the score has changed in the last month for the journal **History**
+     - https://api.altmetric.com/v1/citations/1m?num_results=10&issns=00182648&order_by=score
+
+Code samples
+------------
+Below are some snippets of code that help visualise how you can use the data returned from the ``/citations/`` endpoint.
+
+Top 10 by score for journal
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the 10 most recently scored research outputs where the score has changed within the last month for the journal **History**
+
+.. code-block:: javascript
+
+     function renderTopTen() {
+        fetch("https://api.altmetric.com/v1/citations/1m?num_results=10&issns=00182648&order_by=score")
+        .then((data) => {
+          return data.json()
+        }).then((data) => {
+          let top10 = document.getElementById('top10'), div = document.createElement('div');
+          if (data.hasOwnProperty('results')) {
+            top10.innerHTML = '';
+            data.results.map(result => {
+              div.innerHTML = `<li><a href="${result.details_url}"><img src="${result.images.small}" width=32 height=32 alt>${result.title}</a></li>`;
+              top10.appendChild(div.firstChild);
+            })
+          }
+      });    
+    }
+
+.. raw:: html
+
+    <ol id="top10"></ol>
+    <label for="issns">Customize this snippet by entering a single ISSN or a comma separated list</label>
+    <input type="text" id="issns" value="00182648"></input>
+
+    <script>
+      function validateIssns(issns) {
+        return issns.split(",").every(issn => Number.isInteger(+issn))
+      }
+
+      function renderTopTen() {
+        let issns = document.getElementById('issns').value
+
+        if(!validateIssns(issns)) {
+          return alert("Please enter a single ISSN number or a comma separated list")
+        }
+
+        fetch(`https://api.altmetric.com/v1/citations/1m?num_results=10&issns=${issns}&order_by=score`)
+        .then((data) => {
+          return data.json()
+        }).then((data) => {
+          let top10 = document.getElementById('top10'), div = document.createElement('div');
+          if (data.hasOwnProperty('results')) {
+            top10.innerHTML = '';
+            data.results.map(result => {
+              div.innerHTML = `<li><a href="${result.details_url}"><img src="${result.images.small}" width=32 height=32 alt>${result.title}</a></li>`;
+              top10.appendChild(div.firstChild);
+            })
+          }
+      });    
+    }
+    </script>
+
+    <button onclick="renderTopTen()">Try it</button>
+
+    <br /><br />
+
+  
+    

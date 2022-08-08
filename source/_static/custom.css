@@ -2,6 +2,18 @@
     max-width: 100% !important;
 }
 
+table tr td:last-child p:not(:first-child) {
+  padding-top: 10px !important;
+}
+
+code {
+  white-space: nowrap !important;
+}
+
+pre {
+  white-space: pre-wrap !important;
+}
+
 /* override table width restrictions */
 @media screen and (min-width: 767px) {
 
