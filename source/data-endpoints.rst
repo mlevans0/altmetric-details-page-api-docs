@@ -1,51 +1,199 @@
 Counts
 ******
+Fetches a research output by the provided supported unique identifier.
 
-Fetches a research output by the provided unique identifier. See below for a full list of supported identifiers.
+Supported identifiers
+=====================
 
-.. list-table:: 
-   :widths: 10 10 30 50
-   :header-rows: 1 
+Altmetric id
+------------
 
-   * - Parameter
-     - Required
-     - Example
-     - Details
-   * - ``id``
-     - Yes
-     - 1234567
-     - An internal Altmetric identifier
-   * - ``doi``
-     - Yes
-     - 10.1038/news.2011.490
-     - Digital Object Identifier. The DOI should not be urlencoded.
-   * - ``pmid``
-     - Yes
-     - 21148220
-     - Unique identifier number used in PubMed.
-   * - ``arxiv``
-     - Yes
-     - 1108.2455 
-     - Unique identifier used in the open-access repository arXiv.
-   * - ``ads``
-     - Yes
-     - 2012apphl.100y3104b 
-     - 19 digit identifier which describes the journal article .
-   * - ``isbn``
-     - Yes
-     - 978-3-319-25557-6
-     - The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized. 
- 
+.. function:: GET /(version)/id/(id))
+
+  Fetch research output using an internal Altmetric identifier
+
+  **Example request**:
+
+  .. code-block:: http
+
+        GET /v1/id/241939 HTTP/1.1
+        Host: api.altmetric.com
+    
+  :Query Parameters:
+
+      - **version** : (*required*) -- see :ref:`Versioning`
+      - **id** : (*required*) -- For example 241939
+      - **key** : (*optional*) -- The API key that you were issued
+
+  :Status Codes:
+
+      - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+      - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+      - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+      - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+      - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1/id/241939 
+
 .. warning::
     Altmetric IDs are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOI's, arXiv ID's or PMID's are used instead.
 
+DOI
+---
+
+.. function:: GET /(version)/doi/(doi)
+
+  Fetch research output using a Digital Object Identifier. 
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/doi/10.1038/news.2011.490 HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+      - **version** : (*required*) -- see :ref:`Versioning`
+      - **doi** : (*required*) -- For example 10.1038/news.2011.490. The DOI should not be urlencoded.
+      - **key** : (*optional*) -- The API key that you were issued
+
+  :Status Codes:
+
+      - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+      - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+      - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+      - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+      - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1/doi/10.1038/news.2011.490
+
+PubMed
+------
+
+.. function:: GET /(version)/pmid/(pmid)
+
+  Fetch research output using a unique identifier number used in PubMed. 
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/pmid/21148220 HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **pmid** : (*required*) -- For example 21148220.
+    - **key** : (*optional*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  
+  Try it now: https://api.altmetric.com/v1/pmid/21148220
+
+arXiv
+-----
+
+.. function:: GET /(version)/arxiv/(arxiv)
+
+  Fetch research output using a unique identifier used in the open-access repository arXiv. 
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/arxiv/1108.2455 HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **arxiv** : (*required*) -- For example 1108.2455.
+    - **key** : (*optional*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1/arxiv/1108.2455
+
+ads
+---
+
+.. function:: GET /(version)/ads/(ads)
+
+  Fetch research output using a 19 digit identifier which describes the journal article. 
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/ads/2012apphl.100y3104b  HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **ads** : (*required*) -- For example 2012apphl.100y3104b.
+    - **key** : (*optional*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1/ads/2012apphl.100y3104b
+
+ISBN
+----
+
+.. function:: GET /(version)/isbn/(isbn)
+
+  Fetch research output using an ISBN. 
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/isbn/978-3-319-25557-6 HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **isbn** : (*required*) -- For example 978-3-319-25557-6. The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.
+    - **key** : (*optional*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1/isbn/978-3-319-25557-6
+ 
 Example response
 ================
 
 .. literalinclude:: responses/counts.json
   :language: JSON
        
-
 Field glossary
 ==============
 
@@ -56,29 +204,6 @@ Here's a list of all JSON fields available in the **Counts Only** version of the
    :widths: 30 10 60
    :header-rows: 1
 
-Try it yourself
-===============
-Click on any of the URLs below to query the **Altmetric Details Page API - Counts** to view an example response for your preferred identifier type. 
-
-.. list-table:: 
-   :widths: 20 80
-   :header-rows: 1
-
-   * - Parameter
-     - URL
-   * - ``id``
-     - https://api.altmetric.com/v1/id/241939  
-   * - ``doi``
-     - https://api.altmetric.com/v1/doi/10.1038/news.2011.490
-   * - ``pmid``
-     - https://api.altmetric.com/v1/pmid/21148220 
-   * - ``arxiv``
-     - https://api.altmetric.com/v1/arxiv/1108.2455
-   * - ``ads``
-     - https://api.altmetric.com/v1/ads/2012apphl.100y3104b
-   * - ``isbn``
-     - https://api.altmetric.com/v1/isbn/978-3-319-25557-6
-
 Fetch
 *****
 
@@ -87,29 +212,218 @@ Fetch detailed altmetric information about a particular article or dataset. This
 .. warning::
     This call is only available to commercial license holders. If you call it without an authorized API key you'll get a ``403`` response. Contact us for pricing or to request use as a non-commercial entity.
 
-Examples
-========
+
+Supported identifiers
+=====================
 Below are a number of example calls that you can use to query the ``/fetch/`` API endpoint. Note that you will need to replace the key ``xxx-xxx-xxx-xxx`` with your own API key, otherwise you'll 
 receive the ``403 The API key you supplied was invalid.`` response from the server.
 
-.. list-table:: 
-   :widths: 20 80
-   :header-rows: 1
+.. raw:: html
 
-   * - Parameter
-     - URL
-   * - ``id``
-     - https://api.altmetric.com/v1/fetch/id/241939?key=xxx-xxx-xxx-xxx 
-   * - ``doi``
-     - https://api.altmetric.com/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx
-   * - ``pmid``
-     - https://api.altmetric.com/v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx 
-   * - ``arxiv``
-     - https://api.altmetric.com/v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx 
-   * - ``ads``
-     - https://api.altmetric.com/v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx
-   * - ``isbn``
-     - https://api.altmetric.com/v1/fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx 
+    <label for="custom_api_key">Enter you API key here: </label>
+    <input type="text" id="custom_api_key" value="xxx-xxx-xxx-xxx"></input>
+
+    <script>
+      function authorize() {
+          let custom_api_key = document.getElementById('custom_api_key').value
+          let paragraphs = Array.from(document.querySelectorAll('p'))
+          paragraphs.filter(element => element.textContent.includes("Try it now:")).forEach(p => {
+            let hrefs = Array.from(p.querySelectorAll('[href*="key=xxx-xxx-xxx-xxx"]'))
+            hrefs.forEach(el => {
+              let authorizedHref = el.href.replace("xxx-xxx-xxx-xxx", custom_api_key)
+              el.href = authorizedHref
+              el.innerHTML = authorizedHref
+            })
+        })
+      }
+    </script>
+
+    <button class="guilabel" onclick="authorize()">Authorize</button>
+    <br />
+    <br />
+
+Altmetric id
+------------
+
+.. function:: GET /(version)/fetch/id/(id)?key=xxx-xxx-xxx-xxx
+
+  Fetch research output using an internal Altmetric identifier
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/fetch/id/241939?key=xxx-xxx-xxx-xxx HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **id** : (*required*) -- For example 241939.
+    - **key** : (*required*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1/fetch/id/241939?key=xxx-xxx-xxx-xxx 
+
+.. warning::
+    Altmetric IDs are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOI's, arXiv ID's or PMID's are used instead.
+
+DOI
+---
+
+.. function:: GET /(version)/fetch/doi/(doi)?key=xxx-xxx-xxx-xxx
+
+  Fetch research output using a Digital Object Identifier. 
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **doi** : (*required*) -- For example 10.1038/news.2011.490. The DOI should not be urlencoded.
+    - **key** : (*required*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx
+
+PubMed
+------
+
+.. function:: GET /(version)/fetch/pmid/(pmid)?key=xxx-xxx-xxx-xxx
+
+  Fetch research output using a unique identifier number used in PubMed. 
+
+  **Example request**:
+
+  .. code-block:: http
+  
+      GET /v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **pmid** : (*required*) -- For example 21148220.
+    - **key** : (*required*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  
+  Try it now: https://api.altmetric.com/v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx
+
+arXiv
+-----
+
+.. function:: GET /(version)/fetch/arxiv/(arxiv)?key=xxx-xxx-xxx-xxx
+
+  Fetch research output using a unique identifier used in the open-access repository arXiv. 
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **arxiv** : (*required*) -- For example 1108.2455.
+    - **key** : (*required*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx
+
+ads
+---
+
+.. function:: GET /(version)/fetch/ads/(ads)?key=xxx-xxx-xxx-xxx
+
+  Fetch research output using a 19 digit identifier which describes the journal article. 
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx  HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **ads** : (*required*) -- For example 2012apphl.100y3104b.
+    - **key** : (*required*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx
+
+ISBN
+----
+
+.. function:: GET /(version)/fetch/isbn/(isbn)?key=xxx-xxx-xxx-xxx
+
+  Fetch research output using an ISBN. 
+
+  **Example request**:
+
+  .. code-block:: http
+
+      GET /v1/fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx HTTP/1.1
+      Host: api.altmetric.com
+  
+  :Query Parameters:
+
+    - **version** : (*required*) -- see :ref:`Versioning`
+    - **isbn** : (*required*) -- For example 978-3-319-25557-6. The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.
+    - **key** : (*required*) -- The API key that you were issued
+
+  :Status Codes:
+
+    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
+    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
+    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
+    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
+    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+
+  Try it now: https://api.altmetric.com/v1//fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx
 
 Parameters
 ==========
@@ -399,13 +713,11 @@ Get the 10 most recently scored research outputs where the score has changed wit
               top10.appendChild(div.firstChild);
             })
           }
-      });    
-    }
+        });    
+      }
     </script>
 
-    <button onclick="renderTopTen()">Try it</button>
+    <button class="guilabel" onclick="renderTopTen()">Try it</button>
 
-    <br /><br />
-
-  
-    
+    <br />
+    <br />   

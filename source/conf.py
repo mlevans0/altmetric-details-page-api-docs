@@ -54,10 +54,14 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'logo_only': True,
     'display_version': False,
+    'navigation_depth': 3,
 }
 html_logo = 'altmetric-logo-white.png'
 html_css_files = [
     'custom.css',
+]
+html_js_files = [
+    'custom.js'
 ]
 
 # Add any paths that contain custom static files (such as style sheets) here,

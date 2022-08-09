@@ -14,22 +14,18 @@ The Details Page API allows you to find out everything you need to know about an
 which you want either the count of mentions ('count') or the full text of mentions ('full access').
 
 .. toctree::
-   :maxdepth: 2
    :hidden:
    :caption: Getting started
 
    getting-started
 
 .. toctree::
-   :maxdepth: 2
    :hidden:
    :caption: Data endpoints
 
    data-endpoints
-   error-and-response-codes
 
 .. toctree::
-   :maxdepth: 2
    :hidden:
    :caption: Appendix
 
