@@ -32,7 +32,23 @@ To support older browsers you can use JSONP. To do this you will need to include
 
 For example: ``https://api.altmetric.com/v1/doi/10.1038/480426a?callback=my_callback``
 
-You can try this now: https://api.altmetric.com/v1/doi/10.1038/480426a?callback=my_callback
+.. raw:: html
+
+    <script>
+      function my_callback(data) {
+        alert(`Received ${data.title} from API`);
+      }
+
+      function tryIt() {
+        let script = document.createElement('script');
+        script.src = 'https://api.altmetric.com/v1/doi/10.1038/480426a?callback=my_callback';
+        document.body.appendChild(script);
+      }
+    </script>
+
+    <button class="guilabel" onclick="tryIt()">Try it!</button>
+    <br />
+    <br />
 
 .. warning:: 
     Altmetric is quite strict about what constitutes as a valid callback - only letters, digits and underscores are allowed.

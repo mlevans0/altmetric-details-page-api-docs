@@ -21,17 +21,11 @@ Altmetric id
     
   :Query Parameters:
 
-      - **version** : (*required*) -- see :ref:`Versioning`
-      - **id** : (*required*) -- For example 241939
-      - **key** : (*optional*) -- The API key that you were issued
+     - **version** : (*required*) -- see :ref:`Versioning`
+     - **id** : (*required*) -- For example 241939
+     - **key** : (*optional*) -- The API key that you were issued
 
-  :Status Codes:
-
-      - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-      - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-      - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-      - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-      - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1/id/241939 
 
@@ -58,13 +52,7 @@ DOI
       - **doi** : (*required*) -- For example 10.1038/news.2011.490. The DOI should not be urlencoded.
       - **key** : (*optional*) -- The API key that you were issued
 
-  :Status Codes:
-
-      - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-      - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-      - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-      - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-      - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1/doi/10.1038/news.2011.490
 
@@ -88,13 +76,7 @@ PubMed
     - **pmid** : (*required*) -- For example 21148220.
     - **key** : (*optional*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
   
   Try it now: https://api.altmetric.com/v1/pmid/21148220
 
@@ -118,13 +100,7 @@ arXiv
     - **arxiv** : (*required*) -- For example 1108.2455.
     - **key** : (*optional*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1/arxiv/1108.2455
 
@@ -148,13 +124,7 @@ ads
     - **ads** : (*required*) -- For example 2012apphl.100y3104b.
     - **key** : (*optional*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1/ads/2012apphl.100y3104b
 
@@ -178,13 +148,7 @@ ISBN
     - **isbn** : (*required*) -- For example 978-3-319-25557-6. The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.
     - **key** : (*optional*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1/isbn/978-3-319-25557-6
  
@@ -262,13 +226,7 @@ Altmetric id
     - **id** : (*required*) -- For example 241939.
     - **key** : (*required*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1/fetch/id/241939?key=xxx-xxx-xxx-xxx 
 
@@ -295,13 +253,7 @@ DOI
     - **doi** : (*required*) -- For example 10.1038/news.2011.490. The DOI should not be urlencoded.
     - **key** : (*required*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx
 
@@ -325,13 +277,7 @@ PubMed
     - **pmid** : (*required*) -- For example 21148220.
     - **key** : (*required*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
   
   Try it now: https://api.altmetric.com/v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx
 
@@ -355,13 +301,7 @@ arXiv
     - **arxiv** : (*required*) -- For example 1108.2455.
     - **key** : (*required*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx
 
@@ -385,13 +325,7 @@ ads
     - **ads** : (*required*) -- For example 2012apphl.100y3104b.
     - **key** : (*required*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx
 
@@ -415,13 +349,7 @@ ISBN
     - **isbn** : (*required*) -- For example 978-3-319-25557-6. The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.
     - **key** : (*required*) -- The API key that you were issued
 
-  :Status Codes:
-
-    - `200 OK <https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok>`_ -- The body of the response should contain the data you requested.
-    - `403 Forbidden <https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden>`_ -- You aren't authorized for this call. Some requests require an API key.
-    - `404 Not Found <https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found>`_ -- Altmetric doesn't have any details for the research output or set of research outputs you requested. 
-    - `429 Too Many Requests <https://www.rfc-editor.org/rfc/rfc6585#section-4>`_ -- You are being rate limited. If you haven't already then apply for an API key.
-    - `502 Bad Gateway <https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway>`_ -- The API version you are using is currently down for maintenance.
+  .. include:: shared/status-codes.rst
 
   Try it now: https://api.altmetric.com/v1//fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx
 
@@ -717,7 +645,7 @@ Get the 10 most recently scored research outputs where the score has changed wit
       }
     </script>
 
-    <button class="guilabel" onclick="renderTopTen()">Try it</button>
+    <button class="guilabel" onclick="renderTopTen()">Try it!</button>
 
     <br />
     <br />   
