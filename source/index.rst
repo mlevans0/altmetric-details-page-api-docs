@@ -23,7 +23,9 @@ which you want either the count of mentions ('count') or the full text of mentio
    :hidden:
    :caption: Data endpoints
 
-   data-endpoints
+   data-endpoints-counts
+   data-endpoints-fetch
+   data-endpoints-citations
 
 .. toctree::
    :hidden:
@@ -31,5 +33,4 @@ which you want either the count of mentions ('count') or the full text of mentio
 
    licensing
    attribution
-   twitter-restrictions
-   
+   twitter-restrictions   

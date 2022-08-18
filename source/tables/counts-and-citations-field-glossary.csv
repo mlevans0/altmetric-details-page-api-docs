@@ -8,6 +8,9 @@ Keys,Type,Description
 ``altmetric_jid``,number,Internal number assigned to each journal
 ``issns``,string [] ,Relevant ISSN(s)
 ``journal``,string,Name of publication journal
+``pubdate``,,The print date that the publication was published
+``epubdate``,,The date that the publication was published electronically
+``published_on``,number,"Returns the ``epubdate`` if it exists on the record, if not then the ``pubdate`` is return instead. This date is used on the **Details Page** and within the **Explorer**"
 ``cohorts``,object,Groups of users who've mentioned the publication on Twitter
 ``cohorts`` . ``pub``,number,Members of the Public
 ``cohorts`` . ``sci``,number,Scientists
@@ -63,7 +66,6 @@ Keys,Type,Description
 ``history`` . ``at``,decimal ,Current Altmetric Attention Score
 ``url``,string,URL to publication page
 ``added_on``,number,Date when Altmetric first captured attention. In UNIX.
-``published_on``,number,Publication date. In UNIX
 ``subjects``,string[],ERA subjects associated with the publication
 ``scopus_subjects``,string[],Added it in 2011 and never removed
 ``readers``,object,Readers in citeulike
