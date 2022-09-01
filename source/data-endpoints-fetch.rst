@@ -1,26 +1,31 @@
 Fetch
 *****
 
-Fetch detailed altmetric information about a particular article or dataset. This call returns much more information about each mention than the standard counts query calls.
+Fetch detailed altmetric information about a particular article or dataset. This call returns much more information about each mention than the standard :ref:`Counts` Only query.
 
 .. warning::
-    This call is only available to commercial license holders. If you call it without an authorized API key you'll get a ``403`` response. Contact us for pricing or to request use as a non-commercial entity.
+    Calls to this endpoint are only available to commercial license holders. If you call this endpoint without an authorized API key you'll get a ``403`` response. Contact us for pricing or to request use as a non-commercial entity.
 
 Supported identifiers
 =====================
-Below are a number of example calls that you can use to query the ``/fetch/`` API endpoint. Note that you will need to replace the key ``xxx-xxx-xxx-xxx`` with your own API key, otherwise you'll 
-receive the ``403 The API key you supplied was invalid.`` response from the server.
+
+.. note::
+  When making a request to the ``/fetch/`` API endpoint you will need to replace the placeholder key ``xxx-xxx-xxx-xxx``   in the examples below with your own API key, 
+  otherwise you'll receive the ``403 The API key you supplied was invalid.`` response from the server. 
+  
+  Alternatively, you can enter your API key into the field below and click the **Authorize** button to launch the example request directly from the documentation.
 
 .. raw:: html
 
-    <label for="custom_api_key">Enter you API key here: </label>
+    <label for="custom_api_key">Enter your API key here: </label>
     <input type="text" id="custom_api_key" value="xxx-xxx-xxx-xxx"></input>
+    <span id="custom_api_key"></span>
 
     <script>
       function authorize() {
           let custom_api_key = document.getElementById('custom_api_key').value
           let paragraphs = Array.from(document.querySelectorAll('p'))
-          paragraphs.filter(element => element.textContent.includes("Try it now:")).forEach(p => {
+          paragraphs.filter(element => element.textContent.includes("Try it:")).forEach(p => {
             let hrefs = Array.from(p.querySelectorAll('[href*="key=xxx-xxx-xxx-xxx"]'))
             hrefs.forEach(el => {
               let authorizedHref = el.href.replace("xxx-xxx-xxx-xxx", custom_api_key)
@@ -40,7 +45,7 @@ Altmetric id
 
 .. function:: GET /(version)/fetch/id/(id)?key=xxx-xxx-xxx-xxx
 
-  Fetch research output using an internal Altmetric identifier
+  Fetch a research output using an internal Altmetric identifier
 
   **Example request**:
 
@@ -49,25 +54,42 @@ Altmetric id
     GET /v1/fetch/id/241939?key=xxx-xxx-xxx-xxx HTTP/1.1
     Host: api.altmetric.com
   
-  :Query Parameters:
+  **Query parameters:**
 
-    - **version** : (*required*) -- see :ref:`Versioning`
-    - **id** : (*required*) -- For example 241939.
-    - **key** : (*required*) -- The API key that you were issued
+  .. list-table::
+    :widths: 20 10 35 35
+    :header-rows: 1 
 
+    * - Parameter
+      - Required
+      - Accepts
+      - Description
+    * - ``version``
+      - Yes
+      - ``v1``
+      - See :ref:`Versioning`      
+    * - ``id``
+      - Yes
+      - An altmetric article id
+      - For example 241939
+    * - ``key``
+      - Yes
+      -  
+      - The API key that you were issued
+  
   .. include:: shared/status-codes.rst
 
-  Try it now: https://api.altmetric.com/v1/fetch/id/241939?key=xxx-xxx-xxx-xxx 
+  **Try it:** https://api.altmetric.com/v1/fetch/id/241939?key=xxx-xxx-xxx-xxx 
 
 .. warning::
-    Altmetric IDs are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOI's, arXiv ID's or PMID's are used instead.
+    Altmetric ids are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOI's, arXiv ID's or PMID's are used instead.
 
 DOI
 ---
 
 .. function:: GET /(version)/fetch/doi/(doi)?key=xxx-xxx-xxx-xxx
 
-  Fetch research output using a Digital Object Identifier. 
+  Fetch a research output using a Digital Object Identifier. 
 
   **Example request**:
 
@@ -76,22 +98,39 @@ DOI
     GET /v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx HTTP/1.1
     Host: api.altmetric.com
   
-  :Query Parameters:
+ **Query parameters:**
 
-    - **version** : (*required*) -- see :ref:`Versioning`
-    - **doi** : (*required*) -- For example 10.1038/news.2011.490. The DOI should not be urlencoded.
-    - **key** : (*required*) -- The API key that you were issued
+  .. list-table::
+    :widths: 20 10 35 35
+    :header-rows: 1 
+
+    * - Parameter
+      - Required
+      - Accepts
+      - Description
+    * - ``version``
+      - Yes
+      - ``v1``
+      - See :ref:`Versioning`      
+    * - ``doi``
+      - Yes
+      - Any valid DOI
+      - For example 10.1038/news.2011.490. The DOI should not be urlencoded.
+    * - ``key``
+      - Yes
+      -  
+      - The API key that you were issued
 
   .. include:: shared/status-codes.rst
 
-  Try it now: https://api.altmetric.com/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx
+  **Try it:** https://api.altmetric.com/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx
 
 PubMed
 ------
 
 .. function:: GET /(version)/fetch/pmid/(pmid)?key=xxx-xxx-xxx-xxx
 
-  Fetch research output using a unique identifier number used in PubMed. 
+  Fetch a research output using a unique identifier number used in PubMed. 
 
   **Example request**:
 
@@ -100,22 +139,39 @@ PubMed
     GET /v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx HTTP/1.1
     Host: api.altmetric.com
   
-  :Query Parameters:
+  **Query parameters:**
 
-    - **version** : (*required*) -- see :ref:`Versioning`
-    - **pmid** : (*required*) -- For example 21148220.
-    - **key** : (*required*) -- The API key that you were issued
+  .. list-table::
+    :widths: 20 10 35 35
+    :header-rows: 1 
+
+    * - Parameter
+      - Required
+      - Accepts
+      - Description
+    * - ``version``
+      - Yes
+      - ``v1``
+      - See :ref:`Versioning`      
+    * - ``pmid``
+      - Yes
+      - Any valid PMID
+      - For example 21148220
+    * - ``key``
+      - Yes
+      -  
+      - The API key that you were issued
 
   .. include:: shared/status-codes.rst
   
-  Try it now: https://api.altmetric.com/v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx
+  **Try it:** https://api.altmetric.com/v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx
 
 arXiv
 -----
 
 .. function:: GET /(version)/fetch/arxiv/(arxiv)?key=xxx-xxx-xxx-xxx
 
-  Fetch research output using a unique identifier used in the open-access repository arXiv. 
+  Fetch a research output using a unique identifier used in the open-access repository arXiv. 
 
   **Example request**:
 
@@ -124,22 +180,39 @@ arXiv
     GET /v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx HTTP/1.1
     Host: api.altmetric.com
   
-  :Query Parameters:
+   **Query parameters:**
 
-    - **version** : (*required*) -- see :ref:`Versioning`
-    - **arxiv** : (*required*) -- For example 1108.2455.
-    - **key** : (*required*) -- The API key that you were issued
+  .. list-table::
+    :widths: 20 10 35 35
+    :header-rows: 1 
+
+    * - Parameter
+      - Required
+      - Accepts
+      - Description
+    * - ``version``
+      - Yes
+      - ``v1``
+      - See :ref:`Versioning`      
+    * - ``arxiv``
+      - Yes
+      - Any valid arXiv id
+      - For example 1108.2455
+    * - ``key``
+      - Yes
+      -  
+      - The API key that you were issued
 
   .. include:: shared/status-codes.rst
 
-  Try it now: https://api.altmetric.com/v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx
+  **Try it:** https://api.altmetric.com/v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx
 
 ads
 ---
 
 .. function:: GET /(version)/fetch/ads/(ads)?key=xxx-xxx-xxx-xxx
 
-  Fetch research output using a 19 digit identifier which describes the journal article. 
+  Fetch a research output using a 19 digit identifier which describes the journal article. 
 
   **Example request**:
 
@@ -148,22 +221,39 @@ ads
     GET /v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx  HTTP/1.1
     Host: api.altmetric.com
   
-  :Query Parameters:
+   **Query parameters:**
 
-    - **version** : (*required*) -- see :ref:`Versioning`
-    - **ads** : (*required*) -- For example 2012apphl.100y3104b.
-    - **key** : (*required*) -- The API key that you were issued
+  .. list-table::
+    :widths: 20 10 35 35
+    :header-rows: 1 
+
+    * - Parameter
+      - Required
+      - Accepts
+      - Description
+    * - ``version``
+      - Yes
+      - ``v1``
+      - See :ref:`Versioning`      
+    * - ``ads``
+      - Yes
+      - Any valid ADS bibcode
+      - For example 2012apphl.100y3104b.
+    * - ``key``
+      - Yes
+      -  
+      - The API key that you were issued
 
   .. include:: shared/status-codes.rst
 
-  Try it now: https://api.altmetric.com/v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx
+  **Try it:** https://api.altmetric.com/v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx
 
 ISBN
 ----
 
 .. function:: GET /(version)/fetch/isbn/(isbn)?key=xxx-xxx-xxx-xxx
 
-  Fetch research output using an ISBN. 
+  Fetch a research output using an ISBN. 
 
   **Example request**:
 
@@ -172,15 +262,32 @@ ISBN
     GET /v1/fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx HTTP/1.1
     Host: api.altmetric.com
   
-  :Query Parameters:
+   **Query parameters:**
 
-    - **version** : (*required*) -- see :ref:`Versioning`
-    - **isbn** : (*required*) -- For example 978-3-319-25557-6. The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.
-    - **key** : (*required*) -- The API key that you were issued
+  .. list-table::
+    :widths: 20 10 35 35
+    :header-rows: 1 
+
+    * - Parameter
+      - Required
+      - Accepts
+      - Description
+    * - ``version``
+      - Yes
+      - ``v1``
+      - See :ref:`Versioning`      
+    * - ``isbn``
+      - Yes
+      - Any valid ISBN
+      - For example 978-3-319-25557-6. The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.
+    * - ``key``
+      - Yes
+      -  
+      - The API key that you were issued
 
   .. include:: shared/status-codes.rst
 
-  Try it now: https://api.altmetric.com/v1//fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx
+  **Try it:** https://api.altmetric.com/v1//fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx
 
 Parameters
 ==========

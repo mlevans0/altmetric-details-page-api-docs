@@ -8,8 +8,8 @@ Keys,Type,Description
 ``altmetric_jid``,number,Internal number assigned to each journal
 ``issns``,string [] ,Relevant ISSN(s)
 ``journal``,string,Name of publication journal
-``pubdate``,,The print date that the publication was published
-``epubdate``,,The date that the publication was published electronically
+``pubdate``,date,The print date that the publication was published
+``epubdate``,date,The date that the publication was published electronically
 ``published_on``,number,"Returns the ``epubdate`` if it exists on the record, if not then the ``pubdate`` is return instead. This date is used on the **Details Page** and within the **Explorer**"
 ``cohorts``,object,Groups of users who've mentioned the publication on Twitter
 ``cohorts`` . ``pub``,number,Members of the Public
@@ -21,7 +21,7 @@ Keys,Type,Description
 ``authors``,string[],Author names
 ``type``,string,``dataset`` ``book`` ``article`` ``news``
 ``handles``,string[],Relevant Handle(s)
-``altmetric_id``:,number ,Internal ID associated with the research output. Not a persistent identifier; may change when duplicate instances of the same research output are merged in our database.
+``altmetric_id``,number ,Internal ID associated with the research output. Not a persistent identifier; may change when duplicate instances of the same research output are merged in our database.
 ``is_oa``,boolean ,Came from Scopus in 2011 and never updated
 ``publisher_subjects``,object[],Subjects for publication set by the publisher.
 ``publisher_subjects`` . ``name``,string,

@@ -1,48 +1,74 @@
 Citations
 *********
-List research outputs with activity in a given timeframe (see the ``timeframe`` parameter in the table below for supported values).
+
+List research outputs with activity in a given timeframe.
 
 Parameters
 ==========
 
-.. list-table:: 
-   :widths: 20 10 35 35
-   :header-rows: 1 
+.. function:: GET /(version)/citations/(timeframe)
 
-   * - Parameter
-     - Required
-     - Accepts
-     - Description
-   * - ``timeframe``
-     - Yes 
-     - ``at`` ``1d`` ``2d`` ``3d`` ``4d`` ``5d`` ``6d`` ``1w`` ``1m`` ``3m`` ``1y``
-     - Include only research outputs which have seen activity in the past x days / weeks / months. 
-       
-       Use ``at`` for "all time": all of the research outputs in the Altmetric database.
-   * - ``page``
-     -  
-     - integer
-     - Page number used to paginate through results. First page is page ``1``. 
+  Returns a list of research outputs with activity in the provided timeframe.
 
-       The API will return an error if you ask for a page number beyond (number of research outputs / ``num_results``)
-   * - ``num_results``
-     -  
-     - integer > ``0`` and < ``100``
-     - Number of research outputs per page. Defaults to 25.
-   * - ``cited_in``
-     -  
-     - One or more comma delimited options from: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``rh`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``qna`` ``forum`` ``peerreview`` ``pinterest``
-     - Include only research outputs mentioned in the supplied list of sources.
-   * - ``doi_prefix``
-     -  
-     - A DOI prefix (for example 10.1038)
-     - Include only research outputs with a DOI that contains the given prefix.
-   * - ``order_by``
-     -  
-     - One of the following: ``score`` ``at_score`` ``readers`` ``first_seen`` ``pubdate``
-     - Specifies the order in which the returned research outputs are listed. 
-       
-       If omitted, a value of ``score`` will be assumed. For explanations of each value, see :ref:`Sorting`.
+  **Example request**:
+
+  .. code-block:: http
+
+    GET /v1/citations/1m HTTP/1.1
+    Host: api.altmetric.com
+    
+  **Query parameters:**
+
+  .. list-table::
+    :widths: 20 10 35 35
+    :header-rows: 1 
+
+    * - Parameter
+      - Required
+      - Accepts
+      - Description
+    * - ``version``
+      - Yes
+      - ``v1``
+      - See :ref:`Versioning`      
+    * - ``timeframe``
+      - Yes 
+      - ``at`` ``1d`` ``2d`` ``3d`` ``4d`` ``5d`` ``6d`` ``1w`` ``1m`` ``3m`` ``1y``
+      - Include only research outputs which have seen activity in the past x days / weeks / months. 
+        
+        Use ``at`` for "all time": all of the research outputs in the Altmetric database.
+    * - ``page``
+      -  
+      - integer
+      - Page number used to paginate through results. First page is page ``1``. 
+
+        The API will return an error if you ask for a page number beyond (number of research outputs / ``num_results``)
+    * - ``num_results``
+      -  
+      - integer > ``0`` and < ``100``
+      - Number of research outputs per page. Defaults to 25.
+    * - ``cited_in``
+      -  
+      - One or more comma delimited options from: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``rh`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``qna`` ``forum`` ``peerreview`` ``pinterest``
+      - Include only research outputs mentioned in the supplied list of sources.
+    * - ``doi_prefix``
+      -  
+      - A DOI prefix (for example 10.1038)
+      - Include only research outputs with a DOI that contains the given prefix.
+    * - ``order_by``
+      -  
+      - One of the following: ``score`` ``at_score`` ``readers`` ``first_seen`` ``pubdate``
+      - Specifies the order in which the returned research outputs are listed. 
+        
+        If omitted, a value of ``score`` will be assumed. For explanations of each value, see :ref:`Sorting`.
+    * - ``key``
+      -  
+      - 
+      - The API key that you were issued 
+
+  .. include:: shared/status-codes.rst
+
+  **Try it:** https://api.altmetric.com/v1/citations/1m
 
 Pagination
 ==========
@@ -108,8 +134,8 @@ Response object
 ===============
 The Altmetric Details Page API returns JSON. The ``/citations/`` endpoint returns an object with with the keys ``query`` and ``results``.
 
-Query
------
+Query object
+------------
 
 .. list-table:: 
    :widths: 20 20 60
@@ -125,12 +151,12 @@ Query
      - Yes
      - Array of citation objects detailed below. May be empty if ``query.count`` is 0.
 
-Citations object
-----------------
-A GET request to the ``/citations/`` endpoint returns a JSON object.
+Results object
+--------------
+A GET request to the ``/citations/`` endpoint returns a JSON object with the following properties.
 
 .. csv-table::
-   :file: tables/counts-and-citations-field-glossary.csv
+   :file: shared/counts-and-citations-field-glossary.csv
    :widths: 30 10 60
    :header-rows: 1
 
@@ -144,7 +170,7 @@ Try it yourself
 ===============
 Click on any of the URLs below to view example responses for the listed scenarios. 
 
-API response samples
+API request examples
 --------------------
 
 .. list-table:: 

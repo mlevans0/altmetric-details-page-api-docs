@@ -19,7 +19,7 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'Altmetric Details Page API'
-copyright = '2022, Mathew Evans'
+copyright = '2022, Altmetric LLC'
 author = 'Mathew Evans'
 
 # The full version, including alpha/beta/rc tags
