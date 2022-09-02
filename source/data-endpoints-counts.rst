@@ -1,6 +1,7 @@
 Counts
 ******
-Fetches a research output by the provided supported unique identifier.
+This endpoint provides information about individual research outputs. For example, you can query this endpoint using a DOI and retrieve the relevant Altmetric data. The API
+is optimized for querying for a single identifier or a strictly defined search. 
 
 Request
 =======

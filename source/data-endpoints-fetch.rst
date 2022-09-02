@@ -1,10 +1,16 @@
 Fetch
 *****
 
-Fetch detailed altmetric information about a particular article or dataset. This call returns much more information about each mention than the standard :ref:`Counts` Only query.
+Fetch detailed Altmetric information about a particular article or dataset. This call returns much more information about each mention than from the standard :ref:`Counts` Only endpoint and
+allows users to see full details of the mentions, including the URLs to the mentions themselves. 
+
+There are two exceptions with requests to this endpoint, Twitter and certain news sources that fall under UK licensing restrictions. You can read more about this on our :ref:`Restrictions` page.
+
+This endpoint is optimized for specific queries about single research outputs. To use this endpoint you will need some programming knowledge but there are various *wrappers* in different
+languages (e.g Python, Ruby) available on Github or you can choose to write your own software. 
 
 .. warning::
-    Calls to this endpoint are only available to commercial license holders. If you call this endpoint without an authorized API key you'll get a ``403`` response. Contact us for pricing or to request use as a non-commercial entity.
+    Calls to this endpoint are only available to commercial license holders. If you call this endpoint without an authorizedAPI key you'll get a ``403`` response. Contact us for pricing or to request use as a non-commercial entity.
 
 Request
 =======
