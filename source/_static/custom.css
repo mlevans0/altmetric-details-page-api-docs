@@ -2,7 +2,11 @@
     max-width: 100% !important;
 }
 
-table tr td:last-child p:not(:first-child) {
+table tr td > p { 
+  line-height: 1.3rem !important;
+}
+
+table tr td p:not(:first-child) {
   padding-top: 10px !important;
 }
 

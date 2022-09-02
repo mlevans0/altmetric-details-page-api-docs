@@ -6,90 +6,15 @@ Fetch detailed altmetric information about a particular article or dataset. This
 .. warning::
     Calls to this endpoint are only available to commercial license holders. If you call this endpoint without an authorized API key you'll get a ``403`` response. Contact us for pricing or to request use as a non-commercial entity.
 
-Supported identifiers
-=====================
+Request
+=======
 
-.. note::
-  When making a request to the ``/fetch/`` API endpoint you will need to replace the placeholder key ``xxx-xxx-xxx-xxx``   in the examples below with your own API key, 
-  otherwise you'll receive the ``403 The API key you supplied was invalid.`` response from the server. 
+When making a request to the ``/fetch/`` API endpoint you will need to replace the placeholder ``key`` ``xxx-xxx-xxx-xxx``   in the examples below with your own API key, 
+otherwise you'll receive the ``403 The API key you supplied was invalid.`` response from the server.
   
-  Alternatively, you can enter your API key into the field below and click the **Authorize** button to launch the example request directly from the documentation.
+.. function:: GET /(version)/fetch/(identifier_type)/(id)?key=xxx-xxx-xxx-xxx
 
-.. raw:: html
-
-    <label for="custom_api_key">Enter your API key here: </label>
-    <input type="text" id="custom_api_key" value="xxx-xxx-xxx-xxx"></input>
-    <span id="custom_api_key"></span>
-
-    <script>
-      function authorize() {
-          let custom_api_key = document.getElementById('custom_api_key').value
-          let paragraphs = Array.from(document.querySelectorAll('p'))
-          paragraphs.filter(element => element.textContent.includes("Try it:")).forEach(p => {
-            let hrefs = Array.from(p.querySelectorAll('[href*="key=xxx-xxx-xxx-xxx"]'))
-            hrefs.forEach(el => {
-              let authorizedHref = el.href.replace("xxx-xxx-xxx-xxx", custom_api_key)
-              el.href = authorizedHref
-              el.innerHTML = authorizedHref
-            })
-        })
-      }
-    </script>
-
-    <button class="guilabel" onclick="authorize()">Authorize</button>
-    <br />
-    <br />
-
-Altmetric id
-------------
-
-.. function:: GET /(version)/fetch/id/(id)?key=xxx-xxx-xxx-xxx
-
-  Fetch a research output using an internal Altmetric identifier
-
-  **Example request**:
-
-  .. code-block:: http
-
-    GET /v1/fetch/id/241939?key=xxx-xxx-xxx-xxx HTTP/1.1
-    Host: api.altmetric.com
-  
-  **Query parameters:**
-
-  .. list-table::
-    :widths: 20 10 35 35
-    :header-rows: 1 
-
-    * - Parameter
-      - Required
-      - Accepts
-      - Description
-    * - ``version``
-      - Yes
-      - ``v1``
-      - See :ref:`Versioning`      
-    * - ``id``
-      - Yes
-      - An altmetric article id
-      - For example 241939
-    * - ``key``
-      - Yes
-      -  
-      - The API key that you were issued
-  
-  .. include:: shared/status-codes.rst
-
-  **Try it:** https://api.altmetric.com/v1/fetch/id/241939?key=xxx-xxx-xxx-xxx 
-
-.. warning::
-    Altmetric ids are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOI's, arXiv ID's or PMID's are used instead.
-
-DOI
----
-
-.. function:: GET /(version)/fetch/doi/(doi)?key=xxx-xxx-xxx-xxx
-
-  Fetch a research output using a Digital Object Identifier. 
+  Fetch a research output using the supplied identifier type and identifier
 
   **Example request**:
 
@@ -98,52 +23,11 @@ DOI
     GET /v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx HTTP/1.1
     Host: api.altmetric.com
   
- **Query parameters:**
-
-  .. list-table::
-    :widths: 20 10 35 35
-    :header-rows: 1 
-
-    * - Parameter
-      - Required
-      - Accepts
-      - Description
-    * - ``version``
-      - Yes
-      - ``v1``
-      - See :ref:`Versioning`      
-    * - ``doi``
-      - Yes
-      - Any valid DOI
-      - For example 10.1038/news.2011.490. The DOI should not be urlencoded.
-    * - ``key``
-      - Yes
-      -  
-      - The API key that you were issued
-
-  .. include:: shared/status-codes.rst
-
-  **Try it:** https://api.altmetric.com/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx
-
-PubMed
-------
-
-.. function:: GET /(version)/fetch/pmid/(pmid)?key=xxx-xxx-xxx-xxx
-
-  Fetch a research output using a unique identifier number used in PubMed. 
-
-  **Example request**:
-
-  .. code-block:: http
-  
-    GET /v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx HTTP/1.1
-    Host: api.altmetric.com
-  
   **Query parameters:**
 
-  .. list-table::
-    :widths: 20 10 35 35
-    :header-rows: 1 
+  .. list-table:: 
+    :widths: 20 20 30 30
+    :header-rows: 1
 
     * - Parameter
       - Required
@@ -152,182 +36,44 @@ PubMed
     * - ``version``
       - Yes
       - ``v1``
-      - See :ref:`Versioning`      
-    * - ``pmid``
+      - See :ref:`Versioning`
+    * - ``identifier type``
       - Yes
-      - Any valid PMID
-      - For example 21148220
-    * - ``key``
+      - ``doi`` ``handle`` ``pmid`` ``arxiv`` ``ads`` ``ssrn`` ``repec`` ``isbn``
+      - A valid identifier type 
+    * - ``identifier``
       - Yes
-      -  
-      - The API key that you were issued
+      - A valid identifier of the type specified by ``identifier_type``
+      - Identifiers should not be urlencoded.
+    * - ``include_sources``
+      - 
+      - Comma delimited list of ``post_types`` to include data for in the response.
+      - Defaults to including everything.
+    * - ``exclude_sources``
+      - 
+      - Comma delimited list of ``post_types`` to exclude data for in response.
+      - Defaults to exclude nothing.
+    * - ``include_sections``
+      - 
+      - Comma delimited list of response object sections to include. 
 
-  .. include:: shared/status-codes.rst
+        Current supported sections are  ``counts`` ``citation`` ``altmetric_score`` ``demographics`` ``posts`` ``images``
+      - Defaults to including everything.
+    * - ``post_types``
+      - 
+      - Comma delimited list of additional filters on ``post_types``
+
+        Current filters are: ``original_tweets``
+      - Defaults to including everything. In this case retweets are excluded from response. Counts section is unaffected.
   
-  **Try it:** https://api.altmetric.com/v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx
-
-arXiv
------
-
-.. function:: GET /(version)/fetch/arxiv/(arxiv)?key=xxx-xxx-xxx-xxx
-
-  Fetch a research output using a unique identifier used in the open-access repository arXiv. 
-
-  **Example request**:
-
-  .. code-block:: http
-
-    GET /v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx HTTP/1.1
-    Host: api.altmetric.com
-  
-   **Query parameters:**
-
-  .. list-table::
-    :widths: 20 10 35 35
-    :header-rows: 1 
-
-    * - Parameter
-      - Required
-      - Accepts
-      - Description
-    * - ``version``
-      - Yes
-      - ``v1``
-      - See :ref:`Versioning`      
-    * - ``arxiv``
-      - Yes
-      - Any valid arXiv id
-      - For example 1108.2455
-    * - ``key``
-      - Yes
-      -  
-      - The API key that you were issued
-
   .. include:: shared/status-codes.rst
 
-  **Try it:** https://api.altmetric.com/v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx
-
-ads
----
-
-.. function:: GET /(version)/fetch/ads/(ads)?key=xxx-xxx-xxx-xxx
-
-  Fetch a research output using a 19 digit identifier which describes the journal article. 
-
-  **Example request**:
-
-  .. code-block:: http
-
-    GET /v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx  HTTP/1.1
-    Host: api.altmetric.com
-  
-   **Query parameters:**
-
-  .. list-table::
-    :widths: 20 10 35 35
-    :header-rows: 1 
-
-    * - Parameter
-      - Required
-      - Accepts
-      - Description
-    * - ``version``
-      - Yes
-      - ``v1``
-      - See :ref:`Versioning`      
-    * - ``ads``
-      - Yes
-      - Any valid ADS bibcode
-      - For example 2012apphl.100y3104b.
-    * - ``key``
-      - Yes
-      -  
-      - The API key that you were issued
-
-  .. include:: shared/status-codes.rst
-
-  **Try it:** https://api.altmetric.com/v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx
-
-ISBN
-----
-
-.. function:: GET /(version)/fetch/isbn/(isbn)?key=xxx-xxx-xxx-xxx
-
-  Fetch a research output using an ISBN. 
-
-  **Example request**:
-
-  .. code-block:: http
-
-    GET /v1/fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx HTTP/1.1
-    Host: api.altmetric.com
-  
-   **Query parameters:**
-
-  .. list-table::
-    :widths: 20 10 35 35
-    :header-rows: 1 
-
-    * - Parameter
-      - Required
-      - Accepts
-      - Description
-    * - ``version``
-      - Yes
-      - ``v1``
-      - See :ref:`Versioning`      
-    * - ``isbn``
-      - Yes
-      - Any valid ISBN
-      - For example 978-3-319-25557-6. The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.
-    * - ``key``
-      - Yes
-      -  
-      - The API key that you were issued
-
-  .. include:: shared/status-codes.rst
-
-  **Try it:** https://api.altmetric.com/v1//fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx
-
-Parameters
-==========
-
-.. list-table:: 
-   :widths: 20 20 30 30
-   :header-rows: 1
-
-   * - Parameter
-     - Required
-     - Accepts
-     - Description
-   * - ``identifier type``
-     - Yes
-     - A valid identifier type  
-     - Types currently accepted are: ``doi`` ``handle`` ``pmid`` ``arxiv_id`` ``ads_id`` ``ssrn`` ``repec id`` 
-   * - ``identifier``
-     - Yes
-     - A valid identifier of the type specified by identifier type
-     - e.g. the actual DOI PubMed ID etc.
-   * - ``include_sources``
-     - No
-     - Comma delimited list of ``post_types`` to include data for in the response.
-     - Defaults to including everything.
-   * - ``exclude_sources``
-     - No
-     - Comma delimited list of ``post_types`` to exclude data for in response
-     - Defaults to exclude nothing.
-   * - ``include_sections``
-     - No
-     - Comma delimited list of response object sections to include
-     - Defaults to including everything. Current sections are: ``counts`` ``citation`` ``altmetric_score`` ``demographics`` ``posts`` ``images``
-   * - ``post_types``
-     - No
-     - Comma delimited list of additional filters on post types.
-     - Defaults to including everything. Current filters are: ``original_tweets`` In this case retweets are excluded from response. Counts section is unaffected.
+.. warning::
+    Altmetric ids are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOI's, arXiv ID's or PMID's are used instead.
 
 Response object
 ===============
-A ``GET`` request to the ``/fetch/`` endpoint returns a JSON object.
+A ``GET`` request to the **Full Access** ``/fetch/`` endpoint returns a JSON object with the following keys.
 
 .. list-table:: 
    :widths: 20 80
@@ -360,7 +106,53 @@ Example response
 .. literalinclude:: responses/fetch.json
   :language: JSON
 
-Field glossary
-==============
+Try it yourself
+===============
+Below is a list of example requests. Before using any of these examples within your application you will need to update the ``key`` to the one that you were issued. Alternatively you can enter your API key into the field below and click the **Authorize** button to launch the example request directly from the documentation.
 
-Here's a list of all JSON fields available in the **Full access** version of the API.
+.. raw:: html
+
+    <script>
+      function authorize() {
+          let custom_api_key = document.getElementById('custom_api_key').value
+          let paragraphs = Array.from(document.querySelectorAll('p'))
+          paragraphs.filter(element => element.textContent.includes("xxx-xxx-xxx-xxx")).forEach(p => {
+            let hrefs = Array.from(p.querySelectorAll('[href*="key=xxx-xxx-xxx-xxx"]'))
+            hrefs.forEach(el => {
+              let authorizedHref = el.href.replace("xxx-xxx-xxx-xxx", custom_api_key)
+              el.href = authorizedHref
+              el.innerHTML = authorizedHref
+            })
+        })
+        const authorize_button = document.getElementById('authorize-btn');
+        authorize_button.innerText = 'Authorized!';
+        setTimeout(() => {
+          authorize_button.innerText = 'Authorize';
+        }, 1000);
+      }
+    </script>
+  
+  <div style="padding-bottom:30px">
+      <label for="custom_api_key">Enter your API key here: </label>
+      <input type="text" id="custom_api_key" value="xxx-xxx-xxx-xxx"></input>
+      <button id="authorize-btn" class="guilabel" onclick="authorize()">Authorize</button>
+  </div>
+
+.. list-table:: 
+   :widths: 50 50 
+   :header-rows: 1
+
+   * - Scenario
+     - URL
+   * - Fetch a research output by its Altmetric Id 
+     - https://api.altmetric.com/v1/fetch/id/241939?key=xxx-xxx-xxx-xxx  
+   * - Fetch a research output by its Digital Object Identifier
+     - https://api.altmetric.com/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx
+   * - Fetch a research output by its PubMed Id
+     - https://api.altmetric.com/v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx 
+   * - Fetch a research output by its arXiv Id
+     - https://api.altmetric.com/v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx
+   * - Fetch a research output by its bibcode Id
+     - https://api.altmetric.com/v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx
+   * - Fetch a research output by its ISBN number
+     - https://api.altmetric.com/v1/fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx

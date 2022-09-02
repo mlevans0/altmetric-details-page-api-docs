@@ -1,10 +1,10 @@
 Citations
 *********
 
-List research outputs with activity in a given timeframe.
+Returns a list of research outputs with activity in the provided ``timeframe``.
 
-Parameters
-==========
+Request
+=======
 
 .. function:: GET /(version)/citations/(timeframe)
 
@@ -42,7 +42,7 @@ Parameters
       - integer
       - Page number used to paginate through results. First page is page ``1``. 
 
-        The API will return an error if you ask for a page number beyond (number of research outputs / ``num_results``)
+        The API will return an error if you ask for a page number beyond (number of research outputs / ``num_results``).
     * - ``num_results``
       -  
       - integer > ``0`` and < ``100``
@@ -227,7 +227,7 @@ Get the 10 most recently scored research outputs where the score has changed wit
 
     <script>
       function validateIssns(issns) {
-        return issns.split(",").every(issn => Number.isInteger(+issn))
+        return issns.split(",").every(issn => Number.isInteger(+issn) || issn.endsWith("X"))
       }
 
       function renderTopTen() {
@@ -238,17 +238,25 @@ Get the 10 most recently scored research outputs where the score has changed wit
         }
 
         fetch(`https://api.altmetric.com/v1/citations/1m?num_results=10&issns=${issns}&order_by=score`)
-        .then((data) => {
-          return data.json()
+        .then((response) => {
+          if (!response.ok && response.status === 404) {
+            throw Error("There were no results found for that journal, please try a different ISSN.");
+          }
+          return response;
+        }).then((data) => {
+          return data.json();
         }).then((data) => {
           let top10 = document.getElementById('top10'), div = document.createElement('div');
           if (data.hasOwnProperty('results')) {
             top10.innerHTML = '';
             data.results.map(result => {
-              div.innerHTML = `<li><a href="${result.details_url}"><img src="${result.images.small}" width=32 height=32 alt>${result.title}</a></li>`;
+              div.innerHTML = `<li><a href="${result.details_url}" target="_blank"><img src="${result.images.small}" width=32 height=32 alt>${result.title}</a></li>`;
               top10.appendChild(div.firstChild);
             })
           }
+        }).catch(function(error) {
+          let top10 = document.getElementById('top10');
+          top10.innerHTML = error;
         });    
       }
     </script>

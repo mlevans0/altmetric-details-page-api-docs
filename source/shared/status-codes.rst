@@ -1,7 +1,7 @@
 **HTTP status codes:**
 
 .. list-table:: 
-   :widths: 20 80
+   :widths: 30 70
    :header-rows: 1 
 
    * - Code
