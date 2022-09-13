@@ -54,7 +54,8 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'logo_only': True,
     'display_version': False,
-    'navigation_depth': 3,
+    'navigation_depth': -1,
+
 }
 html_logo = 'altmetric-logo-white.png'
 html_css_files = [

@@ -31,5 +31,4 @@ which you want either the count of mentions **Counts Only** or the full text of 
    :caption: Appendix
 
    licensing
-   attribution
-   restrictions   
+   attribution   

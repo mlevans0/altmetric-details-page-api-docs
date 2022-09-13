@@ -120,15 +120,17 @@ Use of the ``order_by`` parameter will determine the order in which research out
    * - Parameter
      - Description
    * - ``score (default)``
-     - Orders research outputs based on the Altmetric attention score gained during the period defined by the timeframe argument supplied
+     - Orders research outputs based on the Altmetric attention score gained during the period defined by the timeframe argument supplied. For example, if the timeframe is ``1d``, the
+       article which gained the most attention in the last 24 hours will be at the top
    * - ``at_score``
-     - Orders research outputs based on their overall Altmetric attention score
+     - Orders research outputs based on their overall Altmetric attention score (the number generally shown within Altmetric donuts or other badges)
    * - ``readers``
      - Orders research outputs based on the number of Mendeley readers 
    * - ``first_seen``
      - Orders research outputs based on when Altmetric first started tracking mentions
    * - ``pubdate``
-     - Orders research outputs based on their publication date
+     - Orders by the publication date of the article. This can be approximate; for example, some publishers may not provide an exact publication date, choosing instead to provide only a year or month.
+
 
 Response object
 ===============
@@ -170,9 +172,6 @@ Try it yourself
 ===============
 Click on any of the URLs below to view example responses for the listed scenarios. 
 
-API request examples
---------------------
-
 .. list-table:: 
    :widths: 50 50 
    :header-rows: 1
@@ -191,77 +190,3 @@ API request examples
      - https://api.altmetric.com/v1/citations/1w?&cited_in=twitter&order_by=at_score
    * - Get the top 10 research outputs where the score has changed in the last month for the journal **History**
      - https://api.altmetric.com/v1/citations/1m?num_results=10&issns=00182648&order_by=score
-
-Code samples
-------------
-Below are some snippets of code that help visualise how you can use the data returned from the ``/citations/`` endpoint.
-
-Top 10 by score for journal
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Get the 10 most recently scored research outputs where the score has changed within the last month for the journal **History**
-
-.. code-block:: javascript
-
-     function renderTopTen() {
-        fetch("https://api.altmetric.com/v1/citations/1m?num_results=10&issns=00182648&order_by=score")
-        .then((data) => {
-          return data.json()
-        }).then((data) => {
-          let top10 = document.getElementById('top10'), div = document.createElement('div');
-          if (data.hasOwnProperty('results')) {
-            top10.innerHTML = '';
-            data.results.map(result => {
-              div.innerHTML = `<li><a href="${result.details_url}"><img src="${result.images.small}" width=32 height=32 alt>${result.title}</a></li>`;
-              top10.appendChild(div.firstChild);
-            })
-          }
-      });    
-    }
-
-.. raw:: html
-
-    <ol id="top10"></ol>
-    <label for="issns">Customize this snippet by entering a single ISSN or a comma separated list</label>
-    <input type="text" id="issns" value="00182648"></input>
-
-    <script>
-      function validateIssns(issns) {
-        return issns.split(",").every(issn => Number.isInteger(+issn) || issn.endsWith("X"))
-      }
-
-      function renderTopTen() {
-        let issns = document.getElementById('issns').value
-
-        if(!validateIssns(issns)) {
-          return alert("Please enter a single ISSN number or a comma separated list")
-        }
-
-        fetch(`https://api.altmetric.com/v1/citations/1m?num_results=10&issns=${issns}&order_by=score`)
-        .then((response) => {
-          if (!response.ok && response.status === 404) {
-            throw Error("There were no results found for that journal, please try a different ISSN.");
-          }
-          return response;
-        }).then((data) => {
-          return data.json();
-        }).then((data) => {
-          let top10 = document.getElementById('top10'), div = document.createElement('div');
-          if (data.hasOwnProperty('results')) {
-            top10.innerHTML = '';
-            data.results.map(result => {
-              div.innerHTML = `<li><a href="${result.details_url}" target="_blank"><img src="${result.images.small}" width=32 height=32 alt>${result.title}</a></li>`;
-              top10.appendChild(div.firstChild);
-            })
-          }
-        }).catch(function(error) {
-          let top10 = document.getElementById('top10');
-          top10.innerHTML = error;
-        });    
-      }
-    </script>
-
-    <button class="guilabel" onclick="renderTopTen()">Try it!</button>
-
-    <br />
-    <br />

@@ -7,7 +7,7 @@ Requirements:
 * Please attribute the data to Altmetric.com.
 * Do not redistribute the data in bulk. 
 
-There are three ways you can access Altmetric’s data via our API:
+There are three ways you can access Altmetric's data via our API:
 
 For scientometrics research
 ---------------------------
