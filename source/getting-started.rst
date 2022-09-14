@@ -3,12 +3,12 @@ Access
 
 Authentication
 ==============
-Using the both the **Full Access** endpoint and the Details Page API without rate-limiting requires an API key for authorization. This key is a token that allows our application to verify that
-you are authorized to use the API and should be included when making requests. To do this you will need to include a query string parameter named ``key`` that contains your assigned API key.
+An API key is only required when accessing the **Full Access** endpoint or to remove rate-limiting restrictions enforced on all endpoints. This key is a token that allows our application to verify that
+you are authorized to use the API and should be included when making requests. To do this you will need to include a parameter named ``key`` that contains your assigned API key.
 
 For example, if your key was ``xxx-xxx-xxx-xxx`` your request would look like this: ``curl 'http://api.altmetric.com/v1/id/241939?key=xxx-xxx-xxx-xxx'``
 
-For more information regardig obtaining an API key see our :ref:`Licensing` page.
+For more information regarding obtaining an API key see our :ref:`Licensing` page.
 
 Versioning
 ==========
@@ -21,11 +21,31 @@ You can specify which version of the API to use by changing the base URL for you
 
 ``https://api.altmetric.com/v1/doi/10.1038/480426a``
 
+Identifiers
+***********
+
+Below is a list of our supported identifers.
+
+.. list-table:: 
+   :widths: 10 10 80 
+   :header-rows: 1
+
+   * - Code
+     - Name
+     - Description
+   * - ``doi``
+     - Digital Object Identifier
+     - A DOI (Digital Object Identifier) is a unique and persisteant string assigned to online articles, books, and other works. You can read more about DOIs here: https://www.doi.org/
+   * - ``pmid`` 
+     - PubMed Identifier
+     - A PMID is the unique identifier number used in PubMed for each article. PMIDs do not change over time or during processing and are never reused. You can read more about PubMed here: https://pubmed.ncbi.nlm.nih.gov/
+
 Limitations
 ***********
+
 Cross-site scripting
 ====================
-To support older browsers you can use JSONP. To do this you will need to include a ``callback`` parameter that contains the name of the Javascript function to invoke when the call returns.
+To support older browsers you can use JSONP (JSON with Padding). To do this you will need to include a ``callback`` parameter that contains the name of the Javascript function to invoke when the call returns.
 
 For example: ``https://api.altmetric.com/v1/doi/10.1038/480426a?callback=my_callback``
 
@@ -52,27 +72,55 @@ For example: ``https://api.altmetric.com/v1/doi/10.1038/480426a?callback=my_call
 
 Rate limiting
 =============
-Every day the Details Page API handles many thousands of requests. To help manage the volume of these requests, limits are placed on the number of requests that can be made from a
-specific IP address and API key. These limits help us provide a reliable and dependable API service that serves the Altmetric communitiy. 
+Every day the Details Page API handles a large number of requests. To help manage the volume of these requests, limits are placed on the number of requests that can be made from a
+specific IP. These limits help us provide a reliable and dependable API service that serves the Altmetric community. 
 
-You can check the ``X-HourlyRateLimit-Limit`` and ``X-DailyRateLimit-Limit`` headers for the current limits. The ``X-HourlyRateLimit-Remaining`` and ``X-DailyRateLimit-Remaining`` headers
+If you are using the API without a key you can check the ``X-HourlyRateLimit-Limit`` and ``X-DailyRateLimit-Limit`` headers for the current limits. The ``X-HourlyRateLimit-Remaining`` and ``X-DailyRateLimit-Remaining`` headers
 will tell you how many calls you have remaining.
 
 When your rate limit has been exceeded, a ``429 'Too many requests'`` error is returned by the API.  When this occurs it is recommended that you examine HTTP headers above and pause requests until
-sufficient time has past. If you find that you frequently hit the rate limit then you might want to consider throttling your requests or purchasing a commerical API key.
+sufficient time has passed. If you find that you frequently hit the rate limit then you might want to consider throttling your requests or purchasing a commercial API key.
 
 Twitter
 =======
-Due to a contractual agreement that Altmetric has with Twitter, a maximum of 1,500,000 tweet IDs can be retrieved in any rolling 30 day period, if your request returns tweet IDs,
+Due to a contractual agreement that Altmetric has with Twitter, a maximum of 1,500,000 unique tweet IDs can be retrieved in any rolling 30 day period. If your request returns tweet IDs, 
 please check the ``X-TweetIDRateLimit-Limit`` and ``X-TweetIDRateLimit-Remaining`` headers to check how close you are to the limit. 
 
+Multiple requests to the same research output will not decrement your remaining limit **unless** it has received new Twitter attention or the request is outside the rolling 30 day window. 
+Where the research output has received new attention, the ``X-TweetIDRateLimit-Remaining`` will be reduced by the additional uniqiue tweet IDs and not by the total amount of tweet IDs for the research output.
+
+If you exceed your quota a ``429`` response will be returned along with the message ``Tweet ID rate limit exceeded, please see X-TweetIdRateLimit headers and try again later``.
+
 .. tip::
-    If you are using the :ref:`Fetch` endpoint and don't require Twitter information you can use the ``exclude_sources`` query string paramter to remove Twitter information from the response.
+    If you are using the :ref:`Fetch` endpoint and don't require Twitter information you can use the ``exclude_sources`` query string parameter to remove
+    Twitter information from the response.
+
+    For example: ``curl https://api.altmetric.com/v1/fetch/doi/10.1371/journal.pone.0005083?key=xxx-xxx-xxx-xxx&exclude_sources=twitter``
+
+How to obtain additional Twitter information
+--------------------------------------------
+If you are working on a project that requires information about tweets or tweeters, that is not available via Altmetric's APIs, then you will need to request the  additional data directly from Twitter's own API services. 
+You can utilize the Tweet IDs and User IDs that you obtain from Altmetric's APIs to then query the Twitter API for this additional information. If you are using Twitter data for your projects,
+please ensure that you are compliant with Twitter's Developer Policy and Twitter's Terms of Service.
+
+To get started you you will first need to apply for developer access to Twitter's APIs `here <https://developer.twitter.com/en/apply-for-access>`_.
+
+Once you have obtained access to Twitter's Developer Portal, you will be able to send requests to the Twitter API. To access detailed information for individual
+tweets (which Twitter refers to as "statuses"), you can `query the Twitter API using a single Tweet ID <https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id>`_.
+
+Alternatively, you can request detailed information for a batch of up to 100 tweets at a time `using multiple Tweet IDs <https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-lookup>`_.
+
+Hydrate Tweets IDs into actual Tweets
+--------------------------------------
+For hydration, you can use "Hydrator" – see https://github.com/DocNow/hydrator. This great multi-platform app takes as input a bunch of data (e.g., tweet IDs and your own developer key) and
+in turn goes to the Twitter API, retrieving all the tweets that are still available online. It also manages the download process, including download rate limits.
+
+Check the `Content Distribution section on this page <https://developer.twitter.com/en/developer-terms/agreement-and-policy>`_ for more info on Twitter's platform terms and conditions.
 
 .. note::
-    Please ensure that you are compliant with Twitter's `Terms of Service <https://twitter.com/en/tos>`_ and the `Developer Policy <https://developer.twitter.com/en/developer-terms/policy.html>`_
-    when using Twitter data. For further information about Twitter data usage restrictions, please read 
-    this `knowledgebase article <https://help.altmetric.com/support/solutions/articles/6000242073-twitter-data-available-in-altmetric-s-apis-and-data-exports>`_.
+    When fetching and displaying tweets you should be adhering to Twitter's `display guidelines <https://dev.twitter.com/terms/display-guidelines>`_ and please ensure
+    that you are compliant with Twitter's `Terms of Service <https://twitter.com/en/tos>`_ and the `Developer Policy <https://developer.twitter.com/en/developer-terms/policy.html>`_
+    when using Twitter data. For further information about Twitter data usage restrictions, please read this `Knowledgebase article <https://help.altmetric.com/support/solutions/articles/6000242073-twitter-data-available-in-altmetric-s-apis-and-data-exports>`_.
 
 News
 ====

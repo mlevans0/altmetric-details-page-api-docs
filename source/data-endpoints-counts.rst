@@ -6,7 +6,7 @@ is optimized for querying for a single identifier or a strictly defined search.
 Request
 =======
 
-.. function:: GET /(version)/(identifier_type)/(id)
+.. function:: GET /{version}/{identifier_type}/{id}
 
   Fetch a research output using the supplied identifier type and identifier
 
@@ -33,21 +33,21 @@ Request
       - See :ref:`Versioning`      
     * - ``identifier type``
       - Yes
-      - ``doi`` ``handle`` ``pmid`` ``arxiv`` ``ads`` ``ssrn`` ``repec`` ``isbn``
+      - ``doi`` ``handle`` ``pmid`` ``arxiv`` ``ads`` ``ssrn`` ``repec`` ``isbn`` ``id`` ``nct_id`` ``urn`` ``uri``
       - A valid identifier type.
     * - ``identifier``
       - Yes
       - A valid identifier of the type specified by ``identifier_type``
-      - Identifiers should not be urlencoded.
+      - Identifiers should not be URL-encoded.
 
   .. include:: shared/status-codes.rst
 
 .. warning::
-    Altmetric ids are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOI's, arXiv ID's or PMID's are used instead.
+    Altmetric IDs are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOIs, arXiv IDs or PMIDs are used instead.
 
 Response object
 ===============
-A ``GET`` request to the **Counts Only** endpoint returns a JSON object with the following keys. 
+A ``GET`` request to the **Counts Only** endpoint returns a JSON object with the following keys where available.
 
 .. csv-table::
    :file: shared/counts-and-citations-field-glossary.csv

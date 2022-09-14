@@ -1,82 +1,127 @@
 Keys,Type,Description
-``title``,string,Title of the publication
-``doi``,string,Relevant DOI
-``pmid``,string,Relevant PMID
-``pmc``,string,Relevant PMC
-``uri``,string,URL for a captured idenfier (e.g doi.org/xxx)
-``isbns``,string [] ,Relevant ISBN(s)
-``altmetric_jid``,number,Internal number assigned to each journal
-``issns``,string [] ,Relevant ISSN(s)
-``journal``,string,Name of publication journal
-``pubdate``,date,The print date that the publication was published
-``epubdate``,date,The date that the publication was published electronically
-``published_on``,number,"Returns the ``epubdate`` if it exists on the record, if not then the ``pubdate`` is return instead. This date is used on the **Details Page** and within the **Explorer**"
+``altmetric_id``,number,Internal ID associated with the research output. Altmetric IDs are transient and unstable over the medium term.
+``counts``,object,"Provides the number of mentions and unique authors in each relevant source type, for example ``blogs`` ``twitter`` ``news`` as well as reference manager reader counts and downloads, where available."
+``counts`` . ``readers``,object,Reader counts.
+``counts`` . ``readers`` . ``mendeley``,number,Readers in Mendeley.
+``counts`` . ``readers`` . ``connotea``,number,Readers in Connotea (no longer updated).
+``counts`` . ``readers`` . ``citeulike``,number,Readers in CiteULike (no longer updated).
+``counts`` . ``facebook``,object,
+``counts`` . ``facebook`` . ``unique_users_count``,number,Number of unique Facebook users.
+``counts`` . ``facebook`` . ``unique_users``,string [],Facebook user IDs associated with the posts.
+``counts`` . ``facebook`` . ``posts_count``,number,Total number of posts.
+``counts`` . ``blogs``,object,
+``counts`` . ``blogs`` . ``unique_users_count``,number,Number of unique bloggers.
+``counts`` . ``blogs`` . ``unique_users``,string [],User IDs associated with the blog posters.
+``counts`` . ``blogs`` . ``posts_count``,number,Total number of blog posts.
+``counts`` . ``news``,object,
+``counts`` . ``news`` . ``unique_users_count``,number,Number of unique news sources.
+``counts`` . ``news`` . ``unique_users``,string [],Internal names for associated news sources.
+``counts`` . ``news`` . ``posts_count``,number,Total number of news stories.
+``counts`` . ``reddit``,object,
+``counts`` . ``reddit`` . ``unique_users_count``,number,Number of unique Redit users.
+``counts`` . ``reddit`` . ``unique_users``,string [],User IDs associated with the posts.
+``counts`` . ``reddit`` . ``posts_count``,number,Number of posts.
+``counts`` . ``twitter``,object,
+``counts`` . ``twitter`` . ``unique_users_count``,number,Number of unique Twitter users.
+``counts`` . ``twitter`` . ``posts_count``,number,Total number of tweets.
+``counts`` . ``total`` . ``posts_count``,number,Total number of mentions.
+``citation``,object,"Bibliographic metadata about the output requested. You'll find third party identifiers, for example ``doi`` ``pmid`` ``arxiv`` in this object."
+``citation`` . ``altmetric_jid``,string,Internal identifier assigned to each journal or collection.
+``citation`` . ``title``,string,Title of the publication.
+``citation`` . ``doi``,string,Relevant DOI.
+``citation`` . ``pmid``,string,Relevant Pubmed Id.
+``citation`` . ``pmc``,string,Relevant Pubmed Central Id.
+``citation`` . ``handles``,string[],Relevant Handle(s).
+``citation`` . ``uri``,string,URL for a captured identifier (e.g https://doi.org/xxx).
+``citation`` . ``url``,string,URL to publication page.
+``citation`` . ``urn``,string,Relevant URN.
+``citation`` . ``ads_id``,string,Relevant bibcode Id.
+``citation`` . ``tq``,string,
+``citation`` . ``nct_id``,string,
+``citation`` . ``hollis_id``,string,
+``citation`` . ``hlom_id``,string,
+``citation`` . ``ssrn``,string,
+``citation`` . ``repec``,string,
+``citation`` . ``arxiv_id``,string,Relevant arXiv Id.
+``citation`` . ``isbns``,string [] ,Relevant ISBN(s).
+``citation`` . ``issns``,string [] ,Relevant ISSN(s).
+``citation`` . ``journal``,string,Name of publication journal.
+``citation`` . ``pubdate``,date,The print date that the publication was published.
+``citation`` . ``epubdate``,date,The date that the publication was published electronically.
+``citation`` . ``published_on``,number,"Returns the ``epubdate`` if it exists on the record, if not then the ``pubdate`` is returned instead."
+``citation`` . ``type``,string,``dataset`` ``book`` ``article`` ``news`` ``chapter`` ``clinical_trial_study_record``
+``citation`` . ``abstract``,string,Full abstract for the article.
+``citation`` . ``abstract_source``,string,Source for the abstract (e.g PUBMED).
+``citation`` . ``links``,string [],Collection of link that point to this research output.
+``citation`` . ``first_seen_on``,date,
+``citation`` . ``issue``,string,
+``citation`` . ``last_mentioned_on``,number,Last time the research output was mentioned. In UNIX.
+``citation`` . ``pdf_url``,string,PDF URL to the research output.
+``citation`` . ``startpage``,string,
+``citation`` . ``aggregate_citation_ids``,number [],Collection of Altmetric IDs for book chapters.
+``citation`` . ``authors``,string[],Author names.
+``citation`` . ``authors_or_editors``,string[],Author and editor names.
+``citation`` . ``attribution``,string,Source of data. For example Google Books.
+``citation`` . ``is_oa``,boolean ,Deprecated.
+``citation`` . ``scopus_subjects``,string[],Initally imported from Scopus in 2011 (Depricated).
+``citation`` . ``publisher_subjects``,object[],Subjects for journal set by the publisher.
+``citation`` . ``publisher_subjects`` . ``name``,string,Name of subject
+``citation`` . ``publisher_subjects`` . ``scheme``,string,Available schemes are ``era`` ``bmj`` (Depricated) ``springer`` ``npg``
+``citation`` . ``subjects``,string[],Subjects for journal. Originally enriched from National Academy of Medecine (Depricated).
+``citation`` . ``mendeley_url``,string,URL to the research output in Mendeley.
+``citation`` . ``volume``,string,
+``citation`` . ``book_cover_url``,string,URL to the book cover.
+``citation`` . ``chapters``,object,
+``citation`` . ``chapters`` . ``altmetric_id``,number,Altmetric ID for book chaper.
+``citation`` . ``chapters`` . ``title``,string,Title of the book chapter.
+``citation`` . ``chapters`` . ``ordinal_number``,number,Book chapter number.
+``citation`` . ``added_on``,number,Date when Altmetric first captured attention. In UNIX.
+``citation`` . ``score``,decimal,Current Altmetric Attention Score.
+``citation`` . ``last_updated``,number,Last time the score changed. In UNIX.
 ``cohorts``,object,Groups of users who've mentioned the publication on Twitter
 ``cohorts`` . ``pub``,number,Members of the Public
 ``cohorts`` . ``sci``,number,Scientists
 ``cohorts`` . ``com``,number,Science Communicators
 ``cohorts`` . ``doc``,number,Practitioners
-``abstract``,string,Full abstract for the article
-``abstract_source``,string,Source for the abstract (e.g PUBMED)
-``authors``,string[],Author names
-``type``,string,``dataset`` ``book`` ``article`` ``news``
-``handles``,string[],Relevant Handle(s)
-``altmetric_id``,number ,Internal ID associated with the research output. Not a persistent identifier; may change when duplicate instances of the same research output are merged in our database.
-``is_oa``,boolean ,Came from Scopus in 2011 and never updated
-``publisher_subjects``,object[],Subjects for publication set by the publisher.
-``publisher_subjects`` . ``name``,string,
-``publisher_subjects`` . ``scheme``,string,
-``context``,object,Score in context
-``context`` . ``journal`` . ``rank``,number,Rank within publications in the journal
-``context`` . ``journal`` . ``pct``,number,% of publications from this journal with fewer mentions
-``context`` . ``journal`` . ``higher_than``,number,# of publications from this journal with fewer mentions
-``context`` . ``similar_age_3m`` . ``count``,number,Number of publications in this time period
-``context`` . ``similar_age_3m`` . ``mean``,number,Mean score for publications in this time period
-``context`` . ``similar_age_3m`` . ``rank``,number,Score in context rank within publications in this time period
-``context`` . ``similar_age_3`` . ``pct``,number,% of publications from this time period with fewer mentions
-``context`` . ``similar_age_3m`` . ``higher_than``,number,# of publications from this time period with fewer mentions
-``context`` . ``similar_age_journal`` . ``3m_count``,number,Number of publications in this journal in this time period
-``contex`` . ``similar_age_journal`` . ``3m_mean``,number,Mean score for publications in this journal in this time period
-``contex`` . ``similar_age_journal`` . ``3m_rank``,number,Score in context rank within publications in the journal in this time period
-``context`` . ``similar_age_journal`` . ``3m_pct``,number,% of publications from this journal with fewer mentions in this time period
-``context`` . ``similar_age_journal_3m`` . ``higher_than``,number,# of publications from this journal with fewer mentions in this time period
-``cited_by_fbwalls_count``,number,Number of the pages that have shared on Facebook
-``cited_by_feeds_count``,number,Number of blogs that have mentioned the publication
-``cited_by_gplus_count``,number,Number of the accounts that have shared on Google+
-``cited_by_msm_count``,number,Number of the news sources that have mentioned the publication
-``cited_by_posts_count``,number ,A ``post`` is any online document that links to one or more research outputs (i.e. a post is a mention or a group of mentions). This field contains the number of distinct ``posts`` that include one or more mentions of the research outputs in question.
-``cited_by_rdts_count``,number,Number of Reddit threads posted about this publication
-``cited_by_tweeters_count``,number,Number of the twitter accounts that have tweeted this publication
-``cited_by_videos_count``,number,Number of the Youtube/Vimeo channels
-``cited_by_accounts_count``,number,The sum of all ``cited_by`` entries (profiles per data source)
-``last_updated``,number,Last time the score changed. In UNIX
-``score``,decimal ,Current Altmetric Attention Score
-``history``,object,History of the Altmetric Attention Score for the research output
-``history`` . ``1y``,decimal ,Score change in this time period
-``history`` . ``6m``,decimal ,Score change in this time period
-``history`` . ``3m``,decimal ,Score change in this time period
-``history`` . ``1m``,decimal ,Score change in this time period
-``history`` . ``1w``,decimal ,Score change in this time period
-``history`` . ``6d``,decimal ,Score change in this time period
-``history`` . ``5d``,decimal ,Score change in this time period
-``history`` . ``4d``,decimal ,Score change in this time period
-``history`` . ``3d``,decimal ,Score change in this time period
-``history`` . ``2d``,decimal ,Score change in this time period
-``history`` . ``1d``,decimal ,Score change in this time period
-``history`` . ``at``,decimal ,Current Altmetric Attention Score
-``url``,string,URL to publication page
-``added_on``,number,Date when Altmetric first captured attention. In UNIX.
-``subjects``,string[],ERA subjects associated with the publication
-``scopus_subjects``,string[],Added it in 2011 and never removed
-``readers``,object,Readers in citeulike
-``readers`` . ``mendeley``,number,Readers in Mendeley
-``readers`` . ``connotea``,number,Readers in Connotea
-``readers`` . ``citeulike``,number,Readers in Connotea
-``readers_count``,number,Total number of readers
-``images``,object,Links to png versions of the donut
-``images`` . ``small``,string,64px square
-``images`` . ``medium``,string,100px square
-``images`` . ``large``,string,180px square
+``context``,object,Score in context.
+``context`` . ``all``,objext,Contains statistics about the entire Altmetric database.
+``context`` . ``all`` . ``rank``,number,Rank within publications in the database.
+``context`` . ``all`` . ``pct``,number,Percentage of publications in the database with fewer mentions.
+``context`` . ``all`` . ``higher_than``,number,Number of publications in the database with fewer mentions.
+``context`` . ``journal``,object,Contains statistics about all articles from the same journal that have been tracked by Altmetric.
+``context`` . ``journal`` . ``rank``,number,Rank within publications in the journal.
+``context`` . ``journal`` . ``pct``,number,% of publications from this journal with fewer mentions.
+``context`` . ``journal`` . ``higher_than``,number,Number of publications from this journal with fewer mentions.
+``context`` . ``similar_age_3m``,object,Contains statistics about articles from any journal published within 6 weeks on either side of this one.
+``context`` . ``similar_age_3m`` . ``count``,number,Number of publications in this time period.
+``context`` . ``similar_age_3m`` . ``mean``,number,Mean score for publications in this time period.
+``context`` . ``similar_age_3m`` . ``rank``,number,Score in context rank within publications in this time period.
+``context`` . ``similar_age_3m`` . ``pct``,number,% of publications from this time period with fewer mentions.
+``context`` . ``similar_age_3m`` . ``higher_than``,number,Number of publications from this time period with fewer mentions.
+``context`` . ``similar_age_journal_3m``,object,Contains statistics about articles from the same journal and published within 6 weeks on either side of this one.
+``context`` . ``similar_age_journal_3m`` . ``count``,number,Number of publications in this journal in this time period.
+``context`` . ``similar_age_journal_3m`` . ``mean``,number,Mean score for publications in this journal in this time period.
+``context`` . ``similar_age_journal_3m`` . ``rank``,number,Score in context rank within publications in the journal in this time period.
+``context`` . ``similar_age_journal_3m`` . ``pct``,number,% of publications from this journal with fewer mentions in this time period.
+``context`` . ``similar_age_journal_3m`` . ``higher_than``,number,Number of publications from this journal with fewer mentions in this time period.
+``demographics``,object,"Altmetric categorizes users from some sources based on their posting history and profile information. Counts for each category are included in this section along with geolocation data."
+``history``,object,History of the Altmetric Attention Score for the research output.
+``history`` . ``1y``,decimal ,Score change in the last year.
+``history`` . ``6m``,decimal ,Score change in the last six months.
+``history`` . ``3m``,decimal ,Score change in the last 3 months.
+``history`` . ``1m``,decimal ,Score change in the last one month.
+``history`` . ``1w``,decimal ,Score change in the last week.
+``history`` . ``6d``,decimal ,Score change in the last six days.
+``history`` . ``5d``,decimal ,Score change in the last five days.
+``history`` . ``4d``,decimal ,Score change in the last four days.
+``history`` . ``3d``,decimal ,Score change in the last three days.
+``history`` . ``2d``,decimal ,Score change in the last two days.
+``history`` . ``1d``,decimal ,Score change in the last one day.
+``history`` . ``at``,decimal ,Current Altmetric Attention Score.
+``posts``,object,
 ``details_url``,string,URL to relevant Altmetric Details Page
-``authors_or_editors``,string[],Author and editor names
-``attribution``,string,Source of data. For example Google Books 
+``score``,object ,"Contains details of the Altmetric score and, where possible, provides some context."
+``images``,object,Links to png versions of the donut.
+``images`` . ``small``,string,64px square.
+``images`` . ``medium``,string,100px square.
+``images`` . ``large``,string,180px square.

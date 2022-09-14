@@ -6,9 +6,9 @@ Returns a list of research outputs with activity in the provided ``timeframe``.
 Request
 =======
 
-.. function:: GET /(version)/citations/(timeframe)
+.. function:: GET /{version}/citations/{timeframe}
 
-  Returns a list of research outputs with activity in the provided timeframe.
+  Returns a list of research outputs with activity in the provided time frame.
 
   **Example request**:
 
@@ -49,12 +49,16 @@ Request
       - Number of research outputs per page. Defaults to 25.
     * - ``cited_in``
       -  
-      - One or more comma delimited options from: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``rh`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``qna`` ``forum`` ``peerreview`` ``pinterest``
+      - One or more comma delimited options from: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``pinterest`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``rh`` ``qna`` ``forum`` ``peerreview`` ``policy`` ``weibo`` ``q&a`` 
       - Include only research outputs mentioned in the supplied list of sources.
     * - ``doi_prefix``
       -  
       - A DOI prefix (for example 10.1038)
       - Include only research outputs with a DOI that contains the given prefix.
+    * - ``issn``
+      -  
+      - Accepts a comma separated list of ISSN's. Both ``00221465`` and ``0022-1465`` are accepted values.
+      - A valid journal ISSN number. Must be a journal already registered and accessible from within the Altmetric Explorer.
     * - ``order_by``
       -  
       - One of the following: ``score`` ``at_score`` ``readers`` ``first_seen`` ``pubdate``
@@ -64,7 +68,7 @@ Request
     * - ``key``
       -  
       - 
-      - The API key that you were issued 
+      - The API key that you were issued. 
 
   .. include:: shared/status-codes.rst
 
@@ -72,7 +76,7 @@ Request
 
 Pagination
 ==========
-Results from this endpoint are paginated. To help with paging through the list of results a ``query`` object is embeded in each response. 
+Results from this endpoint are paginated. To help with paging through the list of results a ``query`` object is embedded in each response. 
 
 .. list-table:: 
    :widths: 20 80
@@ -81,11 +85,11 @@ Results from this endpoint are paginated. To help with paging through the list o
    * - Key
      - Description
    * - ``total``
-     - The total number of research outputs that match the query parameters  
+     - The total number of research outputs that match the query parameters.  
    * - ``page``
-     - The current page that you are on
+     - The current page that you are on.
    * - ``num_results``
-     - The number of research outputs in the current page 
+     - The number of research outputs in the current page. 
 
 Example
 -------
@@ -107,7 +111,7 @@ To get the next page you'd need to make the following request:
 ``curl https://api.altmetric.com/v1/citations/at?page=2``
 
 To page through the entire list of research outputs: while ``query.page`` multiplied by ``query.num_results`` is less-than ``query.total`` you will need to keep incrementing the ``page``
-query string integer value. In the example here we'd just need to increment ``page`` up to 4 (4 x 25 = 100).
+query string integer value. In the example here we'd just need to increment the ``page`` up to 4 (4 x 25 = 100).
 
 Sorting
 =======
@@ -121,20 +125,20 @@ Use of the ``order_by`` parameter will determine the order in which research out
      - Description
    * - ``score (default)``
      - Orders research outputs based on the Altmetric attention score gained during the period defined by the timeframe argument supplied. For example, if the timeframe is ``1d``, the
-       article which gained the most attention in the last 24 hours will be at the top
+       article which gained the most attention in the last 24 hours will be at the top.
    * - ``at_score``
-     - Orders research outputs based on their overall Altmetric attention score (the number generally shown within Altmetric donuts or other badges)
+     - Orders research outputs based on their overall Altmetric attention score (the number generally shown within Altmetric donuts or other badges).
    * - ``readers``
-     - Orders research outputs based on the number of Mendeley readers 
+     - Orders research outputs based on the number of readers. 
    * - ``first_seen``
-     - Orders research outputs based on when Altmetric first started tracking mentions
+     - Orders research outputs based on when Altmetric first started tracking mentions.
    * - ``pubdate``
      - Orders by the publication date of the article. This can be approximate; for example, some publishers may not provide an exact publication date, choosing instead to provide only a year or month.
 
 
 Response object
 ===============
-The Altmetric Details Page API returns JSON. The ``/citations/`` endpoint returns an object with with the keys ``query`` and ``results``.
+The Altmetric Details Page API returns JSON. The ``/citations/`` endpoint returns an object with the keys ``query`` and ``results``.
 
 Query object
 ------------
@@ -155,7 +159,7 @@ Query object
 
 Results object
 --------------
-A GET request to the ``/citations/`` endpoint returns a JSON object with the following properties.
+A GET request to the ``/citations/`` endpoint returns a JSON object with the following keys.
 
 .. csv-table::
    :file: shared/counts-and-citations-field-glossary.csv
