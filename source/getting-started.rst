@@ -8,11 +8,7 @@ you are authorized to use the API and should be included when making requests. T
 
 For example, if your key was ``xxx-xxx-xxx-xxx`` your request would look like this: ``curl 'http://api.altmetric.com/v1/id/241939?key=xxx-xxx-xxx-xxx'``
 
-If you are a scientometrics researcher, you don't need to register for an API key to use the rate-limited Details Page **Counts Only** API endpoint, but it is highly recommended that you do. 
-
-If you wish to use the Details Page **Counts Only** API endpoint without rate limiting, you must obtain an API key. Please `visit our website for more information <https://www.altmetric.com/research-access/>`_.
-
-If you would like to use the Details Page API for commercial purposes, you will need to obtain an API key. Please email info@altmetric.com for more information.
+For more information regardig obtaining an API key see our :ref:`Licensing` page.
 
 Versioning
 ==========

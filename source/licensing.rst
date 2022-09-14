@@ -1,45 +1,32 @@
 Licensing
 ============ 
-Requirements:
+Access to the Altmetric Details Page API is available via a variety of license types. This table gives an overview of the types and their key properties:
 
-* Altmetric data can be made free for scientometric researchers. Please contact us to apply for our Researcher Data Access Program.
-* Commercial projects must adhere to third party licensing restrictions contained in their contracts. Please contact us for more information.
-* Please attribute the data to Altmetric.com.
-* Do not redistribute the data in bulk. 
+ .. list-table::
+    :widths: 20 40 40
+    :header-rows: 1 
 
-There are three ways you can access Altmetric's data via our API:
+    * - Type
+      - Conditions of use
+      - What can I do with it?
+    * - **Counts Only**
+      - * For researchers working on a specific academic, one-off project.
+        * Must give attribution to Altmetric when using data.
+      - * Run queries and retrieve counts of mentions from each source tracked by Altmetric. 
+        * Rate limited.
+    * - **Counts Only with a key**
+      - * For researchers working on a specific academic, one-off project.
+        * Must give attribution to Altmetric when using data, let Altmetric know what project you're working on with the data and provide updates.
+      - * Run queries and retrieve counts of mentions from each source tracked by Altmetric.
+        * No rate limits.
+    * - **Full Access**
+      - * Paid, contract access.
+        * Display the data as and where you choose.
+      - * Run queries and retrieve full text of mentions (excluding Tweets due to licensing restrictions).
+        * Display data publicly (as agreed in contract). 
+        * No rate limits.
 
-For scientometrics research
----------------------------
-Counts Only, rate-limited
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+For more information on how to access the API for commercial projects visit our website: `Altmetric Details Page API <https://www.altmetric.com/products/altmetric-api/>`_.  
+This includes details on conditions of use, access and pricing. Users must adhere to third party licensing restrictions contained in their contracts. 
 
-* No API key required.
-* Free for scientometrics researchers.
-* Includes research object metadata and metrics only.
-* Available only for one-time, limited term research projects.
-* Best for small projects.
-* Rate limited to 1 call per second.
-
-Counts Only, no rate limits
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* API key required.
-* Free for scientometrics researchers.
-* Includes research object metadata and metrics only.
-* Available only for one-time, limited term research projects.
-* Best for medium to large projects
-* No rate limit.
-
-If you'd like to use the Altmetric Details Page API in an academic research project, please visit our `website <https://www.altmetric.com/research-access/>`_.
-
-For commercial use
-------------------
-Full Access (aka ``/fetch`` )
-
-* Key required. Includes research object metadata, metrics, and full-text mentions for most data sources (except Twitter).
-* Available for commercial use as well as one-time, limited term research projects.
-* No rate limit.
-* To learn more about requesting a commercial license, visit our website.
-
-If you'd like to use the Altmetric Details Page API for non-commercial purposes that don't exactly meet the "research project" use case, please email us at info@altmetric.com to discuss your options.
+For more information on how to access Altmetric data as a university-affiliated scientometrics researcher studying relevant topics, see the `Researcher Data Access Program <https://www.altmetric.com/research-access/>`_.
