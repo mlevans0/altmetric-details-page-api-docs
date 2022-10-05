@@ -26,10 +26,14 @@ Keys,Type,Description
 ``is_oa``,boolean ,Deprecated.
 ``context``,object,Score in context.
 ``context`` . ``all``,objext,Contains statistics about the entire Altmetric database.
+``context`` . ``all`` . ``count``,number,Number of publications in the database.
+``context`` . ``all`` . ``mean``,number,Mean score for publications in the database.
 ``context`` . ``all`` . ``rank``,number,Rank within publications in the database.
 ``context`` . ``all`` . ``pct``,number,Percentage of publications in the database with fewer mentions.
 ``context`` . ``all`` . ``higher_than``,number,Number of publications in the database with fewer mentions.
 ``context`` . ``journal``,object,Contains statistics about all articles from the same journal that have been tracked by Altmetric.
+``context`` . ``journal`` . ``count``,number,Number of publications in this journal.
+``context`` . ``journal`` . ``mean``,number,Mean score for publications in this journal.
 ``context`` . ``journal`` . ``rank``,number,Rank within publications in the journal.
 ``context`` . ``journal`` . ``pct``,number,% of publications from this journal with fewer mentions.
 ``context`` . ``journal`` . ``higher_than``,number,Number of publications from this journal with fewer mentions.

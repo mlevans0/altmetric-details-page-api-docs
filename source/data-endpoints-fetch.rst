@@ -63,11 +63,20 @@ otherwise you'll receive the ``403 The API key you supplied was invalid.`` respo
       - Identifiers should not be URL-encoded.
     * - ``include_sources``
       - 
-      - Comma delimited list of ``post_types`` to include data for in the response.
+      - Comma delimited list of post types to include data for in the response. 
+        
+        Where sources are not included the ``unique_users`` key is also removed from ``counts`` if it exists.
+
+        Current filters are: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``pinterest`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``rh`` ``qna`` ``forum`` ``peerreview`` ``policy`` ``weibo`` ``q&a`` 
       - Defaults to include everything.
     * - ``exclude_sources``
       - 
-      - Comma delimited list of ``post_types`` to exclude data for in response.
+      - Comma delimited list of post types to exclude data for in response.
+        
+        Where sources are excluded the ``unique_users`` key is also removed from ``counts`` if it exists.
+
+        Current filters are: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``pinterest`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``rh`` ``qna`` ``forum`` ``peerreview`` ``policy`` ``weibo`` ``q&a`` 
+
       - Defaults to exclude nothing.
     * - ``include_sections``
       - 
@@ -77,7 +86,7 @@ otherwise you'll receive the ``403 The API key you supplied was invalid.`` respo
       - Defaults to include everything.
     * - ``post_types``
       - 
-      - Comma delimited list of additional filters on ``post_types``
+      - Comma delimited list of additional filters on the sub type associated with post types.
 
         Current filters are: ``original_tweets``
       - Defaults to include everything. In this case retweets are excluded from response. Counts section is unaffected.

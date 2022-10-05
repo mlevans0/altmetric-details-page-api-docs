@@ -35,11 +35,40 @@ Below is a list of our supported identifers.
      - Description
    * - ``doi``
      - Digital Object Identifier
-     - A DOI (Digital Object Identifier) is a unique and persisteant string assigned to online articles, books, and other works. You can read more about DOIs here: https://www.doi.org/
+     - A DOI (Digital Object Identifier) is a unique and persisteant string assigned to online articles, books, and other works. You can read more about DOIs here https://www.doi.org/
    * - ``pmid`` 
      - PubMed Identifier
-     - A PMID is the unique identifier number used in PubMed for each article. PMIDs do not change over time or during processing and are never reused. You can read more about PubMed here: https://pubmed.ncbi.nlm.nih.gov/
-
+     - A PMID is the unique identifier number used in PubMed for each article. PMIDs do not change over time or during processing and are never reused. You can read more about PubMed here https://pubmed.ncbi.nlm.nih.gov/
+   * - ``handle`` 
+     - Handle
+     - The Handle System provides a general-purpose global name service enabling secure name resolution over the Internet, designed to enable a broad set of communities to use the technology 
+       to identify digital content independent of location. You can read more about Handles here https://www.handle.net/
+   * - ``arxiv`` 
+     - arXiv Identifier
+     - Identifier of a document used in the arXiv pre-print archive. You can read more about arXiv Ids here https://arxiv.org/help/arxiv_identifier
+   * - ``ads`` 
+     - ADS Bibcode
+     - 19 digit identifier which describes a journal article and used to identify literature in the astrophysics data system. You can read more about the ADS Bibcode here https://ui.adsabs.harvard.edu/help/actions/bibcode
+   * - ``ssrn``
+     - Social Science Research Network identifier
+     - Identifer used on the Social Science Research Network repository for preprints. 
+   * - ``repec``
+     - RePEc ID
+     - Identifier for a scholarly article in the RePEc (Research Papers in Economics) database.
+   * - ``isbn``
+     - International Standard Book Number
+     - The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.
+   * - ``id``
+     - Altmetric Internal Identifier
+     - Altmetric IDs are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOIs, arXiv IDs or PMIDs are used instead.
+   * - ``nct_id``
+     - ClinicalTrials.gov ID
+     - Identifier used within the ClinicalTrials.gov database.
+   * - ``urn``
+     - Uniform Resource Name
+     - URNs are globally unique persistent identifiers assigned within defined namespaces so they will be available for a long period of time, even after the resource which they
+       identify ceases to exist or becomes unavailable. URNs cannot be used to directly locate an item and need not be resolvable, as they are simply templates that another parser may use to find an item.
+       
 Limitations
 ***********
 
