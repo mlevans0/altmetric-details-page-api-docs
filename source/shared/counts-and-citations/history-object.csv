@@ -1,0 +1,14 @@
+Keys,Type,Description
+``history``,object,History of the Altmetric Attention Score for the research output.
+``history`` . ``1y``,decimal ,Score change in the last year.
+``history`` . ``6m``,decimal ,Score change in the last six months.
+``history`` . ``3m``,decimal ,Score change in the last 3 months.
+``history`` . ``1m``,decimal ,Score change in the last one month.
+``history`` . ``1w``,decimal ,Score change in the last week.
+``history`` . ``6d``,decimal ,Score change in the last six days.
+``history`` . ``5d``,decimal ,Score change in the last five days.
+``history`` . ``4d``,decimal ,Score change in the last four days.
+``history`` . ``3d``,decimal ,Score change in the last three days.
+``history`` . ``2d``,decimal ,Score change in the last two days.
+``history`` . ``1d``,decimal ,Score change in the last one day.
+``history`` . ``at``,decimal ,Current Altmetric Attention Score.

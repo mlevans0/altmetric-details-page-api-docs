@@ -1,0 +1,6 @@
+Keys,Type,Description
+``readers``,object,Readers.
+``readers`` . ``mendeley``,number,Readers in Mendeley.
+``readers`` . ``connotea``,number,Readers in Connotea (no longer updated).
+``readers`` . ``citeulike``,number,Readers in CiteULike (no longer updated).
+``readers_count``,number,Total number of readers.

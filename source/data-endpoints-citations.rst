@@ -161,10 +161,7 @@ Results object
 --------------
 A GET request to the ``/citations/`` endpoint returns a JSON object with the following keys.
 
-.. csv-table::
-   :file: shared/counts-and-citations-field-glossary.csv
-   :widths: 30 10 60
-   :header-rows: 1
+.. include:: shared/counts-and-citations/counts-and-citations-response-object.rst
 
 Example response
 ================

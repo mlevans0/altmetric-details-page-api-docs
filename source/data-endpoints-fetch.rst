@@ -100,15 +100,132 @@ Response object
 ===============
 A ``GET`` request to the **Full Access** ``/fetch/`` endpoint returns a JSON object with the following keys.
 
+.. include:: shared/fetch/fetch-response-object.rst
+
+Counts
+------
+Where available provides reference manager reader counts.
+
+.. include:: shared/fetch/counts/counts.rst
+
+Readers
+^^^^^^^
+
+.. include:: shared/fetch/counts/readers.rst
+
+Total
+^^^^^
+
+.. include:: shared/fetch/counts/total.rst
+
+Source type counts
+^^^^^^^^^^^^^^^^^^
+Provides the number of mentions and unique authors in each relevant source type.
+
+.. include:: shared/fetch/counts/source_type_counts.rst
+
+Citation
+--------
+Bibliographic metadata about the output requested. You'll find third party identifiers, for example ``doi`` ``pmid`` ``arxiv`` in this object.
+
+.. include:: shared/fetch/citation/citation.rst
+
+Publisher subjects
+^^^^^^^^^^^^^^^^^^
+
+.. include:: shared/fetch/citation/publisher_subjects.rst
+
+Chapters   
+^^^^^^^^
+
+.. include:: shared/fetch/citation/chapters.rst
+
+Altmetric score
+---------------
+Contains details of the Altmetric score and, where possible, provides some context.
+
+.. include:: shared/fetch/altmetric_score/altmetric_score.rst
+
+History
+^^^^^^^
+Contains details of the Altmetric score and, where possible, provides some context.
+
+.. include:: shared/fetch/altmetric_score/history.rst
+
+Context for score
+^^^^^^^^^^^^^^^^^
+Contains details of the Altmetric score and, where possible, provides some context. See :ref:`Context` for a breakdown of context.
+
+.. include:: shared/fetch/altmetric_score/context_for_score.rst
+
+Context
+"""""""
+Available types are ``all`` ``journal`` ``similar_age_3m`` ``similar_age_journal_3m``.
+
+.. include:: shared/fetch/altmetric_score/context.rst
+
+Demographics
+------------
+Altmetric categorizes users from some sources based on their posting history and profile information. Counts for each category are included in this section along with geolocation data.
+
+.. include:: shared/fetch/demographics/demographics.rst
+
+Poster types
+^^^^^^^^^^^^
+
+.. include:: shared/fetch/demographics/poster_types.rst
+
+Users
+^^^^^
+
+.. include:: shared/fetch/demographics/users.rst
+
+Twitter
+"""""""
+
+.. include:: shared/fetch/demographics/twitter.rst
+
+Mendeley
+""""""""
+Contains Mendeley reader information.
+
+.. include:: shared/fetch/demographics/mendeley.rst
+
+This response object for ``by_status`` and ``by_discipline`` is a generic key/value object.
+
+.. include:: shared/key-value-object.rst
+
+Geo
+^^^^^
+
+.. include:: shared/fetch/demographics/geo.rst
+
+This response object for ``twitter`` and ``mendeley`` is a generic key/value object. 
+
+.. include:: shared/key-value-object.rst
+
+- The ``key`` property is a ISO 3166-2 country code. Examples are: ``BA``, ``IT``, ``US``, ``GB`` and ``IE``. A full and complete list can be found here: https://en.wikipedia.org/wiki/ISO_3166-2
+- The ``value`` property is the total number of mentions as a number.
+
+Posts
+-----
+Contains all the recorded mention data categorized by the attention source.
+
 .. csv-table::
-   :file: shared/fetch-field-glossary.csv
+   :file: shared/fetch/posts/posts-object.csv
    :widths: 30 10 60
    :header-rows: 1
 
-The ``posts`` object has post types (blog post, tweet, Facebook wall post etc.) as keys and the posts of that type where a mention was found in arrays of post objects as the values.
+Images
+------
+Contains all the recorded mention data categorized by the attention source.
 
-For tweets you'll receive only tweet IDs and user profile IDs, not the content of the tweet itself or otherdetails about user profiles. You should use tweet IDs to fetch more
+.. include:: shared/images.rst
+
+For tweets you'll receive only tweet IDs and user profile IDs, not the content of the tweet itself or other details about user profiles. You should use tweet IDs to fetch more
 data from the `Twitter API <https://dev.twitter.com/docs>`_ using your own developer account or `embed tweets <https://dev.twitter.com/docs/embedded-tweets>`_ directly on your website.
+
+You can read more about this on our :ref:`Twitter` page.
 
 Example response
 ================
