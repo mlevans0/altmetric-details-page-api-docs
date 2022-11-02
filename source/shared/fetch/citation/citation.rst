@@ -1,3 +1,5 @@
+Bibliographic metadata about the output requested. You'll find third party identifiers, for example ``doi`` ``pmid`` ``arxiv`` in this object.
+
 .. list-table:: 
    :widths: 10 10 80
    :header-rows: 1
@@ -7,7 +9,7 @@
      - Description 
    * - ``altmetric_jid``
      - string
-     - Internal identifier assigned to each journal or collection.
+     - An internal database identifier for the journal that the article comes from.
    * - ``title``
      - string
      - Title of the publication.
@@ -66,7 +68,7 @@
      - date
      - The date that the publication was published electronically.
    * - ``published_on``
-     - number
+     - date
      - Returns the ``epubdate`` if it exists on the record, if not then the ``pubdate`` is returned instead.
    * - ``type``
      - string
@@ -79,10 +81,10 @@
      - Source for the abstract (e.g PUBMED).
    * - ``links``
      - string[]
-     - Collection of link that point to this research output.
+     - Collection of links that point to all seen versions of this article..
    * - ``first_seen_on``
      - date
-     - 
+     - Date that Altmetric first tracked a share or mention of this article.  
    * - ``issue``
      - string
      - 
@@ -115,7 +117,7 @@
      - Initally imported from Scopus in 2011 (Depricated).
    * - ``publisher_subjects``
      - object[]
-     - Subjects for journal set by the publisher. See :ref:`Publisher subjects object`. 
+     - Subjects for journal set by the publisher. See :ref:`Publisher subjects`. 
    * - ``subjects``
      - string[]
      - Subjects for journal. Originally enriched from National Academy of Medecine (Depricated).
@@ -130,7 +132,7 @@
      - URL to the book cover.
    * - ``chapters``
      - object
-     - See :ref:`Chapters object`. 
+     - See :ref:`Chapters`. 
    * - ``added_on``
      - number
      - Date when Altmetric first captured attention. In UNIX.

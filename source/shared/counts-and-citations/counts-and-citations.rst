@@ -52,7 +52,7 @@
      - Returns the ``epubdate`` if it exists on the record -  if not then the ``pubdate`` is returned instead.
    * - ``cohorts``
      - object
-     - Groups of users who've mentioned the publication on Twitter.
+     - See :ref:`Cohorts` for more information.
    * - ``abstract``
      - string
      - Full abstract for the article.
@@ -70,31 +70,43 @@
      - Deprecated.
    * - ``context``
      - object
-     - Score in context.
+     - See :ref:`Context` for more information.
    * - ``cited_by_fbwalls_count``
      - number
-     - Number of the pages that have shared on Facebook.
+     - Number of pages that have shared on Facebook.
    * - ``cited_by_feeds_count``
      - number
      - Number of blogs that have mentioned the publication.
    * - ``cited_by_gplus_count``
      - number
-     - Number of the accounts that have shared on Google+.
+     - Number of accounts that have shared on Google+.
    * - ``cited_by_msm_count``
      - number
-     - Number of the news sources that have mentioned the publication.
+     - Number of news sources that have mentioned the publication.
    * - ``cited_by_posts_count``
      - number 
      - A ``post`` is any online document that links to one or more research outputs (i.e. a post is a mention or a group of mentions). This field contains the number of distinct ``posts`` that include one or more mentions of the research outputs in question.
    * - ``cited_by_rdts_count``
      - number
      - Number of Reddit threads posted about this publication.
+   * - ``cited_by_qna_count``
+     - number
+     - Number of forum and Stack Exchange based sites accounts that have mentioned this publication.
    * - ``cited_by_tweeters_count``
      - number
-     - Number of the twitter accounts that have tweeted this publication.
+     - Number of twitter accounts that have tweeted this publication.
+   * - ``cited_by_wikipedia_count``
+     - number
+     - Number of wikipedia pages that have cited this publication.
+   * - ``cited_by_policies_count``
+     - number
+     - Number of policies that have mentioned this publication.
+   * - ``cited_by_patents_count``
+     - number
+     - Number of patents that have mentioned this publication.
    * - ``cited_by_videos_count``
      - number
-     - Number of the Youtube/Vimeo channels.
+     - Number of Youtube channels.
    * - ``cited_by_accounts_count``
      - number
      - The sum of all ``cited_by`` entries (profiles per data source).
@@ -106,7 +118,7 @@
      - Current Altmetric Attention Score.
    * - ``history``
      - object
-     - History of the Altmetric Attention Score for the research output.
+     - See :ref:`History` for more information.
    * - ``added_on``
      - number
      - Date when Altmetric first captured attention. In UNIX.
@@ -118,13 +130,16 @@
      - Subjects for journal. Originally enriched from National Academy of Medecine (Depricated).
    * - ``publisher_subjects``
      - object[]
-     - Subjects for journal set by the publisher.
+     - See :ref:`Publisher subjects` for more information.
    * - ``readers``
      - object
-     - Readers.
+     - See :ref:`Readers` for more information. 
+   * - ``readers_count``
+     - number
+     - Total number of unique users who have saved this article in Mendeley, CiteULike or Connotea.
    * - ``images``
      - object
-     - Links to PNG versions of the donut.
+     - See :ref:`Images` for more information.
    * - ``details_url``
      - string
      - URL to relevant Altmetric Details Page.

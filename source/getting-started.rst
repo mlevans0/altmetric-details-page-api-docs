@@ -60,7 +60,7 @@ Below is a list of our supported identifers.
      - The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.
    * - ``id``
      - Altmetric Internal Identifier
-     - Altmetric IDs are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOIs, arXiv IDs or PMIDs are used instead.
+     - Each article in the Altmetric database has a unique identifier which we include for reference. Altmetric IDs are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOIs, arXiv IDs or PMIDs are used instead.
    * - ``nct_id``
      - ClinicalTrials.gov ID
      - Identifier used within the ClinicalTrials.gov database.
@@ -132,7 +132,7 @@ If you are working on a project that requires information about tweets or tweete
 You can utilize the Tweet IDs and User IDs that you obtain from Altmetric's APIs to then query the Twitter API for this additional information. If you are using Twitter data for your projects,
 please ensure that you are compliant with Twitter's Developer Policy and Twitter's Terms of Service.
 
-To get started you you will first need to apply for developer access to Twitter's APIs `here <https://developer.twitter.com/en/apply-for-access>`_.
+To get started you you will first need to `apply for developer access <https://developer.twitter.com/en/apply-for-access>`_ to Twitter's APIs.
 
 Once you have obtained access to Twitter's Developer Portal, you will be able to send requests to the Twitter API. To access detailed information for individual
 tweets (which Twitter refers to as "statuses"), you can `query the Twitter API using a single Tweet ID <https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id>`_.

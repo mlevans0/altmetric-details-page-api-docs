@@ -17,3 +17,6 @@
    * - ``similar_age_journal_3m``
      - object
      - Contains statistics about articles from the same journal and published within 6 weeks on either side of this one. 
+
+.. note::
+  Only research outputs that have a score greater than 0 and are associated with a journal (has an ``altmetric_jid``) will have a score in context.

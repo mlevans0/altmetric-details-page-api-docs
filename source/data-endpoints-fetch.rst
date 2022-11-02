@@ -67,7 +67,7 @@ otherwise you'll receive the ``403 The API key you supplied was invalid.`` respo
         
         Where sources are not included the ``unique_users`` key is also removed from ``counts`` if it exists.
 
-        Current filters are: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``pinterest`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``rh`` ``qna`` ``forum`` ``peerreview`` ``policy`` ``weibo`` ``q&a`` 
+        Current filters are: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``pinterest`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``rh`` ``qna`` ``forum`` ``peerreview`` ``policy`` ``weibo`` 
       - Defaults to include everything.
     * - ``exclude_sources``
       - 
@@ -75,7 +75,7 @@ otherwise you'll receive the ``403 The API key you supplied was invalid.`` respo
         
         Where sources are excluded the ``unique_users`` key is also removed from ``counts`` if it exists.
 
-        Current filters are: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``pinterest`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``rh`` ``qna`` ``forum`` ``peerreview`` ``policy`` ``weibo`` ``q&a`` 
+        Current filters are: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``pinterest`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``rh`` ``qna`` ``forum`` ``peerreview`` ``policy`` ``weibo`` 
 
       - Defaults to exclude nothing.
     * - ``include_sections``
@@ -100,18 +100,17 @@ Response object
 ===============
 A ``GET`` request to the **Full Access** ``/fetch/`` endpoint returns a JSON object with the following keys.
 
-.. include:: shared/fetch/fetch-response-object.rst
+.. include:: shared/fetch/fetch.rst
 
 Counts
 ------
-Where available provides reference manager reader counts.
 
 .. include:: shared/fetch/counts/counts.rst
 
 Readers
 ^^^^^^^
 
-.. include:: shared/fetch/counts/readers.rst
+.. include:: shared/readers.rst
 
 Total
 ^^^^^
@@ -120,13 +119,11 @@ Total
 
 Source type counts
 ^^^^^^^^^^^^^^^^^^
-Provides the number of mentions and unique authors in each relevant source type.
 
 .. include:: shared/fetch/counts/source_type_counts.rst
 
 Citation
 --------
-Bibliographic metadata about the output requested. You'll find third party identifiers, for example ``doi`` ``pmid`` ``arxiv`` in this object.
 
 .. include:: shared/fetch/citation/citation.rst
 
@@ -142,31 +139,27 @@ Chapters
 
 Altmetric score
 ---------------
-Contains details of the Altmetric score and, where possible, provides some context.
 
 .. include:: shared/fetch/altmetric_score/altmetric_score.rst
 
 History
 ^^^^^^^
-Contains details of the Altmetric score and, where possible, provides some context.
 
-.. include:: shared/fetch/altmetric_score/history.rst
+.. include:: shared/history.rst
 
 Context for score
 ^^^^^^^^^^^^^^^^^
 Contains details of the Altmetric score and, where possible, provides some context. See :ref:`Context` for a breakdown of context.
 
-.. include:: shared/fetch/altmetric_score/context_for_score.rst
+.. include:: shared/context_for_score.rst
 
-Context
-"""""""
-Available types are ``all`` ``journal`` ``similar_age_3m`` ``similar_age_journal_3m``.
+Breakdown
+"""""""""
 
-.. include:: shared/fetch/altmetric_score/context.rst
+.. include:: shared/fetch/altmetric_score/breakdown.rst
 
 Demographics
 ------------
-Altmetric categorizes users from some sources based on their posting history and profile information. Counts for each category are included in this section along with geolocation data.
 
 .. include:: shared/fetch/demographics/demographics.rst
 
@@ -182,43 +175,76 @@ Users
 
 Twitter
 """""""
+.. list-table:: 
+   :widths: 30 10 60
+   :header-rows: 1
 
-.. include:: shared/fetch/demographics/twitter.rst
+   * - Key
+     - Type
+     - Description
+   * - ``cohorts``
+     - object
+     - See :ref:`Cohorts` for more information.
+
+Cohorts
+~~~~~~~
+
+.. include:: shared/fetch/demographics/cohorts.rst
 
 Mendeley
 """"""""
-Contains Mendeley reader information.
 
 .. include:: shared/fetch/demographics/mendeley.rst
 
 This response object for ``by_status`` and ``by_discipline`` is a generic key/value object.
 
-.. include:: shared/key-value-object.rst
+.. include:: shared/key-value.rst
 
 Geo
-^^^^^
+^^^
 
 .. include:: shared/fetch/demographics/geo.rst
 
 This response object for ``twitter`` and ``mendeley`` is a generic key/value object. 
 
-.. include:: shared/key-value-object.rst
+.. include:: shared/key-value.rst
 
 - The ``key`` property is a ISO 3166-2 country code. Examples are: ``BA``, ``IT``, ``US``, ``GB`` and ``IE``. A full and complete list can be found here: https://en.wikipedia.org/wiki/ISO_3166-2
 - The ``value`` property is the total number of mentions as a number.
 
 Posts
 -----
-Contains all the recorded mention data categorized by the attention source.
+Contains all the recorded mention data categorized by the attention source.  See :ref:`Source type` for more information.
 
-.. csv-table::
-   :file: shared/fetch/posts/posts-object.csv
-   :widths: 30 10 60
-   :header-rows: 1
+.. include:: shared/fetch/posts/source_type.rst  
+
+Source type
+^^^^^^^^^^^
+
+.. include:: shared/fetch/posts/post.rst
+
+Source
+""""""
+
+.. include:: shared/fetch/posts/source.rst 
+
+Geo
+"""
+
+.. include:: shared/fetch/posts/geo.rst 
+
+Author
+""""""
+
+.. include:: shared/fetch/posts/author.rst 
+
+Embed
+"""""
+
+.. include:: shared/fetch/posts/embed.rst 
 
 Images
 ------
-Contains all the recorded mention data categorized by the attention source.
 
 .. include:: shared/images.rst
 

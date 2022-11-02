@@ -1,3 +1,5 @@
+Contains links to PNG versions of the donut.
+
 .. list-table:: 
    :widths: 10 10 80
    :header-rows: 1

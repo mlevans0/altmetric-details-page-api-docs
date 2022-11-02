@@ -49,7 +49,43 @@ Response object
 ===============
 A ``GET`` request to the **Counts Only** endpoint returns a JSON object with the following keys where available.
 
-.. include:: shared/counts-and-citations/counts-and-citations-response-object.rst
+.. include:: shared/counts-and-citations/counts-and-citations.rst
+
+Cohorts
+-------
+
+.. include:: shared/counts-and-citations/cohorts.rst
+
+Context
+-------
+Contains details of the Altmetric score and, where possible, provides some context. See :ref:`Breakdown` for a breakdown of context.
+
+.. include:: shared/context_for_score.rst
+
+Breakdown
+^^^^^^^^^
+
+.. include:: shared/counts-and-citations/breakdown.rst
+
+History
+-------
+
+.. include:: shared/history.rst
+
+Publisher subjects
+------------------
+
+.. include:: shared/counts-and-citations/publisher-subjects.rst
+
+Readers
+-------
+
+.. include:: shared/readers.rst
+
+Images
+------
+
+.. include:: shared/images.rst
  
 Example response
 ================

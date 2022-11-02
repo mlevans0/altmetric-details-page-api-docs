@@ -49,7 +49,7 @@ Request
       - Number of research outputs per page. Defaults to 25.
     * - ``cited_in``
       -  
-      - One or more comma delimited options from: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``pinterest`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``rh`` ``qna`` ``forum`` ``peerreview`` ``policy`` ``weibo`` ``q&a`` 
+      - One or more comma delimited options from: ``facebook`` ``blogs`` ``linkedin`` ``video`` ``pinterest`` ``gplus`` ``twitter`` ``reddit`` ``news`` ``f1000`` ``rh`` ``qna`` ``forum`` ``peerreview`` ``policy`` ``weibo`` 
       - Include only research outputs mentioned in the supplied list of sources.
     * - ``doi_prefix``
       -  
@@ -161,7 +161,43 @@ Results object
 --------------
 A GET request to the ``/citations/`` endpoint returns a JSON object with the following keys.
 
-.. include:: shared/counts-and-citations/counts-and-citations-response-object.rst
+.. include:: shared/counts-and-citations/counts-and-citations.rst
+
+Cohorts
+^^^^^^^
+
+.. include:: shared/counts-and-citations/cohorts.rst
+
+Context
+^^^^^^^
+Contains details of the Altmetric score and, where possible, provides some context. See :ref:`Breakdown` for a breakdown of context.
+
+.. include:: shared/context_for_score.rst
+
+Breakdown
+"""""""""
+
+.. include:: shared/counts-and-citations/breakdown.rst
+
+History
+^^^^^^^
+
+.. include:: shared/history.rst
+
+Publisher subjects
+^^^^^^^^^^^^^^^^^^
+
+.. include:: shared/counts-and-citations/publisher-subjects.rst
+
+Readers
+^^^^^^^
+
+.. include:: shared/readers.rst
+
+Images
+^^^^^^
+
+.. include:: shared/images.rst
 
 Example response
 ================

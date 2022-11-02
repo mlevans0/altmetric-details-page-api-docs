@@ -1,3 +1,5 @@
+Provides details on how much of the score occurred in a given timeframe. 
+
 .. list-table:: 
    :widths: 10 10 80
    :header-rows: 1

@@ -1,3 +1,5 @@
+Contains Mendeley readership information.
+
 .. list-table:: 
    :widths: 10 10 80
    :header-rows: 1

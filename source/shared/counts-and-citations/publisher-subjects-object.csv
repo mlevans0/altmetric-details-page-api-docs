@@ -1,4 +1,0 @@
-Keys,Type,Description
-``publisher_subjects``,object[],Subjects for journal set by the publisher.
-``publisher_subjects`` . ``name``,string,Name of subject
-``publisher_subjects`` . ``scheme``,string,Available schemes are ``era`` ``bmj`` (Depricated) ``springer`` ``npg``

@@ -1,6 +1,0 @@
-Keys,Type,Description
-``cohorts``,object,Groups of users who've mentioned the publication on Twitter.
-``cohorts`` . ``pub``,number,Members of the Public.
-``cohorts`` . ``sci``,number,Scientists.
-``cohorts`` . ``com``,number,Science Communicators.
-``cohorts`` . ``doc``,number,Practitioners.

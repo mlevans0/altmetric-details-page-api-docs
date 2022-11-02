@@ -1,3 +1,5 @@
+The ``poster_types`` key holding Twitter user categories is now deprecated in favor of :ref:`Cohorts` and will be removed from the API in the near future.
+
 .. list-table:: 
    :widths: 10 10 80
    :header-rows: 1

@@ -1,3 +1,5 @@
+Provides the number of mentions and unique authors in each relevant source type.
+
 .. list-table:: 
    :widths: 10 10 80
    :header-rows: 1
@@ -14,3 +16,6 @@
    * - ``posts_count``
      - number
      - Total number of posts. 
+
+.. note::
+  The same user could blog, tweet or otherwise share the same article more than once, so ``posts_count`` can be greater than ``unique_users_count``. 

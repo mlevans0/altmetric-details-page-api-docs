@@ -1,3 +1,5 @@
+Altmetric categorizes users from some sources based on their posting history and profile information. Counts for each category are included in this section along with geolocation data.
+
 .. list-table:: 
    :widths: 10 10 80
    :header-rows: 1
