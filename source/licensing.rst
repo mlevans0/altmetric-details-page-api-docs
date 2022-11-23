@@ -1,5 +1,5 @@
 Licensing
-============ 
+==========
 Access to the Altmetric Details Page API is available via a variety of license types. This table gives an overview of the types and their key properties:
 
  .. list-table::
