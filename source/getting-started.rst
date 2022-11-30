@@ -3,8 +3,7 @@ Access
 
 Authentication
 ==============
-An API key is only required when accessing the **Full Access** endpoint or to remove rate-limiting restrictions enforced on all endpoints. This key is a token that allows our application to verify that
-you are authorized to use the API and should be included when making requests. To do this you will need to include a parameter named ``key`` that contains your assigned API key.
+An API key is only required when accessing the **Full Access** endpoint or to remove rate-limiting restrictions enforced on all endpoints. This key is a token that allows our application to verify that you are authorized to use the API and should be included when making requests. To do this you will need to include a parameter named ``key`` that contains your assigned API key.
 
 For example, if your key was ``xxx-xxx-xxx-xxx`` your request would look like this: ``curl 'http://api.altmetric.com/v1/id/241939?key=xxx-xxx-xxx-xxx'``
 
@@ -24,7 +23,7 @@ You can specify which version of the API to use by changing the base URL for you
 Identifiers
 ***********
 
-Below is a list of our supported identifers.
+Below is a list of our supported identifiers.
 
 .. list-table:: 
    :widths: 10 10 80 
@@ -35,7 +34,7 @@ Below is a list of our supported identifers.
      - Description
    * - ``doi``
      - Digital Object Identifier
-     - A DOI (Digital Object Identifier) is a unique and persisteant string assigned to online articles, books, and other works. You can read more about DOIs here https://www.doi.org/
+     - A DOI (Digital Object Identifier) is a unique and persistent string assigned to online articles, books, and other works. You can read more about DOIs here https://www.doi.org/
    * - ``pmid`` 
      - PubMed Identifier
      - A PMID is the unique identifier number used in PubMed for each article. PMIDs do not change over time or during processing and are never reused. You can read more about PubMed here https://pubmed.ncbi.nlm.nih.gov/
@@ -66,8 +65,7 @@ Below is a list of our supported identifers.
      - Identifier used within the ClinicalTrials.gov database.
    * - ``urn``
      - Uniform Resource Name
-     - URNs are globally unique persistent identifiers assigned within defined namespaces so they will be available for a long period of time, even after the resource which they
-       identify ceases to exist or becomes unavailable. URNs cannot be used to directly locate an item and need not be resolvable, as they are simply templates that another parser may use to find an item.
+     - URNs are globally unique persistent identifiers assigned within defined namespaces so they will be available for a long period of time, even after the resource which they identify ceases to exist or becomes unavailable. URNs cannot be used to directly locate an item and need not be resolvable, as they are simply templates that another parser may use to find an item.
        
 Limitations
 ***********
@@ -116,7 +114,7 @@ Due to a contractual agreement that Altmetric has with Twitter, a maximum of 1,5
 please check the ``X-TweetIDRateLimit-Limit`` and ``X-TweetIDRateLimit-Remaining`` headers to check how close you are to the limit. 
 
 Multiple requests to the same research output will not decrement your remaining limit **unless** it has received new Twitter attention or the request is outside the rolling 30 day window. 
-Where the research output has received new attention, the ``X-TweetIDRateLimit-Remaining`` will be reduced by the additional uniqiue tweet IDs and not by the total amount of tweet IDs for the research output.
+Where the research output has received new attention, the ``X-TweetIDRateLimit-Remaining`` will be reduced by the additional unique tweet IDs and not by the total amount of tweet IDs for the research output.
 
 If you exceed your quota a ``429`` response will be returned along with the message ``Tweet ID rate limit exceeded, please see X-TweetIdRateLimit headers and try again later``.
 
@@ -134,15 +132,13 @@ please ensure that you are compliant with Twitter's Developer Policy and Twitter
 
 To get started you you will first need to `apply for developer access <https://developer.twitter.com/en/apply-for-access>`_ to Twitter's APIs.
 
-Once you have obtained access to Twitter's Developer Portal, you will be able to send requests to the Twitter API. To access detailed information for individual
-tweets (which Twitter refers to as "statuses"), you can `query the Twitter API using a single Tweet ID <https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id>`_.
+Once you have obtained access to Twitter's Developer Portal, you will be able to send requests to the Twitter API. To access detailed information for individual tweets (which Twitter refers to as "statuses"), you can `query the Twitter API using a single Tweet ID <https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id>`_.
 
 Alternatively, you can request detailed information for a batch of up to 100 tweets at a time `using multiple Tweet IDs <https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-lookup>`_.
 
 Hydrate Tweets IDs into actual Tweets
 --------------------------------------
-For hydration, you can use "Hydrator" – see https://github.com/DocNow/hydrator. This great multi-platform app takes as input a bunch of data (e.g., tweet IDs and your own developer key) and
-in turn goes to the Twitter API, retrieving all the tweets that are still available online. It also manages the download process, including download rate limits.
+For hydration, you can use "Hydrator" – see https://github.com/DocNow/hydrator. This great multi-platform app takes as input a bunch of data (e.g., tweet IDs and your own developer key) and in turn goes to the Twitter API, retrieving all the tweets that are still available online. It also manages the download process, including download rate limits.
 
 Check the `Content Distribution section on this page <https://developer.twitter.com/en/developer-terms/agreement-and-policy>`_ for more info on Twitter's platform terms and conditions.
 
@@ -153,8 +149,6 @@ Check the `Content Distribution section on this page <https://developer.twitter.
 
 News
 ====
-In the United Kingdom, under The Copyright Designs & Patents Act 1988, headlines are copyrighted. To collect the data from UK newspapers Altmetric signed an agreement with the
-Newspaper Licensing Authority, which prevents us from including the links and headline to a news story unless the user also has a license from this same agency. As we can't
-verify that every person who views our Details Pages has this license we choose not to display the headline and link.  
+In the United Kingdom, under The Copyright Designs & Patents Act 1988, headlines are copyrighted. To collect the data from UK newspapers Altmetric signed an agreement with the Newspaper Licensing Authority, which prevents us from including the links and headline to a news story unless the user also has a license from this same agency. As we can't verify that every person who views our Details Pages has this license we choose not to display the headline and link.  
 
 More information about why we can't display some news mentions is available `here <https://help.altmetric.com/support/solutions/articles/6000241413-unclickable-links-on-a-detail-page>`_.

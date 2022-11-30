@@ -1,19 +1,16 @@
 Fetch
 *****
 
-Fetch detailed Altmetric information about a particular article or dataset. This call returns much more information about each mention than from the standard :ref:`Counts` Only endpoint and
-allows users to see full details of the mentions, including the URLs to the mentions themselves. 
+Fetch detailed Altmetric information about a particular article or dataset. This call returns much more information about each mention than from the standard :ref:`Counts` Only endpoint and allows users to see full details of the mentions, including the URLs to the mentions themselves. 
 
 There are two exceptions with requests to this endpoint, Twitter and certain news sources that fall under UK licensing restrictions. You can read more about this on our :ref:`Limitations` page.
 
 .. warning::
     Calls to this endpoint are only available to commercial license holders. If you call this endpoint without an authorized API key you'll get a ``403`` response. Contact us for pricing or to request use as a non-commercial entity.
 
-This endpoint is optimized for specific queries about single research outputs. To use this endpoint you will need some programming knowledge but there are various *wrappers* in different
-languages (see below) available on Github or you can choose to write your own software. 
+This endpoint is optimized for specific queries about single research outputs. To use this endpoint you will need some programming knowledge but there are various *wrappers* in different languages (see below) available on Github or you can choose to write your own software. 
 
-Here are a few examples of third party wrappers that you can use to help you start consuming data from our API. Please note that they are built
-and maintained by third party developers and are not supported directly by us.
+Here are a few examples of third party wrappers that you can use to help you start consuming data from our API. Please note that they are built and maintained by third party developers and are not supported directly by us.
 
 - **R** : rAltmetric (https://cran.r-project.org/web/packages/rAltmetric/README.html) -- This package provides a way to programmatically retrieve altmetrics from various publication types (books, newsletters, articles, peer-reviewed papers and more) from altmetric.com. The package is really simple to use and only has two major functions: - altmetrics - Pass it a doi, isbn, uri, arxiv id or other to get metrics - altmetric_data Pass it the results from the previous call to get a tidy data.frame. 
 - **Python** : PyAltmetric (https://github.com/CenterForOpenScience/PyAltmetric) -- PyAltmetric provides an easy python wrapper for the Altmetric API and provides methods to be Articles from API responses and preexisting JSON.
