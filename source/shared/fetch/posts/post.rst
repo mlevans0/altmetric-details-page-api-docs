@@ -31,7 +31,7 @@
      - A brief summary taken from the mention.
    * - ``image``
      - string
-     - A link to the logo assocaited with the mention source.
+     - A link to the logo associated with the mention source.
    * - ``collections``
      - string []
      - 

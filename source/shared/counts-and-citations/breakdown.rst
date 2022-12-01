@@ -25,5 +25,5 @@ Available types are ``all`` ``journal`` ``similar_age_3m`` ``similar_age_journal
 
 .. note::
 
-   We split the representative sample in percentiles and put the highest score in each 10% into the sparklines array. Thus the first element of that array is the highest scoring
+   We split the representative sample in percentiles and put the highest score in each 10% into the spark-lines array. Thus the first element of that array is the highest scoring
    article in the sample set, the second element is the highest score in the 90th %ile, the third element in the 80th %ile and so on.

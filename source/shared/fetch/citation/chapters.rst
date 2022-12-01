@@ -7,7 +7,7 @@
      - Description
    * - ``altmetric_id``
      - number
-     - Altmetric ID for book chaper.
+     - Altmetric ID for book chapter.
    * - ``title``
      - string
      - Title of the book chapter.

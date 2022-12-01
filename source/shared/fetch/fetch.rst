@@ -20,7 +20,7 @@
      - Contains details of the Altmetric score and where possible provides some context. See :ref:`Altmetric Score`  for more information.
    * - ``demographics``
      - object
-     - Altmetric categorizes users from some sources based on their posting history and profile information. Counts for each category are included in this section along with geolocation data. See :ref:`Demographics`.
+     - Altmetric categorizes users from some sources based on their posting history and profile information. Counts for each category are included in this section along with geo-location data. See :ref:`Demographics`.
    * - ``posts``
      - object
      - Contains all the recorded mention data categorized by the attention source. See :ref:`Posts`  for more information.

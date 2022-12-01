@@ -7,7 +7,7 @@
      - Description
    * - ``name``
      - string
-     - The name of the policy source where the mention occured.
+     - The name of the policy source where the mention occurred.
    * - ``description``
      - string
-     - A brief decription of the policy source where the mention occured.
+     - A brief description of the policy source where the mention occurred.

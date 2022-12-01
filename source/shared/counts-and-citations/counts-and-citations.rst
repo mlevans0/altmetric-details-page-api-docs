@@ -124,10 +124,10 @@
      - Date when Altmetric first captured attention. In UNIX.
    * - ``scopus_subjects``
      - string[]
-     - Initally imported from Scopus in 2011 (Depricated).
+     - Initially imported from Scopus in 2011 (Depricated).
    * - ``subjects``
      - string[]
-     - Subjects for journal. Originally enriched from National Academy of Medecine (Depricated).
+     - Subjects for journal. Originally enriched from National Academy of Medicine (Deprecated).
    * - ``publisher_subjects``
      - object[]
      - See :ref:`Publisher subjects` for more information.

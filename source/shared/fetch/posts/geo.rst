@@ -7,4 +7,4 @@
      - Description
    * - ``country``
      - string
-     - The country code of the policy source wher ethe mention occured.
+     - The country code of the policy source where the mention occurred.

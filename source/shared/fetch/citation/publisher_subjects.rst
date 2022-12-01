@@ -10,4 +10,4 @@
      - Name of subject
    * - ``scheme``
      - string
-     - Available schemes are ``era`` ``bmj`` (Depricated) ``springer`` ``npg``
+     - Available schemes are ``era`` ``bmj`` (Deprecated) ``springer`` ``npg``

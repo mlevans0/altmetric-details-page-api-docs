@@ -18,10 +18,10 @@ Bibliographic metadata about the output requested. You'll find third party ident
      - Relevant DOI.
    * - ``pmid``
      - string
-     - Relevant Pubmed Id.
+     - Relevant PubMed Id.
    * - ``pmc``
      - string
-     - Relevant Pubmed Central Id.
+     - Relevant PubMed Central Id.
    * - ``handles``
      - string[]
      - Relevant Handle(s).
@@ -78,7 +78,7 @@ Bibliographic metadata about the output requested. You'll find third party ident
      - Full abstract for the article.
    * - ``abstract_source``
      - string
-     - Source for the abstract (e.g PUBMED).
+     - Source for the abstract (e.g PubMed).
    * - ``links``
      - string[]
      - Collection of links that point to all seen versions of this article..
@@ -114,13 +114,13 @@ Bibliographic metadata about the output requested. You'll find third party ident
      - Deprecated
    * - ``scopus_subjects``
      - string[]
-     - Initally imported from Scopus in 2011 (Depricated).
+     - Initially imported from Scopus in 2011 (Deprecated).
    * - ``publisher_subjects``
      - object[]
      - Subjects for journal set by the publisher. See :ref:`Publisher subjects`. 
    * - ``subjects``
      - string[]
-     - Subjects for journal. Originally enriched from National Academy of Medecine (Depricated).
+     - Subjects for journal. Originally enriched from National Academy of Medicine (Deprecated).
    * - ``mendeley_url``
      - string
      - URL to the research output in Mendeley.
