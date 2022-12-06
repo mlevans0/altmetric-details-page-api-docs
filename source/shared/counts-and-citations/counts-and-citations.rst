@@ -73,7 +73,7 @@
      - See :ref:`Context` for more information.
    * - ``cited_by_fbwalls_count``
      - number
-     - Number of pages that have shared on Facebook.
+     - Number of walls that have mentioned the output on Facebook.
    * - ``cited_by_feeds_count``
      - number
      - Number of blogs that have mentioned the publication.
@@ -83,12 +83,9 @@
    * - ``cited_by_msm_count``
      - number
      - Number of news sources that have mentioned the publication.
-   * - ``cited_by_posts_count``
-     - number 
-     - A ``post`` is any online document that links to one or more research outputs (i.e. a post is a mention or a group of mentions). This field contains the number of distinct ``posts`` that include one or more mentions of the research outputs in question.
    * - ``cited_by_rdts_count``
      - number
-     - Number of Reddit threads posted about this publication.
+     - Number of Redditors that have posted about this publication.
    * - ``cited_by_qna_count``
      - number
      - Number of forum and Stack Exchange based sites accounts that have mentioned this publication.
@@ -109,7 +106,10 @@
      - Number of Youtube channels.
    * - ``cited_by_accounts_count``
      - number
-     - The sum of all ``cited_by`` entries (profiles per data source).
+     - The number of unique sources referencing the research output and is the sum of all ``cited_by_*`` entries. This is equivalent to the sum of `unique_users_count <data-endpoints-fetch.html#source-type-counts>`_ field for each source type when using the :ref:`Fetch` endpoint. 
+   * - ``cited_by_posts_count``
+     - number 
+     - A ``post`` is any online document that links to one or more research outputs (i.e. a post is a single mention or a group of mentions). This field is the total number of individual posts for the requested research output. This is equivalent to `counts.total.posts_count <data-endpoints-fetch.html#total>`_ field when using the :ref:`Fetch` endpoint. 
    * - ``last_updated``
      - number
      - Last time the score changed. In UNIX.
@@ -124,7 +124,7 @@
      - Date when Altmetric first captured attention. In UNIX.
    * - ``scopus_subjects``
      - string[]
-     - Initially imported from Scopus in 2011 (Depricated).
+     - Initially imported from Scopus in 2011 (Deprecated).
    * - ``subjects``
      - string[]
      - Subjects for journal. Originally enriched from National Academy of Medicine (Deprecated).
