@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Access &mdash; Altmetric Details Page API 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Counts" href="data-endpoints-counts.html" />
+    <link rel="prev" title="Welcome to Altmetric’s Details Page API documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/altmetric-logo-white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Access</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#versioning">Versioning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#identifiers">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#limitations">Limitations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cross-site-scripting">Cross-site scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rate-limiting">Rate limiting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#twitter">Twitter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-obtain-additional-twitter-information">How to obtain additional Twitter information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hydrate-tweets-ids-into-actual-tweets">Hydrate Tweets IDs into actual Tweets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#news">News</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data endpoints</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data-endpoints-counts.html">Counts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-endpoints-fetch.html">Fetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-endpoints-citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licensing.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attribution.html">Attribution</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Altmetric Details Page API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Access</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="access">
+<h1>Access<a class="headerlink" href="#access" title="Permalink to this heading"></a></h1>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this heading"></a></h2>
+<p>An API key is only required when accessing the <strong>Full Access</strong> endpoint or to remove rate-limiting restrictions enforced on all endpoints. This key is a token that allows our application to verify that you are authorized to use the API and should be included when making requests. To do this you will need to include a parameter named <code class="docutils literal notranslate"><span class="pre">key</span></code> that contains your assigned API key.</p>
+<p>For example, if your key was <code class="docutils literal notranslate"><span class="pre">xxx-xxx-xxx-xxx</span></code> your request would look like this: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">'http://api.altmetric.com/v1/id/241939?key=xxx-xxx-xxx-xxx'</span></code></p>
+<p>For more information regarding obtaining an API key see our <a class="reference internal" href="licensing.html#licensing"><span class="std std-ref">Licensing</span></a> page.</p>
+</section>
+<section id="versioning">
+<h2>Versioning<a class="headerlink" href="#versioning" title="Permalink to this heading"></a></h2>
+<p>To ensure that the code you develop remains functional for as long as possible - endpoints will be assigned new revision numbers if breaking changes are introduced. The current Details Page API version is <code class="docutils literal notranslate"><span class="pre">v1</span></code>
+and should be the version that you should use in production.</p>
+<p>You can specify which version of the API to use by changing the base URL for your requests, for example to use <code class="docutils literal notranslate"><span class="pre">v1</span></code> you should use <code class="docutils literal notranslate"><span class="pre">https://api.altmetric.com/v1/</span></code> and your actual request should look like:</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://api.altmetric.com/v1/citations/1d</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">https://api.altmetric.com/v1/doi/10.1038/480426a</span></code></p>
+</section>
+</section>
+<section id="identifiers">
+<h1>Identifiers<a class="headerlink" href="#identifiers" title="Permalink to this heading"></a></h1>
+<p>Below is a list of our supported identifiers.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">doi</span></code></p></td>
+<td><p>Digital Object Identifier</p></td>
+<td><p>A DOI (Digital Object Identifier) is a unique and persistent string assigned to online articles, books, and other works. You can read more about DOIs here <a class="reference external" href="https://www.doi.org/">https://www.doi.org/</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pmid</span></code></p></td>
+<td><p>PubMed Identifier</p></td>
+<td><p>A PMID is the unique identifier number used in PubMed for each article. PMIDs do not change over time or during processing and are never reused. You can read more about PubMed here <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/">https://pubmed.ncbi.nlm.nih.gov/</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">handle</span></code></p></td>
+<td><p>Handle</p></td>
+<td><p>The Handle System provides a general-purpose global name service enabling secure name resolution over the Internet, designed to enable a broad set of communities to use the technology
+to identify digital content independent of location. You can read more about Handles here <a class="reference external" href="https://www.handle.net/">https://www.handle.net/</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">arxiv</span></code></p></td>
+<td><p>arXiv Identifier</p></td>
+<td><p>Identifier of a document used in the arXiv pre-print archive. You can read more about arXiv Ids here <a class="reference external" href="https://arxiv.org/help/arxiv_identifier">https://arxiv.org/help/arxiv_identifier</a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ads</span></code></p></td>
+<td><p>ADS Bibcode</p></td>
+<td><p>19 digit identifier which describes a journal article and used to identify literature in the astrophysics data system. You can read more about the ADS Bibcode here <a class="reference external" href="https://ui.adsabs.harvard.edu/help/actions/bibcode">https://ui.adsabs.harvard.edu/help/actions/bibcode</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ssrn</span></code></p></td>
+<td><p>Social Science Research Network identifier</p></td>
+<td><p>Identifer used on the Social Science Research Network repository for preprints.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">repec</span></code></p></td>
+<td><p>RePEc ID</p></td>
+<td><p>Identifier for a scholarly article in the RePEc (Research Papers in Economics) database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">isbn</span></code></p></td>
+<td><p>International Standard Book Number</p></td>
+<td><p>The ISBN can be either ISBN-10 or ISBN-13 and does not need to be normalized.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></td>
+<td><p>Altmetric Internal Identifier</p></td>
+<td><p>Each article in the Altmetric database has a unique identifier which we include for reference. Altmetric IDs are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOIs, arXiv IDs or PMIDs are used instead.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nct_id</span></code></p></td>
+<td><p>ClinicalTrials.gov ID</p></td>
+<td><p>Identifier used within the ClinicalTrials.gov database.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">urn</span></code></p></td>
+<td><p>Uniform Resource Name</p></td>
+<td><p>URNs are globally unique persistent identifiers assigned within defined namespaces so they will be available for a long period of time, even after the resource which they identify ceases to exist or becomes unavailable. URNs cannot be used to directly locate an item and need not be resolvable, as they are simply templates that another parser may use to find an item.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="limitations">
+<h1>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading"></a></h1>
+<section id="cross-site-scripting">
+<h2>Cross-site scripting<a class="headerlink" href="#cross-site-scripting" title="Permalink to this heading"></a></h2>
+<p>To support older browsers you can use JSONP (JSON with Padding). To do this you will need to include a <code class="docutils literal notranslate"><span class="pre">callback</span></code> parameter that contains the name of the Javascript function to invoke when the call returns.</p>
+<p>For example: <code class="docutils literal notranslate"><span class="pre">https://api.altmetric.com/v1/doi/10.1038/480426a?callback=my_callback</span></code></p>
+<script>
+  function my_callback(data) {
+    alert(`Received ${data.title} from API`);
+  }
+
+  function tryIt() {
+    let script = document.createElement('script');
+    script.src = 'https://api.altmetric.com/v1/doi/10.1038/480426a?callback=my_callback';
+    document.body.appendChild(script);
+  }
+</script>
+
+<button class="guilabel" onclick="tryIt()">Try it!</button>
+<br />
+<br /><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Altmetric is quite strict about what constitutes as a valid callback - only letters, digits and underscores are allowed.</p>
+</div>
+</section>
+<section id="rate-limiting">
+<h2>Rate limiting<a class="headerlink" href="#rate-limiting" title="Permalink to this heading"></a></h2>
+<p>Every day the Details Page API handles a large number of requests. To help manage the volume of these requests, limits are placed on the number of requests that can be made from a
+specific IP. These limits help us provide a reliable and dependable API service that serves the Altmetric community.</p>
+<p>If you are using the API without a key you can check the <code class="docutils literal notranslate"><span class="pre">X-HourlyRateLimit-Limit</span></code> and <code class="docutils literal notranslate"><span class="pre">X-DailyRateLimit-Limit</span></code> headers for the current limits. The <code class="docutils literal notranslate"><span class="pre">X-HourlyRateLimit-Remaining</span></code> and <code class="docutils literal notranslate"><span class="pre">X-DailyRateLimit-Remaining</span></code> headers
+will tell you how many calls you have remaining.</p>
+<p>When your rate limit has been exceeded, a <code class="docutils literal notranslate"><span class="pre">429</span> <span class="pre">'Too</span> <span class="pre">many</span> <span class="pre">requests'</span></code> error is returned by the API.  When this occurs it is recommended that you examine HTTP headers above and pause requests until
+sufficient time has passed. If you find that you frequently hit the rate limit then you might want to consider throttling your requests or purchasing a commercial API key.</p>
+</section>
+<section id="twitter">
+<h2>Twitter<a class="headerlink" href="#twitter" title="Permalink to this heading"></a></h2>
+<p>Due to a contractual agreement that Altmetric has with Twitter, a maximum of 1,500,000 unique tweet IDs can be retrieved in any rolling 30 day period. If your request returns tweet IDs,
+please check the <code class="docutils literal notranslate"><span class="pre">X-TweetIDRateLimit-Limit</span></code> and <code class="docutils literal notranslate"><span class="pre">X-TweetIDRateLimit-Remaining</span></code> headers to check how close you are to the limit.</p>
+<p>Multiple requests to the same research output will not decrement your remaining limit <strong>unless</strong> it has received new Twitter attention or the request is outside the rolling 30 day window.
+Where the research output has received new attention, the <code class="docutils literal notranslate"><span class="pre">X-TweetIDRateLimit-Remaining</span></code> will be reduced by the additional unique tweet IDs and not by the total amount of tweet IDs for the research output.</p>
+<p>If you exceed your quota a <code class="docutils literal notranslate"><span class="pre">429</span></code> response will be returned along with the message <code class="docutils literal notranslate"><span class="pre">Tweet</span> <span class="pre">ID</span> <span class="pre">rate</span> <span class="pre">limit</span> <span class="pre">exceeded,</span> <span class="pre">please</span> <span class="pre">see</span> <span class="pre">X-TweetIdRateLimit</span> <span class="pre">headers</span> <span class="pre">and</span> <span class="pre">try</span> <span class="pre">again</span> <span class="pre">later</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are using the <a class="reference internal" href="data-endpoints-fetch.html#fetch"><span class="std std-ref">Fetch</span></a> endpoint and don’t require Twitter information you can use the <code class="docutils literal notranslate"><span class="pre">exclude_sources</span></code> query string parameter to remove
+Twitter information from the response.</p>
+<p>For example: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">https://api.altmetric.com/v1/fetch/doi/10.1371/journal.pone.0005083?key=xxx-xxx-xxx-xxx&amp;exclude_sources=twitter</span></code></p>
+</div>
+<section id="how-to-obtain-additional-twitter-information">
+<h3>How to obtain additional Twitter information<a class="headerlink" href="#how-to-obtain-additional-twitter-information" title="Permalink to this heading"></a></h3>
+<p>If you are working on a project that requires information about tweets or tweeters, that is not available via Altmetric’s APIs, then you will need to request the  additional data directly from Twitter’s own API services.
+You can utilize the Tweet IDs and User IDs that you obtain from Altmetric’s APIs to then query the Twitter API for this additional information. If you are using Twitter data for your projects,
+please ensure that you are compliant with Twitter’s Developer Policy and Twitter’s Terms of Service.</p>
+<p>To get started you you will first need to <a class="reference external" href="https://developer.twitter.com/en/apply-for-access">apply for developer access</a> to Twitter’s APIs.</p>
+<p>Once you have obtained access to Twitter’s Developer Portal, you will be able to send requests to the Twitter API. To access detailed information for individual tweets (which Twitter refers to as “statuses”), you can <a class="reference external" href="https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-show-id">query the Twitter API using a single Tweet ID</a>.</p>
+<p>Alternatively, you can request detailed information for a batch of up to 100 tweets at a time <a class="reference external" href="https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-lookup">using multiple Tweet IDs</a>.</p>
+</section>
+<section id="hydrate-tweets-ids-into-actual-tweets">
+<h3>Hydrate Tweets IDs into actual Tweets<a class="headerlink" href="#hydrate-tweets-ids-into-actual-tweets" title="Permalink to this heading"></a></h3>
+<p>For hydration, you can use “Hydrator” – see <a class="reference external" href="https://github.com/DocNow/hydrator">https://github.com/DocNow/hydrator</a>. This great multi-platform app takes as input a bunch of data (e.g., tweet IDs and your own developer key) and in turn goes to the Twitter API, retrieving all the tweets that are still available online. It also manages the download process, including download rate limits.</p>
+<p>Check the <a class="reference external" href="https://developer.twitter.com/en/developer-terms/agreement-and-policy">Content Distribution section on this page</a> for more info on Twitter’s platform terms and conditions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When fetching and displaying tweets you should be adhering to Twitter’s <a class="reference external" href="https://dev.twitter.com/terms/display-guidelines">display guidelines</a> and please ensure
+that you are compliant with Twitter’s <a class="reference external" href="https://twitter.com/en/tos">Terms of Service</a> and the <a class="reference external" href="https://developer.twitter.com/en/developer-terms/policy.html">Developer Policy</a>
+when using Twitter data. For further information about Twitter data usage restrictions, please read this <a class="reference external" href="https://help.altmetric.com/support/solutions/articles/6000242073-twitter-data-available-in-altmetric-s-apis-and-data-exports">Knowledgebase article</a>.</p>
+</div>
+</section>
+</section>
+<section id="news">
+<h2>News<a class="headerlink" href="#news" title="Permalink to this heading"></a></h2>
+<p>In the United Kingdom, under The Copyright Designs &amp; Patents Act 1988, headlines are copyrighted. To collect the data from UK newspapers Altmetric signed an agreement with the Newspaper Licensing Authority, which prevents us from including the links and headline to a news story unless the user also has a license from this same agency. As we can’t verify that every person who views our Details Pages has this license we choose not to display the headline and link.</p>
+<p>More information about why we can’t display some news mentions is available <a class="reference external" href="https://help.altmetric.com/support/solutions/articles/6000241413-unclickable-links-on-a-detail-page">here</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Altmetric’s Details Page API documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data-endpoints-counts.html" class="btn btn-neutral float-right" title="Counts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Altmetric LLC.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #1a3d74;
+    }
+  </style>
+
+
+</body>
+</html>

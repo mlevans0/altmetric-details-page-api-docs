@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; Altmetric Details Page API 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/custom.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html">
+            <img src="../../../_static/altmetric-logo-white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html#identifiers">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html#limitations">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data endpoints</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-endpoints-counts.html">Counts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-endpoints-fetch.html">Fetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data-endpoints-citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../licensing.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../attribution.html">Attribution</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Altmetric Details Page API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/shared/fetch/altmetric_score/breakdown.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>Available types are <code class="docutils literal notranslate"><span class="pre">all</span></code> <code class="docutils literal notranslate"><span class="pre">journal</span></code> <code class="docutils literal notranslate"><span class="pre">similar_age_3m</span></code> <code class="docutils literal notranslate"><span class="pre">similar_age_journal_3m</span></code>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of publications in this journal in this time period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mean</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Mean score for publications in this journal in this time period.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rank</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Score in context rank within publications in the journal in this time period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">total_number_of_other_articles</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Total number of publications in sample size for the journal in this time period.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">this_scored_higher_than_pct</span></code></p></td>
+<td><p>number</p></td>
+<td><p>% of publications from this journal with fewer mentions in this time period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">this_scored_higher_than</span></code></p></td>
+<td><p>number</p></td>
+<td><p>The estimated number of articles that have scored the same or lower than this one.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rank_type</span></code></p></td>
+<td><p>string</p></td>
+<td><p>The sample type used to calculate the <code class="docutils literal notranslate"><span class="pre">rank</span></code>. Prior to 2014 the rank was calculated using an <code class="docutils literal notranslate"><span class="pre">approximate</span></code> sample size, now the whole dataset is used. Always set to to <code class="docutils literal notranslate"><span class="pre">exact</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sample_size</span></code></p></td>
+<td><p>number</p></td>
+<td><p>The size of the representative sample we use to produce the <code class="docutils literal notranslate"><span class="pre">mean</span></code> and other metrics. Duplicates <code class="docutils literal notranslate"><span class="pre">total_number_of_other_articles</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">percentile</span></code></p></td>
+<td><p>number</p></td>
+<td><p>% of publications from this journal with fewer mentions in this time period. Duplicates <code class="docutils literal notranslate"><span class="pre">this_scored_higher_than_pct</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We split the representative sample in percentiles and put the highest score in each 10% into the spark-lines array. Thus the first element of that array is the highest scoring
+article in the sample set, the second element is the highest score in the 90th %ile, the third element in the 80th %ile and so on.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Altmetric LLC.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #1a3d74;
+    }
+  </style>
+
+
+</body>
+</html>

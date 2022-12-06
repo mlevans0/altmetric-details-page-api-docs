@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citations &mdash; Altmetric Details Page API 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Licensing" href="licensing.html" />
+    <link rel="prev" title="Fetch" href="data-endpoints-fetch.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/altmetric-logo-white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#identifiers">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#limitations">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data-endpoints-counts.html">Counts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-endpoints-fetch.html">Fetch</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Citations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pagination">Pagination</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sorting">Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#response-object">Response object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#query-object">Query object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results-object">Results object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cohorts">Cohorts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#context">Context</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#breakdown">Breakdown</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#history">History</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#publisher-subjects">Publisher subjects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#readers">Readers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#images">Images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-response">Example response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#try-it-yourself">Try it yourself</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licensing.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attribution.html">Attribution</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Altmetric Details Page API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Citations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/data-endpoints-citations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="citations">
+<h1>Citations<a class="headerlink" href="#citations" title="Permalink to this heading"></a></h1>
+<p>Returns a list of research outputs with activity in the provided <code class="docutils literal notranslate"><span class="pre">timeframe</span></code>.</p>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">GET</span> <span class="pre">/{version}/citations/{timeframe}</span></span></dt>
+<dd><p>Returns a list of research outputs with activity in the provided time frame.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/v1/citations/1m</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.altmetric.com</span>
+</pre></div>
+</div>
+<p><strong>Query parameters:</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 35%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Accepts</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">version</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v1</span></code></p></td>
+<td><p>See <a class="reference internal" href="getting-started.html#versioning"><span class="std std-ref">Versioning</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">timeframe</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">at</span></code> <code class="docutils literal notranslate"><span class="pre">1d</span></code> <code class="docutils literal notranslate"><span class="pre">2d</span></code> <code class="docutils literal notranslate"><span class="pre">3d</span></code> <code class="docutils literal notranslate"><span class="pre">4d</span></code> <code class="docutils literal notranslate"><span class="pre">5d</span></code> <code class="docutils literal notranslate"><span class="pre">6d</span></code> <code class="docutils literal notranslate"><span class="pre">1w</span></code> <code class="docutils literal notranslate"><span class="pre">1m</span></code> <code class="docutils literal notranslate"><span class="pre">3m</span></code> <code class="docutils literal notranslate"><span class="pre">1y</span></code></p></td>
+<td><p>Include only research outputs which have seen activity in the past x days / weeks / months.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">at</span></code> for “all time”: all of the research outputs in the Altmetric database.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">page</span></code></p></td>
+<td></td>
+<td><p>integer</p></td>
+<td><p>Page number used to paginate through results. First page is page <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p>The API will return an error if you ask for a page number beyond (number of research outputs / <code class="docutils literal notranslate"><span class="pre">num_results</span></code>).</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">num_results</span></code></p></td>
+<td></td>
+<td><p>integer &gt; <code class="docutils literal notranslate"><span class="pre">0</span></code> and &lt; <code class="docutils literal notranslate"><span class="pre">100</span></code></p></td>
+<td><p>Number of research outputs per page. Defaults to 25.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cited_in</span></code></p></td>
+<td></td>
+<td><p>One or more comma delimited options from: <code class="docutils literal notranslate"><span class="pre">facebook</span></code> <code class="docutils literal notranslate"><span class="pre">blogs</span></code> <code class="docutils literal notranslate"><span class="pre">linkedin</span></code> <code class="docutils literal notranslate"><span class="pre">video</span></code> <code class="docutils literal notranslate"><span class="pre">pinterest</span></code> <code class="docutils literal notranslate"><span class="pre">gplus</span></code> <code class="docutils literal notranslate"><span class="pre">twitter</span></code> <code class="docutils literal notranslate"><span class="pre">reddit</span></code> <code class="docutils literal notranslate"><span class="pre">news</span></code> <code class="docutils literal notranslate"><span class="pre">f1000</span></code> <code class="docutils literal notranslate"><span class="pre">rh</span></code> <code class="docutils literal notranslate"><span class="pre">qna</span></code> <code class="docutils literal notranslate"><span class="pre">forum</span></code> <code class="docutils literal notranslate"><span class="pre">peerreview</span></code> <code class="docutils literal notranslate"><span class="pre">policy</span></code> <code class="docutils literal notranslate"><span class="pre">weibo</span></code></p></td>
+<td><p>Include only research outputs mentioned in the supplied list of sources.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">doi_prefix</span></code></p></td>
+<td></td>
+<td><p>A DOI prefix (for example 10.1038)</p></td>
+<td><p>Include only research outputs with a DOI that contains the given prefix.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">issn</span></code></p></td>
+<td></td>
+<td><p>Accepts a comma separated list of ISSN’s. Both <code class="docutils literal notranslate"><span class="pre">00221465</span></code> and <code class="docutils literal notranslate"><span class="pre">0022-1465</span></code> are accepted values.</p></td>
+<td><p>A valid journal ISSN number. Must be a journal already registered and accessible from within the Altmetric Explorer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">order_by</span></code></p></td>
+<td></td>
+<td><p>One of the following: <code class="docutils literal notranslate"><span class="pre">score</span></code> <code class="docutils literal notranslate"><span class="pre">at_score</span></code> <code class="docutils literal notranslate"><span class="pre">readers</span></code> <code class="docutils literal notranslate"><span class="pre">first_seen</span></code> <code class="docutils literal notranslate"><span class="pre">pubdate</span></code></p></td>
+<td><p>Specifies the order in which the returned research outputs are listed.</p>
+<p>If omitted, a value of <code class="docutils literal notranslate"><span class="pre">score</span></code> will be assumed. For explanations of each value, see <a class="reference internal" href="#sorting"><span class="std std-ref">Sorting</span></a>.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">key</span></code></p></td>
+<td></td>
+<td></td>
+<td><p>The API key that you were issued.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>HTTP status codes:</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok">200 OK</a></p></td>
+<td><p>The body of the response should contain the data you requested.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden">403 Forbidden</a></p></td>
+<td><p>You aren’t authorized for this call. Some requests require an API key.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found">404 Not Found</a></p></td>
+<td><p>Altmetric doesn’t have any details for the research output or set of research outputs you requested.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc6585#section-4">429 Too Many Requests</a></p></td>
+<td><p>You are being rate limited. If you haven’t already then apply for an API key.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway">502 Bad Gateway</a></p></td>
+<td><p>The API version you are using is currently down for maintenance.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Try it:</strong> <a class="reference external" href="https://api.altmetric.com/v1/citations/1m">https://api.altmetric.com/v1/citations/1m</a></p>
+</dd></dl>
+
+</section>
+<section id="pagination">
+<h2>Pagination<a class="headerlink" href="#pagination" title="Permalink to this heading"></a></h2>
+<p>Results from this endpoint are paginated. To help with paging through the list of results a <code class="docutils literal notranslate"><span class="pre">query</span></code> object is embedded in each response.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">total</span></code></p></td>
+<td><p>The total number of research outputs that match the query parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">page</span></code></p></td>
+<td><p>The current page that you are on.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">num_results</span></code></p></td>
+<td><p>The number of research outputs in the current page.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
+<p>Here we can see that we are currently on page 1 and we have been returned 25 results of a possible 100.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;num_results&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;results&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To get the next page you’d need to make the following request:</p>
+<p><code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">https://api.altmetric.com/v1/citations/at?page=2</span></code></p>
+<p>To page through the entire list of research outputs: while <code class="docutils literal notranslate"><span class="pre">query.page</span></code> multiplied by <code class="docutils literal notranslate"><span class="pre">query.num_results</span></code> is less-than <code class="docutils literal notranslate"><span class="pre">query.total</span></code> you will need to keep incrementing the <code class="docutils literal notranslate"><span class="pre">page</span></code>
+query string integer value. In the example here we’d just need to increment the <code class="docutils literal notranslate"><span class="pre">page</span></code> up to 4 (4 x 25 = 100).</p>
+</section>
+</section>
+<section id="sorting">
+<h2>Sorting<a class="headerlink" href="#sorting" title="Permalink to this heading"></a></h2>
+<p>Use of the <code class="docutils literal notranslate"><span class="pre">order_by</span></code> parameter will determine the order in which research outputs are listed within the response of the request.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">score</span> <span class="pre">(default)</span></code></p></td>
+<td><p>Orders research outputs based on the Altmetric attention score gained during the period defined by the timeframe argument supplied. For example, if the timeframe is <code class="docutils literal notranslate"><span class="pre">1d</span></code>, the
+article which gained the most attention in the last 24 hours will be at the top.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">at_score</span></code></p></td>
+<td><p>Orders research outputs based on their overall Altmetric attention score (the number generally shown within Altmetric donuts or other badges).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">readers</span></code></p></td>
+<td><p>Orders research outputs based on the number of readers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">first_seen</span></code></p></td>
+<td><p>Orders research outputs based on when Altmetric first started tracking mentions.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubdate</span></code></p></td>
+<td><p>Orders by the publication date of the article. This can be approximate; for example, some publishers may not provide an exact publication date, choosing instead to provide only a year or month.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="response-object">
+<h2>Response object<a class="headerlink" href="#response-object" title="Permalink to this heading"></a></h2>
+<p>The Altmetric Details Page API returns JSON. The <code class="docutils literal notranslate"><span class="pre">/citations/</span></code> endpoint returns an object with the keys <code class="docutils literal notranslate"><span class="pre">query</span></code> and <code class="docutils literal notranslate"><span class="pre">results</span></code>.</p>
+<section id="query-object">
+<h3>Query object<a class="headerlink" href="#query-object" title="Permalink to this heading"></a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">query</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>Metadata about your query.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">results</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>Array of citation objects detailed below. May be empty if <code class="docutils literal notranslate"><span class="pre">query.count</span></code> is 0.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="results-object">
+<h3>Results object<a class="headerlink" href="#results-object" title="Permalink to this heading"></a></h3>
+<p>A GET request to the <code class="docutils literal notranslate"><span class="pre">/citations/</span></code> endpoint returns a JSON object with the following keys.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">title</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Title of the publication</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">altmetric_id</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Internal ID associated with the research output. Altmetric IDs are transient and unstable over the medium term.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">doi</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant DOI.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pmid</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant Pubmed Id.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pmc</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant Pubmed Central Id.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uri</span></code></p></td>
+<td><p>string</p></td>
+<td><p>URI for a captured identifier (e.g <a class="reference external" href="https://doi.org/xxx">https://doi.org/xxx</a>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">url</span></code></p></td>
+<td><p>string</p></td>
+<td><p>URL to publication page.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">isbns</span></code></p></td>
+<td><p>string []</p></td>
+<td><p>Relevant ISBN(s).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">altmetric_jid</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Internal identifier assigned to each journal or collection.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">handles</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Relevant Handle(s).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">issns</span></code></p></td>
+<td><p>string []</p></td>
+<td><p>Relevant ISSN(s).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">journal</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Name of publication journal.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubdate</span></code></p></td>
+<td><p>number</p></td>
+<td><p>The print date that the publication was published. In Unix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">epubdate</span></code></p></td>
+<td><p>number</p></td>
+<td><p>The date that the publication was published electronically. In Unix.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">published_on</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Returns the <code class="docutils literal notranslate"><span class="pre">epubdate</span></code> if it exists on the record -  if not then the <code class="docutils literal notranslate"><span class="pre">pubdate</span></code> is returned instead.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cohorts</span></code></p></td>
+<td><p>object</p></td>
+<td><p>See <a class="reference internal" href="data-endpoints-fetch.html#cohorts"><span class="std std-ref">Cohorts</span></a> for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">abstract</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Full abstract for the article.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">abstract_source</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Source for the abstract (e.g PUBMED).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">authors</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Author names.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> <code class="docutils literal notranslate"><span class="pre">book</span></code> <code class="docutils literal notranslate"><span class="pre">article</span></code> <code class="docutils literal notranslate"><span class="pre">news</span></code> <code class="docutils literal notranslate"><span class="pre">chapter</span></code> <code class="docutils literal notranslate"><span class="pre">clinical_trial_study_record</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">is_oa</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>Deprecated.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">context</span></code></p></td>
+<td><p>object</p></td>
+<td><p>See <a class="reference internal" href="data-endpoints-counts.html#context"><span class="std std-ref">Context</span></a> for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_fbwalls_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of walls that have mentioned the output on Facebook.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_feeds_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of blogs that have mentioned the publication.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_gplus_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of accounts that have shared on Google+.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_msm_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of news sources that have mentioned the publication.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_rdts_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of Redditors that have posted about this publication.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_qna_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of forum and Stack Exchange based sites accounts that have mentioned this publication.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_tweeters_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of twitter accounts that have tweeted this publication.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_wikipedia_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of wikipedia pages that have cited this publication.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_policies_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of policies that have mentioned this publication.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_patents_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of patents that have mentioned this publication.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_videos_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of Youtube channels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_accounts_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>The number of unique sources referencing the research output and is the sum of all <code class="docutils literal notranslate"><span class="pre">cited_by_*</span></code> entries. This is equivalent to the sum of <a class="reference external" href="data-endpoints-fetch.html#source-type-counts">unique_users_count</a> field for each source type when using the <a class="reference internal" href="data-endpoints-fetch.html#fetch"><span class="std std-ref">Fetch</span></a> endpoint.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cited_by_posts_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>A <code class="docutils literal notranslate"><span class="pre">post</span></code> is any online document that links to one or more research outputs (i.e. a post is a single mention or a group of mentions). This field is the total number of individual posts for the requested research output. This is equivalent to <a class="reference external" href="data-endpoints-fetch.html#total">counts.total.posts_count</a> field when using the <a class="reference internal" href="data-endpoints-fetch.html#fetch"><span class="std std-ref">Fetch</span></a> endpoint.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">last_updated</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Last time the score changed. In UNIX.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">score</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Current Altmetric Attention Score.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">history</span></code></p></td>
+<td><p>object</p></td>
+<td><p>See <a class="reference internal" href="data-endpoints-fetch.html#history"><span class="std std-ref">History</span></a> for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">added_on</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Date when Altmetric first captured attention. In UNIX.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">scopus_subjects</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Initially imported from Scopus in 2011 (Deprecated).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">subjects</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Subjects for journal. Originally enriched from National Academy of Medicine (Deprecated).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">publisher_subjects</span></code></p></td>
+<td><p>object[]</p></td>
+<td><p>See <a class="reference internal" href="data-endpoints-fetch.html#publisher-subjects"><span class="std std-ref">Publisher subjects</span></a> for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">readers</span></code></p></td>
+<td><p>object</p></td>
+<td><p>See <a class="reference internal" href="data-endpoints-fetch.html#readers"><span class="std std-ref">Readers</span></a> for more information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">readers_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Total number of unique users who have saved this article in Mendeley, CiteULike or Connotea.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">images</span></code></p></td>
+<td><p>object</p></td>
+<td><p>See <a class="reference internal" href="data-endpoints-fetch.html#images"><span class="std std-ref">Images</span></a> for more information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">details_url</span></code></p></td>
+<td><p>string</p></td>
+<td><p>URL to relevant Altmetric Details Page.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">authors_or_editors</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Author and editor names.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">attribution</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Source of data. For example Google Books.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="cohorts">
+<h4>Cohorts<a class="headerlink" href="#cohorts" title="Permalink to this heading"></a></h4>
+<p>Cohorts of users who have mentioned the publication on Twitter.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pub</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Somebody who doesn’t link to scholarly literature and doesn’t otherwise fit any of the categories below.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sci</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Somebody who carries out academic or scientific research.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">com</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Somebody who links frequently to scientific articles from a variety of different journals / publishers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">doc</span></code></p></td>
+<td><p>number</p></td>
+<td><p>A clinician, or a researcher working in clinical science.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="context">
+<h4>Context<a class="headerlink" href="#context" title="Permalink to this heading"></a></h4>
+<p>Contains details of the Altmetric score and, where possible, provides some context. See <a class="reference internal" href="data-endpoints-fetch.html#breakdown"><span class="std std-ref">Breakdown</span></a> for a breakdown of context.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">all</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains statistics about the entire Altmetric database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">journal</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains statistics about all articles from the same journal that have been tracked by Altmetric.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">similar_age_3m</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains statistics about articles from any journal published within 6 weeks on either side of this one.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">similar_age_journal_3m</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains statistics about articles from the same journal and published within 6 weeks on either side of this one.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only research outputs that have a score greater than 0 and are associated with a journal (has an <code class="docutils literal notranslate"><span class="pre">altmetric_jid</span></code>) will have a score in context.</p>
+</div>
+<section id="breakdown">
+<h5>Breakdown<a class="headerlink" href="#breakdown" title="Permalink to this heading"></a></h5>
+<p>Available types are <code class="docutils literal notranslate"><span class="pre">all</span></code> <code class="docutils literal notranslate"><span class="pre">journal</span></code> <code class="docutils literal notranslate"><span class="pre">similar_age_3m</span></code> <code class="docutils literal notranslate"><span class="pre">similar_age_journal_3m</span></code>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of publications in this journal in this time period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mean</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Mean score for publications in this journal in this time period.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rank</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Score in context rank within publications in the journal in this time period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pct</span></code></p></td>
+<td><p>number</p></td>
+<td><p>% of publications from this journal with fewer mentions in this time period.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">higher_than</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of publications from this journal with fewer mentions in this time period.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We split the representative sample in percentiles and put the highest score in each 10% into the spark-lines array. Thus the first element of that array is the highest scoring
+article in the sample set, the second element is the highest score in the 90th %ile, the third element in the 80th %ile and so on.</p>
+</div>
+</section>
+</section>
+<section id="history">
+<h4>History<a class="headerlink" href="#history" title="Permalink to this heading"></a></h4>
+<p>Provides details on how much of the score occurred in a given timeframe.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1y</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last year.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">6m</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last six months.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3m</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last 3 months.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1m</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last one month.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1w</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last week.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">6d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last six days.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">5d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last five days.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">4d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last four days.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last three days.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">2d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last two days.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last one day.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">at</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Current Altmetric Attention Score.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="publisher-subjects">
+<h4>Publisher subjects<a class="headerlink" href="#publisher-subjects" title="Permalink to this heading"></a></h4>
+<p>Subjects for journal set by the publisher.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Name of subject</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">scheme</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Available schemes are <code class="docutils literal notranslate"><span class="pre">era</span></code> <code class="docutils literal notranslate"><span class="pre">bmj</span></code> (Deprecated) <code class="docutils literal notranslate"><span class="pre">springer</span></code> <code class="docutils literal notranslate"><span class="pre">npg</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="readers">
+<h4>Readers<a class="headerlink" href="#readers" title="Permalink to this heading"></a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mendeley counts aren’t updated in real time and there can sometimes be lag of up to a week between the reader count reported by Altmetric and the count on mendeley.com.</p>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mendeley</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Readers in Mendeley.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">connotea</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Readers in Connotea (no longer updated).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">citeulike</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Readers in CiteULike (no longer updated).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="images">
+<h4>Images<a class="headerlink" href="#images" title="Permalink to this heading"></a></h4>
+<p>Contains links to PNG versions of the donut.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">small</span></code></p></td>
+<td><p>string</p></td>
+<td><p>64px x 64px PNG of the donut.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">medium</span></code></p></td>
+<td><p>string</p></td>
+<td><p>100px x 100px PNG of the donut.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">large</span></code></p></td>
+<td><p>string</p></td>
+<td><p>180px x 180px PNG of the donut.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="example-response">
+<h2>Example response<a class="headerlink" href="#example-response" title="Permalink to this heading"></a></h2>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2418</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Number of species on Earth tagged at 8.7 million&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;doi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.1038/news.2011.498&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;nlmid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0410462&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;journal&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nature News&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;altmetric_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">243700</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;cited_by_posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">138</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;cited_by_tweeters_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">134</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;history&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;1d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;2d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;3d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;4d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;5d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;6d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;1w&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;1m&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;3m&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;1y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;at&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">114.5</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.nature.com/news/2011/110823/full/news.2011.498.html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;added_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1314135172</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;published_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1314054000</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;subjects&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;science&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;readers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;mendeley&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;downloads&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w">        </span>
+<span class="w">            </span><span class="nt">&quot;images&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;small&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://api.altmetric.com/donut/241939_64x64.png&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;medium&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://api.altmetric.com/donut/241939_100x100.png&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;large&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://api.altmetric.com/donut/241939_180x180.png&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;details_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.altmetric.com/details.php?citation_id=657451&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="try-it-yourself">
+<h2>Try it yourself<a class="headerlink" href="#try-it-yourself" title="Permalink to this heading"></a></h2>
+<p>Click on any of the URLs below to view example responses for the listed scenarios.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Scenario</p></th>
+<th class="head"><p>URL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>To return the first 25 research outputs that have been mentioned in the past day</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/citations/1d">https://api.altmetric.com/v1/citations/1d</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>And then get the next 25</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/citations/1d?page=2">https://api.altmetric.com/v1/citations/1d?page=2</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Get 100 research outputs mentioned in the past week ordered by the altmetric attention score for that week</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/citations/1w?num_results=100">https://api.altmetric.com/v1/citations/1w?num_results=100</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Get 100 research outputs mentioned on Reddit in the past week</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/citations/1w?num_results=100&amp;cited_in=reddit">https://api.altmetric.com/v1/citations/1w?num_results=100&amp;cited_in=reddit</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Get 25 research outputs mentioned on Twitter in the past week ordered by the all time altmetric attention score</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/citations/1w?&amp;cited_in=twitter&amp;order_by=at_score">https://api.altmetric.com/v1/citations/1w?&amp;cited_in=twitter&amp;order_by=at_score</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Get the top 10 research outputs where the score has changed in the last month for the journal <strong>History</strong></p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/citations/1m?num_results=10&amp;issns=00182648&amp;order_by=score">https://api.altmetric.com/v1/citations/1m?num_results=10&amp;issns=00182648&amp;order_by=score</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data-endpoints-fetch.html" class="btn btn-neutral float-left" title="Fetch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="licensing.html" class="btn btn-neutral float-right" title="Licensing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Altmetric LLC.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #1a3d74;
+    }
+  </style>
+
+
+</body>
+</html>

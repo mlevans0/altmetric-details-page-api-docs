@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fetch &mdash; Altmetric Details Page API 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Citations" href="data-endpoints-citations.html" />
+    <link rel="prev" title="Counts" href="data-endpoints-counts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/altmetric-logo-white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#identifiers">Identifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#limitations">Limitations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data-endpoints-counts.html">Counts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Fetch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#response-object">Response object</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#counts">Counts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#readers">Readers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#total">Total</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#source-type-counts">Source type counts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#citation">Citation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#publisher-subjects">Publisher subjects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapters">Chapters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#altmetric-score">Altmetric score</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#history">History</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#context-for-score">Context for score</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#breakdown">Breakdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#demographics">Demographics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#poster-types">Poster types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#users">Users</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#twitter">Twitter</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#cohorts">Cohorts</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#mendeley">Mendeley</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#geo">Geo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#posts">Posts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#source-type">Source type</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#source">Source</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id1">Geo</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#author">Author</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#embed">Embed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#images">Images</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-response">Example response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#try-it-yourself">Try it yourself</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data-endpoints-citations.html">Citations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licensing.html">Licensing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attribution.html">Attribution</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Altmetric Details Page API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Fetch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/data-endpoints-fetch.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fetch">
+<h1>Fetch<a class="headerlink" href="#fetch" title="Permalink to this heading"></a></h1>
+<p>Fetch detailed Altmetric information about a particular article or dataset. This call returns much more information about each mention than from the standard <a class="reference internal" href="#counts"><span class="std std-ref">Counts</span></a> Only endpoint and allows users to see full details of the mentions, including the URLs to the mentions themselves.</p>
+<p>There are two exceptions with requests to this endpoint, Twitter and certain news sources that fall under UK licensing restrictions. You can read more about this on our <a class="reference internal" href="getting-started.html#limitations"><span class="std std-ref">Limitations</span></a> page.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Calls to this endpoint are only available to commercial license holders. If you call this endpoint without an authorized API key you’ll get a <code class="docutils literal notranslate"><span class="pre">403</span></code> response. Contact us for pricing or to request use as a non-commercial entity.</p>
+</div>
+<p>This endpoint is optimized for specific queries about single research outputs. To use this endpoint you will need some programming knowledge but there are various <em>wrappers</em> in different languages (see below) available on Github or you can choose to write your own software.</p>
+<p>Here are a few examples of third party wrappers that you can use to help you start consuming data from our API. Please note that they are built and maintained by third party developers and are not supported directly by us.</p>
+<ul class="simple">
+<li><p><strong>R</strong> : rAltmetric (<a class="reference external" href="https://cran.r-project.org/web/packages/rAltmetric/README.html">https://cran.r-project.org/web/packages/rAltmetric/README.html</a>) – This package provides a way to programmatically retrieve altmetrics from various publication types (books, newsletters, articles, peer-reviewed papers and more) from altmetric.com. The package is really simple to use and only has two major functions: - altmetrics - Pass it a doi, isbn, uri, arxiv id or other to get metrics - altmetric_data Pass it the results from the previous call to get a tidy data.frame.</p></li>
+<li><p><strong>Python</strong> : PyAltmetric (<a class="reference external" href="https://github.com/CenterForOpenScience/PyAltmetric">https://github.com/CenterForOpenScience/PyAltmetric</a>) – PyAltmetric provides an easy python wrapper for the Altmetric API and provides methods to be Articles from API responses and preexisting JSON.</p></li>
+<li><p><strong>Ruby</strong> : Altmetric (<a class="reference external" href="https://github.com/ldodds/altmetric">https://github.com/ldodds/altmetric</a>) – Provides a basic client object for interacting with the API. Provides quick access to the JSON results or direct access to API responses.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>These wrappers are built and maintained by third party developers and are not supported directly by us.</p>
+</div>
+<section id="request">
+<h2>Request<a class="headerlink" href="#request" title="Permalink to this heading"></a></h2>
+<p>When making a request to the <code class="docutils literal notranslate"><span class="pre">/fetch/</span></code> API endpoint you will need to replace the placeholder <code class="docutils literal notranslate"><span class="pre">key</span></code> <code class="docutils literal notranslate"><span class="pre">xxx-xxx-xxx-xxx</span></code>   in the examples below with your own API key,
+otherwise you’ll receive the <code class="docutils literal notranslate"><span class="pre">403</span> <span class="pre">The</span> <span class="pre">API</span> <span class="pre">key</span> <span class="pre">you</span> <span class="pre">supplied</span> <span class="pre">was</span> <span class="pre">invalid.</span></code> response from the server.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">GET</span> <span class="pre">/{version}/fetch/{identifier_type}/{id}?key=xxx-xxx-xxx-xxx</span></span></dt>
+<dd><p>Fetch a research output using the supplied identifier type and identifier</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.altmetric.com</span>
+</pre></div>
+</div>
+<p><strong>Query parameters:</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Accepts</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">version</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v1</span></code></p></td>
+<td><p>See <a class="reference internal" href="getting-started.html#versioning"><span class="std std-ref">Versioning</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">identifier</span> <span class="pre">type</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">doi</span></code> <code class="docutils literal notranslate"><span class="pre">handle</span></code> <code class="docutils literal notranslate"><span class="pre">pmid</span></code> <code class="docutils literal notranslate"><span class="pre">arxiv</span></code> <code class="docutils literal notranslate"><span class="pre">ads</span></code> <code class="docutils literal notranslate"><span class="pre">ssrn</span></code> <code class="docutils literal notranslate"><span class="pre">repec</span></code> <code class="docutils literal notranslate"><span class="pre">isbn</span></code> <code class="docutils literal notranslate"><span class="pre">id</span></code> <code class="docutils literal notranslate"><span class="pre">nct_id</span></code> <code class="docutils literal notranslate"><span class="pre">urn</span></code> <code class="docutils literal notranslate"><span class="pre">uri</span></code></p></td>
+<td><p>A valid identifier type</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">identifier</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>A valid identifier of the type specified by <code class="docutils literal notranslate"><span class="pre">identifier_type</span></code></p></td>
+<td><p>Identifiers should not be URL-encoded.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">include_sources</span></code></p></td>
+<td></td>
+<td><p>Comma delimited list of post types to include data for in the response.</p>
+<p>Where sources are not included the <code class="docutils literal notranslate"><span class="pre">unique_users</span></code> key is also removed from <code class="docutils literal notranslate"><span class="pre">counts</span></code> if it exists.</p>
+<p>Current filters are: <code class="docutils literal notranslate"><span class="pre">facebook</span></code> <code class="docutils literal notranslate"><span class="pre">blogs</span></code> <code class="docutils literal notranslate"><span class="pre">linkedin</span></code> <code class="docutils literal notranslate"><span class="pre">video</span></code> <code class="docutils literal notranslate"><span class="pre">pinterest</span></code> <code class="docutils literal notranslate"><span class="pre">gplus</span></code> <code class="docutils literal notranslate"><span class="pre">twitter</span></code> <code class="docutils literal notranslate"><span class="pre">reddit</span></code> <code class="docutils literal notranslate"><span class="pre">news</span></code> <code class="docutils literal notranslate"><span class="pre">f1000</span></code> <code class="docutils literal notranslate"><span class="pre">rh</span></code> <code class="docutils literal notranslate"><span class="pre">qna</span></code> <code class="docutils literal notranslate"><span class="pre">forum</span></code> <code class="docutils literal notranslate"><span class="pre">peerreview</span></code> <code class="docutils literal notranslate"><span class="pre">policy</span></code> <code class="docutils literal notranslate"><span class="pre">weibo</span></code></p>
+</td>
+<td><p>Defaults to include everything.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">exclude_sources</span></code></p></td>
+<td></td>
+<td><p>Comma delimited list of post types to exclude data for in response.</p>
+<p>Where sources are excluded the <code class="docutils literal notranslate"><span class="pre">unique_users</span></code> key is also removed from <code class="docutils literal notranslate"><span class="pre">counts</span></code> if it exists.</p>
+<p>Current filters are: <code class="docutils literal notranslate"><span class="pre">facebook</span></code> <code class="docutils literal notranslate"><span class="pre">blogs</span></code> <code class="docutils literal notranslate"><span class="pre">linkedin</span></code> <code class="docutils literal notranslate"><span class="pre">video</span></code> <code class="docutils literal notranslate"><span class="pre">pinterest</span></code> <code class="docutils literal notranslate"><span class="pre">gplus</span></code> <code class="docutils literal notranslate"><span class="pre">twitter</span></code> <code class="docutils literal notranslate"><span class="pre">reddit</span></code> <code class="docutils literal notranslate"><span class="pre">news</span></code> <code class="docutils literal notranslate"><span class="pre">f1000</span></code> <code class="docutils literal notranslate"><span class="pre">rh</span></code> <code class="docutils literal notranslate"><span class="pre">qna</span></code> <code class="docutils literal notranslate"><span class="pre">forum</span></code> <code class="docutils literal notranslate"><span class="pre">peerreview</span></code> <code class="docutils literal notranslate"><span class="pre">policy</span></code> <code class="docutils literal notranslate"><span class="pre">weibo</span></code></p>
+</td>
+<td><p>Defaults to exclude nothing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">include_sections</span></code></p></td>
+<td></td>
+<td><p>Comma delimited list of response object sections to include.</p>
+<p>Current supported sections are  <code class="docutils literal notranslate"><span class="pre">counts</span></code> <code class="docutils literal notranslate"><span class="pre">citation</span></code> <code class="docutils literal notranslate"><span class="pre">altmetric_score</span></code> <code class="docutils literal notranslate"><span class="pre">demographics</span></code> <code class="docutils literal notranslate"><span class="pre">posts</span></code> <code class="docutils literal notranslate"><span class="pre">images</span></code></p>
+</td>
+<td><p>Defaults to include everything.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">post_types</span></code></p></td>
+<td></td>
+<td><p>Comma delimited list of additional filters on the sub type associated with post types.</p>
+<p>Current filters are: <code class="docutils literal notranslate"><span class="pre">original_tweets</span></code></p>
+</td>
+<td><p>Defaults to include everything. In this case retweets are excluded from response. Counts section is unaffected.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>HTTP status codes:</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-200-ok">200 OK</a></p></td>
+<td><p>The body of the response should contain the data you requested.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-403-forbidden">403 Forbidden</a></p></td>
+<td><p>You aren’t authorized for this call. Some requests require an API key.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-404-not-found">404 Not Found</a></p></td>
+<td><p>Altmetric doesn’t have any details for the research output or set of research outputs you requested.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc6585#section-4">429 Too Many Requests</a></p></td>
+<td><p>You are being rate limited. If you haven’t already then apply for an API key.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-502-bad-gateway">502 Bad Gateway</a></p></td>
+<td><p>The API version you are using is currently down for maintenance.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Altmetric Ids are transient and unstable over the medium term. For long term application it is recommended that persistent IDs such as DOIs, arXiv IDs or PMIDs are used instead.</p>
+</div>
+</section>
+<section id="response-object">
+<h2>Response object<a class="headerlink" href="#response-object" title="Permalink to this heading"></a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">GET</span></code> request to the <strong>Full Access</strong> <code class="docutils literal notranslate"><span class="pre">/fetch/</span></code> endpoint returns a JSON object with the following keys.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Keys</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">altmetric_id</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Internal ID associated with the research output. Altmetric IDs are transient and unstable over the medium term.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">counts</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Provides the number of mentions and unique authors in each relevant source type - for example <code class="docutils literal notranslate"><span class="pre">blogs</span></code> <code class="docutils literal notranslate"><span class="pre">twitter</span></code> <code class="docutils literal notranslate"><span class="pre">news</span></code> as well as reference manager reader counts
+where available. See <a class="reference internal" href="#counts"><span class="std std-ref">Counts</span></a> for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">citation</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Bibliographic metadata about the output requested. You’ll find third party identifiers for example <code class="docutils literal notranslate"><span class="pre">doi</span></code> <code class="docutils literal notranslate"><span class="pre">pmid</span></code> <code class="docutils literal notranslate"><span class="pre">arxiv</span></code> in this object. See <a class="reference internal" href="#citation"><span class="std std-ref">Citation</span></a>  for more information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">altmetric_score</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains details of the Altmetric score and where possible provides some context. See <a class="reference internal" href="#altmetric-score"><span class="std std-ref">Altmetric score</span></a>  for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">demographics</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Altmetric categorizes users from some sources based on their posting history and profile information. Counts for each category are included in this section along with geo-location data. See <a class="reference internal" href="#demographics"><span class="std std-ref">Demographics</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">posts</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains all the recorded mention data categorized by the attention source. See <a class="reference internal" href="#posts"><span class="std std-ref">Posts</span></a>  for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">score</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Contains details of the Altmetric score and where possible provides some context.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">images</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Links to PNG versions of the donut. See <a class="reference internal" href="#images"><span class="std std-ref">Images</span></a>  for more information.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="counts">
+<h3>Counts<a class="headerlink" href="#counts" title="Permalink to this heading"></a></h3>
+<p>Where available provides reference manager reader counts.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">readers</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Reference manager reader counts. See <a class="reference internal" href="#readers"><span class="std std-ref">Readers</span></a> for more information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">total</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Object containing the total number of mentions. See <a class="reference internal" href="#total"><span class="std std-ref">Total</span></a> for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{{source-type}}</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Available source types are <code class="docutils literal notranslate"><span class="pre">facebook</span></code> <code class="docutils literal notranslate"><span class="pre">blogs</span></code> <code class="docutils literal notranslate"><span class="pre">linkedin</span></code> <code class="docutils literal notranslate"><span class="pre">video</span></code> <code class="docutils literal notranslate"><span class="pre">pinterest</span></code> <code class="docutils literal notranslate"><span class="pre">googleplus</span></code> <code class="docutils literal notranslate"><span class="pre">twitter</span></code> <code class="docutils literal notranslate"><span class="pre">reddit</span></code> <code class="docutils literal notranslate"><span class="pre">news</span></code> <code class="docutils literal notranslate"><span class="pre">f1000</span></code> <code class="docutils literal notranslate"><span class="pre">rh</span></code> <code class="docutils literal notranslate"><span class="pre">qna</span></code> <code class="docutils literal notranslate"><span class="pre">forum</span></code> <code class="docutils literal notranslate"><span class="pre">peerreview</span></code> <code class="docutils literal notranslate"><span class="pre">policy</span></code> <code class="docutils literal notranslate"><span class="pre">weibo</span></code> <code class="docutils literal notranslate"><span class="pre">q&amp;a</span></code> <code class="docutils literal notranslate"><span class="pre">misc</span></code>.</p>
+<p>See <a class="reference internal" href="#source-type-counts"><span class="std std-ref">Source type counts</span></a> for more information.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="readers">
+<h4>Readers<a class="headerlink" href="#readers" title="Permalink to this heading"></a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mendeley counts aren’t updated in real time and there can sometimes be lag of up to a week between the reader count reported by Altmetric and the count on mendeley.com.</p>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mendeley</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Readers in Mendeley.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">connotea</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Readers in Connotea (no longer updated).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">citeulike</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Readers in CiteULike (no longer updated).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="total">
+<h4>Total<a class="headerlink" href="#total" title="Permalink to this heading"></a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">posts_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Total number of mentions.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="source-type-counts">
+<h4>Source type counts<a class="headerlink" href="#source-type-counts" title="Permalink to this heading"></a></h4>
+<p>Provides the number of mentions and unique authors in each relevant source type.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">unique_users_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of unique users.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">unique_users</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>User IDs associated with the posts.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">posts_count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Total number of posts.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The same user could blog, tweet or otherwise share the same article more than once, so <code class="docutils literal notranslate"><span class="pre">posts_count</span></code> can be greater than <code class="docutils literal notranslate"><span class="pre">unique_users_count</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="citation">
+<h3>Citation<a class="headerlink" href="#citation" title="Permalink to this heading"></a></h3>
+<p>Bibliographic metadata about the output requested. You’ll find third party identifiers, for example <code class="docutils literal notranslate"><span class="pre">doi</span></code> <code class="docutils literal notranslate"><span class="pre">pmid</span></code> <code class="docutils literal notranslate"><span class="pre">arxiv</span></code> in this object.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">altmetric_jid</span></code></p></td>
+<td><p>string</p></td>
+<td><p>An internal database identifier for the journal that the article comes from.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">title</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Title of the publication.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">doi</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant DOI.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pmid</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant PubMed Id.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pmc</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant PubMed Central Id.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">handles</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Relevant Handle(s).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">urn</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant URN.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ads_id</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant bibcode Id.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tq</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nct_id</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant ClinicalTrials.gov Id.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hollis_id</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hlom_id</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ssrn</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant Social Science Research Network Id</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">repec</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant RePEc Id.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">arxiv_id</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Relevant arXiv Id.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">isbns</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Relevant ISBN(s).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">issns</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Relevant ISSN(s).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">journal</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Name of publication journal.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubdate</span></code></p></td>
+<td><p>date</p></td>
+<td><p>The print date that the publication was published.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">epubdate</span></code></p></td>
+<td><p>date</p></td>
+<td><p>The date that the publication was published electronically.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">published_on</span></code></p></td>
+<td><p>date</p></td>
+<td><p>Returns the <code class="docutils literal notranslate"><span class="pre">epubdate</span></code> if it exists on the record, if not then the <code class="docutils literal notranslate"><span class="pre">pubdate</span></code> is returned instead.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> <code class="docutils literal notranslate"><span class="pre">book</span></code> <code class="docutils literal notranslate"><span class="pre">article</span></code> <code class="docutils literal notranslate"><span class="pre">news</span></code> <code class="docutils literal notranslate"><span class="pre">chapter</span></code> <code class="docutils literal notranslate"><span class="pre">clinical_trial_study_record</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">abstract</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Full abstract for the article.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">abstract_source</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Source for the abstract (e.g PubMed).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">links</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Collection of links that point to all seen versions of this article..</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">first_seen_on</span></code></p></td>
+<td><p>date</p></td>
+<td><p>Date that Altmetric first tracked a share or mention of this article.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">issue</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">last_mentioned_on</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Last time the research output was mentioned. In UNIX.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pdf_url</span></code></p></td>
+<td><p>string</p></td>
+<td><p>PDF URL to the research output.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">startpage</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">aggregate_citation_ids</span></code></p></td>
+<td><p>number[]</p></td>
+<td><p>Collection of Altmetric IDs for book chapters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">authors</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Author names.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">authors_or_editors</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Author and editor names.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">attribution</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Source of data. For example Google Books.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">is_oa</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>Deprecated</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">scopus_subjects</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Initially imported from Scopus in 2011 (Deprecated).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">publisher_subjects</span></code></p></td>
+<td><p>object[]</p></td>
+<td><p>Subjects for journal set by the publisher. See <a class="reference internal" href="#publisher-subjects"><span class="std std-ref">Publisher subjects</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">subjects</span></code></p></td>
+<td><p>string[]</p></td>
+<td><p>Subjects for journal. Originally enriched from National Academy of Medicine (Deprecated).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mendeley_url</span></code></p></td>
+<td><p>string</p></td>
+<td><p>URL to the research output in Mendeley.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">volume</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">book_cover_url</span></code></p></td>
+<td><p>string</p></td>
+<td><p>URL to the book cover.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">chapters</span></code></p></td>
+<td><p>object</p></td>
+<td><p>See <a class="reference internal" href="#chapters"><span class="std std-ref">Chapters</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">added_on</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Date when Altmetric first captured attention. In UNIX.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">score</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Current Altmetric Attention Score.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">last_updated</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Last time the score changed. In UNIX.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="publisher-subjects">
+<h4>Publisher subjects<a class="headerlink" href="#publisher-subjects" title="Permalink to this heading"></a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Name of subject</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">scheme</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Available schemes are <code class="docutils literal notranslate"><span class="pre">era</span></code> <code class="docutils literal notranslate"><span class="pre">bmj</span></code> (Deprecated) <code class="docutils literal notranslate"><span class="pre">springer</span></code> <code class="docutils literal notranslate"><span class="pre">npg</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="chapters">
+<h4>Chapters<a class="headerlink" href="#chapters" title="Permalink to this heading"></a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">altmetric_id</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Altmetric ID for book chapter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">title</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Title of the book chapter.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ordinal_number</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Book chapter number.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="altmetric-score">
+<h3>Altmetric score<a class="headerlink" href="#altmetric-score" title="Permalink to this heading"></a></h3>
+<p>Contains details of the Altmetric score and, where possible, provides some context.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">score</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Current Altmetric Attention Score of this article.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">history</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Allows you to see how the score has developed over time. See <a class="reference internal" href="#history"><span class="std std-ref">History</span></a> for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">context_for_score</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Tells you how this score compares to other scores, for example in the entire database <code class="docutils literal notranslate"><span class="pre">all</span></code> or the same journal <code class="docutils literal notranslate"><span class="pre">this_journal</span></code>. See <a class="reference internal" href="#context-for-score"><span class="std std-ref">Context for score</span></a> for more information.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="history">
+<h4>History<a class="headerlink" href="#history" title="Permalink to this heading"></a></h4>
+<p>Provides details on how much of the score occurred in a given timeframe.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1y</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last year.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">6m</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last six months.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3m</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last 3 months.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1m</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last one month.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1w</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last week.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">6d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last six days.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">5d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last five days.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">4d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last four days.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last three days.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">2d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last two days.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1d</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Score change in the last one day.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">at</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Current Altmetric Attention Score.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="context-for-score">
+<h4>Context for score<a class="headerlink" href="#context-for-score" title="Permalink to this heading"></a></h4>
+<p>Contains details of the Altmetric score and, where possible, provides some context. See <a class="reference internal" href="data-endpoints-counts.html#context"><span class="std std-ref">Context</span></a> for a breakdown of context.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">all</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains statistics about the entire Altmetric database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">journal</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains statistics about all articles from the same journal that have been tracked by Altmetric.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">similar_age_3m</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains statistics about articles from any journal published within 6 weeks on either side of this one.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">similar_age_journal_3m</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains statistics about articles from the same journal and published within 6 weeks on either side of this one.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only research outputs that have a score greater than 0 and are associated with a journal (has an <code class="docutils literal notranslate"><span class="pre">altmetric_jid</span></code>) will have a score in context.</p>
+</div>
+<section id="breakdown">
+<h5>Breakdown<a class="headerlink" href="#breakdown" title="Permalink to this heading"></a></h5>
+<p>Available types are <code class="docutils literal notranslate"><span class="pre">all</span></code> <code class="docutils literal notranslate"><span class="pre">journal</span></code> <code class="docutils literal notranslate"><span class="pre">similar_age_3m</span></code> <code class="docutils literal notranslate"><span class="pre">similar_age_journal_3m</span></code>.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">count</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Number of publications in this journal in this time period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mean</span></code></p></td>
+<td><p>decimal</p></td>
+<td><p>Mean score for publications in this journal in this time period.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rank</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Score in context rank within publications in the journal in this time period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">total_number_of_other_articles</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Total number of publications in sample size for the journal in this time period.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">this_scored_higher_than_pct</span></code></p></td>
+<td><p>number</p></td>
+<td><p>% of publications from this journal with fewer mentions in this time period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">this_scored_higher_than</span></code></p></td>
+<td><p>number</p></td>
+<td><p>The estimated number of articles that have scored the same or lower than this one.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rank_type</span></code></p></td>
+<td><p>string</p></td>
+<td><p>The sample type used to calculate the <code class="docutils literal notranslate"><span class="pre">rank</span></code>. Prior to 2014 the rank was calculated using an <code class="docutils literal notranslate"><span class="pre">approximate</span></code> sample size, now the whole dataset is used. Always set to to <code class="docutils literal notranslate"><span class="pre">exact</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sample_size</span></code></p></td>
+<td><p>number</p></td>
+<td><p>The size of the representative sample we use to produce the <code class="docutils literal notranslate"><span class="pre">mean</span></code> and other metrics. Duplicates <code class="docutils literal notranslate"><span class="pre">total_number_of_other_articles</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">percentile</span></code></p></td>
+<td><p>number</p></td>
+<td><p>% of publications from this journal with fewer mentions in this time period. Duplicates <code class="docutils literal notranslate"><span class="pre">this_scored_higher_than_pct</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We split the representative sample in percentiles and put the highest score in each 10% into the spark-lines array. Thus the first element of that array is the highest scoring
+article in the sample set, the second element is the highest score in the 90th %ile, the third element in the 80th %ile and so on.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="demographics">
+<h3>Demographics<a class="headerlink" href="#demographics" title="Permalink to this heading"></a></h3>
+<p>Altmetric categorizes users from some sources based on their posting history and profile information. Counts for each category are included in this section along with geo-location data.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">poster_types</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Groups of users who’ve mentioned the publication on Twitter. See <a class="reference internal" href="#poster-types"><span class="std std-ref">Poster types</span></a> for more information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">users</span></code></p></td>
+<td><p>object</p></td>
+<td><p>See <a class="reference internal" href="#users"><span class="std std-ref">Users</span></a> for more information.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">geo</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains demographic mention information for Twitter, Facebook, News, and Policy. See <a class="reference internal" href="#id1"><span class="std std-ref">Geo</span></a> for more information.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="poster-types">
+<h4>Poster types<a class="headerlink" href="#poster-types" title="Permalink to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">poster_types</span></code> key holding Twitter user categories is now deprecated in favor of <a class="reference internal" href="#cohorts"><span class="std std-ref">Cohorts</span></a> and will be removed from the API in the near future.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">member_of_the_public</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Members of the Public.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">researcher</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Researchers.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">science_communicator</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Science Communicators.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">practitioner</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Practitioners.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="users">
+<h4>Users<a class="headerlink" href="#users" title="Permalink to this heading"></a></h4>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">twitter</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Groups of users who’ve mentioned the publication on Twitter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mendeley</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Mendeley readership statistics.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="twitter">
+<h5>Twitter<a class="headerlink" href="#twitter" title="Permalink to this heading"></a></h5>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cohorts</span></code></p></td>
+<td><p>object</p></td>
+<td><p>See <a class="reference internal" href="#cohorts"><span class="std std-ref">Cohorts</span></a> for more information.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="cohorts">
+<h6>Cohorts<a class="headerlink" href="#cohorts" title="Permalink to this heading"></a></h6>
+<p>Altmetric derives demographic information from the profiles of people who share links to articles of interest. You can find that information in the demographics key.</p>
+<p>In the case of Twitter, we look at keywords in profile descriptions, the types of journals that users link to, and friends lists to assign each profile a category.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Members</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">public&quot;</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Somebody who doesn’t link to scholarly literature and doesn’t otherwise fit any of the categories below.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Scientists&quot;</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Somebody who carries out academic or scientific research.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Practitioners</span> <span class="pre">(doctors,</span> <span class="pre">other</span> <span class="pre">healthcare</span> <span class="pre">professionals)&quot;</span></code></p></td>
+<td><p>number</p></td>
+<td><p>A clinician, or a researcher working in clinical science.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Researcher&quot;</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Somebody who is familiar with the literature.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;Science</span> <span class="pre">communicators</span> <span class="pre">(journalists,</span> <span class="pre">bloggers,</span> <span class="pre">editors)&quot;</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Somebody who links frequently to scientific articles from a variety of different journals / publishers.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="mendeley">
+<h5>Mendeley<a class="headerlink" href="#mendeley" title="Permalink to this heading"></a></h5>
+<p>Contains Mendeley readership information.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">by_status</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains keys for readers by their professional status and the counts associated with them. Example <code class="docutils literal notranslate"><span class="pre">keys</span></code> are <code class="docutils literal notranslate"><span class="pre">Student</span></code>, <code class="docutils literal notranslate"><span class="pre">Professor</span> <span class="pre">&gt;</span> <span class="pre">Associate</span> <span class="pre">Professor</span></code>, <code class="docutils literal notranslate"><span class="pre">Researcher</span></code>, <code class="docutils literal notranslate"><span class="pre">Student</span>&#160; <span class="pre">&gt;</span> <span class="pre">Master</span></code>, <code class="docutils literal notranslate"><span class="pre">Student</span> <span class="pre">&gt;</span> <span class="pre">Ph.</span> <span class="pre">D.</span> <span class="pre">Student</span></code>, <code class="docutils literal notranslate"><span class="pre">Professor</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Student</span>&#160; <span class="pre">&gt;</span> <span class="pre">Bachelor</span></code>, <code class="docutils literal notranslate"><span class="pre">Student</span>&#160; <span class="pre">&gt;</span> <span class="pre">Doctoral</span> <span class="pre">Student</span></code>, <code class="docutils literal notranslate"><span class="pre">Lecturer</span></code> and <code class="docutils literal notranslate"><span class="pre">Other</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">by_discipline</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains keys for readers by their discipline and the counts associated with them. Example <code class="docutils literal notranslate"><span class="pre">keys</span></code> are <code class="docutils literal notranslate"><span class="pre">Medicine</span> <span class="pre">and</span> <span class="pre">Dentistry</span></code>, <code class="docutils literal notranslate"><span class="pre">Social</span> <span class="pre">Sciences</span></code>, <code class="docutils literal notranslate"><span class="pre">Decision</span> <span class="pre">Sciences</span></code>, <code class="docutils literal notranslate"><span class="pre">Physics</span> <span class="pre">and</span> <span class="pre">Astronomy</span></code>, <code class="docutils literal notranslate"><span class="pre">Pharmacology,</span> <span class="pre">Toxicology</span> <span class="pre">and</span> <span class="pre">Pharmaceutical</span> <span class="pre">Science</span></code>, <code class="docutils literal notranslate"><span class="pre">Environmental</span> <span class="pre">Science</span></code>, <code class="docutils literal notranslate"><span class="pre">Arts</span> <span class="pre">and</span> <span class="pre">Humanities</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Engineering</span></code>, <code class="docutils literal notranslate"><span class="pre">Earth</span> <span class="pre">and</span> <span class="pre">Planetary</span> <span class="pre">Sciences</span></code>, <code class="docutils literal notranslate"><span class="pre">Economics,</span> <span class="pre">Econometrics</span> <span class="pre">and</span> <span class="pre">Finance</span></code>, <code class="docutils literal notranslate"><span class="pre">Agricultural</span> <span class="pre">and</span> <span class="pre">Biological</span> <span class="pre">Sciences</span></code>, <code class="docutils literal notranslate"><span class="pre">Business,</span> <span class="pre">Management</span> <span class="pre">and</span> <span class="pre">Accounting</span></code>, <code class="docutils literal notranslate"><span class="pre">Biochemistry,</span> <span class="pre">Genetics</span> <span class="pre">and</span> <span class="pre">Molecular</span> <span class="pre">Biology</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>This response object for <code class="docutils literal notranslate"><span class="pre">by_status</span></code> and <code class="docutils literal notranslate"><span class="pre">by_discipline</span></code> is a generic key/value object.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{{key}}</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Name of the key.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{{value}}</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Value of the key.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="geo">
+<h4>Geo<a class="headerlink" href="#geo" title="Permalink to this heading"></a></h4>
+<p>Altmetric geo-locates users based on information in their profiles from corresponding sources. The <code class="docutils literal notranslate"><span class="pre">geo</span></code> key is a straightforward breakdown of where in the world users who share an article come from,
+grouped by sharing medium.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">twitter</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains demographic mention information for Twitter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mendeley</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Contains demographic mention information for Mendeley.</p></td>
+</tr>
+</tbody>
+</table>
+<p>This response object for <code class="docutils literal notranslate"><span class="pre">twitter</span></code> and <code class="docutils literal notranslate"><span class="pre">mendeley</span></code> is a generic key/value object.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{{key}}</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Name of the key.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{{value}}</span></code></p></td>
+<td><p>number</p></td>
+<td><p>Value of the key.</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">key</span></code> property is a ISO 3166-2 country code. Examples are: <code class="docutils literal notranslate"><span class="pre">BA</span></code>, <code class="docutils literal notranslate"><span class="pre">IT</span></code>, <code class="docutils literal notranslate"><span class="pre">US</span></code>, <code class="docutils literal notranslate"><span class="pre">GB</span></code> and <code class="docutils literal notranslate"><span class="pre">IE</span></code>. A full and complete list can be found here: <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-2">https://en.wikipedia.org/wiki/ISO_3166-2</a></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">value</span></code> property is the total number of mentions as a number.</p></li>
+</ul>
+</section>
+</section>
+<section id="posts">
+<h3>Posts<a class="headerlink" href="#posts" title="Permalink to this heading"></a></h3>
+<p>Contains all the recorded mention data categorized by the attention source.  See <a class="reference internal" href="#source-type"><span class="std std-ref">Source type</span></a> for more information.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{{source-type}}</span></code></p></td>
+<td><p>object</p></td>
+<td><p>Available source types are <code class="docutils literal notranslate"><span class="pre">facebook</span></code> <code class="docutils literal notranslate"><span class="pre">blogs</span></code> <code class="docutils literal notranslate"><span class="pre">linkedin</span></code> <code class="docutils literal notranslate"><span class="pre">video</span></code> <code class="docutils literal notranslate"><span class="pre">pinterest</span></code> <code class="docutils literal notranslate"><span class="pre">googleplus</span></code> <code class="docutils literal notranslate"><span class="pre">twitter</span></code> <code class="docutils literal notranslate"><span class="pre">reddit</span></code> <code class="docutils literal notranslate"><span class="pre">news</span></code> <code class="docutils literal notranslate"><span class="pre">f1000</span></code> <code class="docutils literal notranslate"><span class="pre">rh</span></code> <code class="docutils literal notranslate"><span class="pre">qna</span></code> <code class="docutils literal notranslate"><span class="pre">forum</span></code> <code class="docutils literal notranslate"><span class="pre">peerreview</span></code> <code class="docutils literal notranslate"><span class="pre">policy</span></code> <code class="docutils literal notranslate"><span class="pre">weibo</span></code> <code class="docutils literal notranslate"><span class="pre">q&amp;a</span></code> <code class="docutils literal notranslate"><span class="pre">misc</span></code>.</p>
+<p>See <a class="reference internal" href="#source-type"><span class="std std-ref">Source type</span></a> for more information.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="source-type">
+<h4>Source type<a class="headerlink" href="#source-type" title="Permalink to this heading"></a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For Twitter we will only provide the <code class="docutils literal notranslate"><span class="pre">tweet_id</span></code> all other keys are removed.</p>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 10%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">title</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Title or headline of the mention.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">url</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Link to the page that mentioned the output.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">posted_on</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Date and time that the mention was recorded.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">license</span></code></p></td>
+<td><p>string</p></td>
+<td><p>For Twitter all license types will be set to <code class="docutils literal notranslate"><span class="pre">gnip</span></code>. For all others available types are <code class="docutils literal notranslate"><span class="pre">public</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></td>
+<td><p>object</p></td>
+<td><p><strong>Policy only</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">geo</span></code></p></td>
+<td><p>object</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">summary</span></code></p></td>
+<td><p>string</p></td>
+<td><p>A brief summary taken from the mention.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">image</span></code></p></td>
+<td><p>string</p></td>
+<td><p>A link to the logo associated with the mention source.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">collections</span></code></p></td>
+<td><p>string []</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">page_url</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Link to the page that mentioned the output.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">citation_ids</span></code></p></td>
+<td><p>number[]</p></td>
+<td><p>Collection of Altmetric IDs for outputs that are linked to from this mention.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">author</span></code></p></td>
+<td><p>object</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">embed</span></code></p></td>
+<td><p>object</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">wiki_lang</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Wikipedia only</strong>. The language code for the version of Wikipedia where the mentioned was retrieved from.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tweet_id</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Twitter only</strong>. The Tweet Id of the tweet.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="source">
+<h5>Source<a class="headerlink" href="#source" title="Permalink to this heading"></a></h5>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>string</p></td>
+<td><p>The name of the policy source where the mention occurred.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">description</span></code></p></td>
+<td><p>string</p></td>
+<td><p>A brief description of the policy source where the mention occurred.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h5>Geo<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h5>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">country</span></code></p></td>
+<td><p>string</p></td>
+<td><p>The country code of the policy source where the mention occurred.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="author">
+<h5>Author<a class="headerlink" href="#author" title="Permalink to this heading"></a></h5>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For Twitter we will only provide the <code class="docutils literal notranslate"><span class="pre">tweeter_id</span></code> all other keys are removed.</p>
+</div>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>string</p></td>
+<td><p>The name of the author as appears in the mention. Or a link to the mention if not available.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">description</span></code></p></td>
+<td><p>string</p></td>
+<td><p>If not an actual person. A description of the source.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">url</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Link to the homepage/profile associated with the mention.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">image</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Profile image associated with the author of the mention.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">id_on_source</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Platform specific unique identifier for the source of the mention. For example a YouTube video Id.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">facebook_wall_name</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Facebook only</strong>. The name of the Facebook wall where the mention was retrieved from.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tweeter_id</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Twitter only</strong>. The Twitter Id of the author for the tweet.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="embed">
+<h5>Embed<a class="headerlink" href="#embed" title="Permalink to this heading"></a></h5>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Available types are <code class="docutils literal notranslate"><span class="pre">youtube</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">youtube_id</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>YouTube only</strong>. YouTube video Id.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="images">
+<h3>Images<a class="headerlink" href="#images" title="Permalink to this heading"></a></h3>
+<p>Contains links to PNG versions of the donut.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">small</span></code></p></td>
+<td><p>string</p></td>
+<td><p>64px x 64px PNG of the donut.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">medium</span></code></p></td>
+<td><p>string</p></td>
+<td><p>100px x 100px PNG of the donut.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">large</span></code></p></td>
+<td><p>string</p></td>
+<td><p>180px x 180px PNG of the donut.</p></td>
+</tr>
+</tbody>
+</table>
+<p>For tweets you’ll receive only tweet IDs and user profile IDs, not the content of the tweet itself or other details about user profiles. You should use tweet IDs to fetch more
+data from the <a class="reference external" href="https://dev.twitter.com/docs">Twitter API</a> using your own developer account or <a class="reference external" href="https://dev.twitter.com/docs/embedded-tweets">embed tweets</a> directly on your website.</p>
+<p>You can read more about this on our <a class="reference internal" href="getting-started.html#twitter"><span class="std std-ref">Twitter</span></a> page.</p>
+</section>
+</section>
+<section id="example-response">
+<h2>Example response<a class="headerlink" href="#example-response" title="Permalink to this heading"></a></h2>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;altmetric_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2068207</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;counts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;readers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;mendeley&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;citeulike&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;connotea&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;facebook&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1056</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;100000531062920&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;508094416&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;100004838742364&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;627040610666691&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;807325712708418&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1096</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;blogs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="mi">56051</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="mi">52090</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="mi">51986</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="mi">55734</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="mi">54869</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;googleplus&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Giovanni Cozzolongo&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Raresh Vlad Bunea&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Tazio C.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Jeff Last&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Fernando Santagata&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Steven Conner&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">121</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;news&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;global_advisors&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;quartz&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;nature&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;real_clear_science&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;the_raw_story&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;rocket_news&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4930</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;q&amp;a&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;physics.stackexchange.com-95366&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;astronomy.stackexchange.com-2441&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;reddit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;DonTago&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;mikemchenry&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;techwrek12&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;cojoco&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;cHEatsKYJelly&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Notmyrealname&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;twitter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3381</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3604</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;video&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Phan Hien&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;SR&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;Sharkee&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;link4universe&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;wikipedia&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;unique_users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;de:6283821&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;de:11094959&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;fr:43233&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;pl:17610&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;posts_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;citation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;altmetric_jid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4f6fa50a3cf058f610003160&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;authors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;Zeeya Merali&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;doi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.1038/nature.2014.14583&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;first_seen_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-24T00:35:57+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;issns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;0028-0836&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;1476-4687&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;journal&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nature&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;last_mentioned_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1655037351</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;links&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;http://www.nature.com/news/stephen-hawking-questions-nature-of-black-holes-1.14583&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;http://www.nature.com/doifinder/10.1038/nature.2014.14583&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;epubdate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-24T00:00:00+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;scopus_subjects&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;General&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;subjects&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="s2">&quot;science&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stephen Hawking: &#39;There are no black holes&#39;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;news&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;mendeley_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.mendeley.com/catalogue/d293cc0a-0958-3a20-b110-789f677ff6f1/&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;altmetric_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3734.705999999944</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;score_history&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;1y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.35</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;6m&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.35</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;3m&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;1m&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;1w&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;6d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;5d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;4d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;3d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;2d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;1d&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;at&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3734.705999999944</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;context_for_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;all&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;total_number_of_other_articles&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21653050</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">9.966427740947907</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1125</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;this_scored_higher_than_pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;this_scored_higher_than&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21653786</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;rank_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exact&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;sample_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21653050</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;percentile&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;similar_age_3m&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;total_number_of_other_articles&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">289061</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">8.17953915609504</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;this_scored_higher_than_pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;this_scored_higher_than&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">289056</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;rank_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exact&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;sample_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">289061</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;percentile&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;this_journal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;total_number_of_other_articles&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">88504</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">97.85406684443643</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">119</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;this_scored_higher_than_pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;this_scored_higher_than&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">88390</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;rank_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exact&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;sample_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">88504</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;percentile&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;similar_age_this_journal_3m&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;total_number_of_other_articles&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">889</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">143.32450618672684</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;this_scored_higher_than_pct&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;this_scored_higher_than&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">887</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;rank_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exact&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;sample_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">889</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;percentile&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;demographics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;poster_types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;member_of_the_public&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2813</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;researcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">379</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;practitioner&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;science_communicator&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;twitter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;cohorts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Members of the public&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2813</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Scientists&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">379</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Practitioners (doctors, other healthcare professionals)&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Science communicators (journalists, bloggers, editors)&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;mendeley&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;by_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Student  &gt; Postgraduate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Professor &gt; Associate Professor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Researcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Student  &gt; Master&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Student  &gt; Ph. D. Student&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Professor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Student  &gt; Bachelor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Student  &gt; Doctoral Student&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Lecturer&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Other&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Librarian&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Lecturer &gt; Senior Lecturer&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Unspecified&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;by_discipline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Medicine and Dentistry&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Social Sciences&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Physics and Astronomy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Mathematics&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Pharmacology, Toxicology and Pharmaceutical Science&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Environmental Science&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Unspecified&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Arts and Humanities&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Energy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Immunology and Microbiology&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Computer Science&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Agricultural and Biological Sciences&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Nursing and Health Professions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Business, Management and Accounting&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Philosophy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;Veterinary Science and Veterinary Medicine&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;geo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;twitter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;US&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">732</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;LV&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;GB&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">206</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;AU&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;HN&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;mendeley&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;US&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;IN&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;IR&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;posts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;twitter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;tweeter_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1128600265&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;tweet_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;428180819338092544&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gnip&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;tweeter_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;292645777&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;tweet_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1535964094242689025&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;facebook&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stephen Hawking: &#39;There are no black holes&#39;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.facebook.com/100000531062920/posts/917176268310067&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-09-18T18:09:30+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stephen Hawking: &#39;There are no black holes&#39;\n\nNotion of an &#39;event horizon&#39;, from which nothing can escape, is incompatible with quantum theory, physicist claims.\n\nhttp://www.nature.com/news/stephen-hawking-there-are-no-black-holes-1.14583&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Aniruddha Chakraborty&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.facebook.com/100000531062920&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;facebook_wall_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://graph.facebook.com/100000531062920/picture&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;100000531062920&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stephen Hawking: &#39;There are no black holes&#39;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.facebook.com/508094416/posts/10152172516359417&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-26T06:23:47+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.nature.com/news/stephen-hawking-there-are-no-black-holes-1.14583\n\nIs anyone surprised that the physically impossible and inexplicable phenomenon doesn&#39;t actually exist?\n\nMuch like the medieval concept of God as a being without form and impossibl&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Seth Stewart&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.facebook.com/508094416&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;facebook_wall_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://graph.facebook.com/508094416/picture&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;508094416&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stephen Hawking: &#39;There are no black holes&#39;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.facebook.com/100004838742364/posts/236929559811667&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-24T21:53:26+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Edu Garcia&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.facebook.com/100004838742364&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;facebook_wall_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://graph.facebook.com/100004838742364/picture&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;100004838742364&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;news&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The Indian physicist who contested Stephen Hawking’s theory about black holes&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.globaladvisors.biz/blog/2018/03/15/the-indian-physicist-who-contested-stephen-hawkings-theory-about-black-holes/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-03-15T05:47:51+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;In his long and spectacular career as the world’s most iconic physicist, Stephen Hawking wrote a lot about black holes.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Global Advisors&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.globaladvisors.biz&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://s3.amazonaws.com/weyland.altmetric.com/news_sources/logos/000/001/806/normal/Screen_Shot_2016-01-27_at_10.02.20.png?1453888977&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The Indian physicist who contested Stephen Hawking’s theory about black holes&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://qz.com/1229007/abhas-mitra-the-indian-physicist-who-contested-stephen-hawkings-theory-about-black-holes/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-03-15T05:47:51+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;In his long and spectacular career as the world’s most iconic physicist, Stephen Hawking wrote a lot about black holes.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Quartz&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://qz.com&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://s3.amazonaws.com/weyland.altmetric.com/news_sources/logos/000/000/268/normal/Screen_Shot_2016-02-02_at_11.47.46.png?1454413678&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stephen Hawking questions nature of black holes&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.nature.com/news/stephen-hawking-questions-nature-of-black-holes-1.14583&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">1336291</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2065243</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-24T00:00:00+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Notion of &#39;event horizon&#39; from which nothing can escape is incompatible with quantum theory, physicist claims.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nature&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.nature.com/nature&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://s3.amazonaws.com/weyland.altmetric.com/news_sources/logos/000/000/076/normal/image.png?1369859733&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;reddit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stephen Hawking announces in surprising statement that &#39;black holes&#39;, as most people, even physicists, understand them, do not exist.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.reddit.com/r/worldnews/comments/1w1p8h/stephen_hawking_announces_in_surprising_statement/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-24T17:39:28+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DonTago&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.reddit.com/r/worldnews&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;worldnews&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;followers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">26840073</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;subreddit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;World News&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Stephen Hawking: &#39;There are no black holes&#39; : Nature News &amp;amp; Comment&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.reddit.com/r/news/comments/1w1f4g/stephen_hawking_there_are_no_black_holes_nature/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-24T15:58:12+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mikemchenry&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.reddit.com/r/news&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://a.thumbs.redditmedia.com/BCPcjmQTYwA3TAWllW7AJPixfTMQlMxn-fbD2pgcHT4.png&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;news&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;followers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22344532</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;subreddit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;All news, US and international.&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\&quot;I_call_it_a_Hawking_Hole.\&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.reddit.com/r/futurama/comments/1w39qd/i_call_it_a_hawking_hole/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-25T03:40:24+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;techwrek12&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.reddit.com/r/futurama&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://a.thumbs.redditmedia.com/XCuPuL9FXQ5zfm5B.png&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;futurama&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;followers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98497</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;subreddit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;futurama&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;video&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Nature] Stephen Hawking: \&quot;There are no black holes\&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.youtube.com/watch?v=isimsXwilvc&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://i.ytimg.com/vi/isimsXwilvc/hqdefault.jpg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-25T07:30:28+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Full article here: http://www.nature.com/news/stephen-hawking-there-are-no-black-holes-1.14583\n\nhttp://vatlythienvan.com/tin-tuc/tin-moi/3820-stephen-hawking-khong-co-lo-den.html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;embed&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;youtube&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;youtube_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;isimsXwilvc&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Phan Hien&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UCPre1cZdP4KZsPmpeH2jNNA&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;No Black hole!!&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.youtube.com/watch?v=kxSbcL40g0E&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://i.ytimg.com/vi/kxSbcL40g0E/hqdefault.jpg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-02-03T21:32:46+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hawking told to Nature: \&quot;There is no escape from a black hole in classical theory, but quantum theory enables energy and information to escape.\&quot; Read for detail: http://www.nature.com/news/stephen-hawking-there-are-no-black-holes-1.14583&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;embed&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;youtube&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;youtube_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kxSbcL40g0E&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SR&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UCVTOBf6f3J6vae1ie-Sz0kw&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the Slowest Time?&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.youtube.com/watch?v=8AoelC5X_No&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;image&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://i.ytimg.com/vi/8AoelC5X_No/hqdefault.jpg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">826396</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2471407</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">102108064</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">1705703</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">54310369</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">3150351</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">3395897</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">47472703</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">54310370</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2240793</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">101830322</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">54310372</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2015-12-17T14:58:09+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the thing that experiences the slowest time?\n\n\n\n\n\nFollow me on twitter:\nhttps://twitter.com/AhSharkee\n\n\n\nLinks and References:\nhttp://www.einstein-online.info/spotlights/Twins (Twin Paradox - How come two twins who see each other’s clocks slowed do&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;embed&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;youtube&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;youtube_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8AoelC5X_No&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sharkee&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UCo1Oqh5yCpSJkXaCUzmfhEw&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;q&amp;a&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Why does Stephen Hawking say black holes don&amp;#39;t exist?&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://physics.stackexchange.com/questions/95366/why-does-stephen-hawking-say-black-holes-dont-exist&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2065243</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">4581198</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">4581200</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-26T15:44:30+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Recently, I read in the journal Nature that Stephen Hawking wrote a paper claiming that black holes do not exist.  How is this possible? Please explain it to me because I didn&#39;t understand what he said.\n\nReferences:\n\n\nArticle in Nature News: Stephen Hawkin&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Devesh Saini&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Does matter accumulate just outside the event horizon of a black hole?&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://astronomy.stackexchange.com/questions/2441/does-matter-accumulate-just-outside-the-event-horizon-of-a-black-hole&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-05-14T17:27:41+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My understanding is that time slows and approaches stopping when approaching the event horizon of a black hole.  I have seen this explained several places, including a brief explanation in the last paragraph under: http://en.wikipedia.org/wiki/Black_hole#G&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;id_on_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jonathan&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;wikipedia&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Informationsparadoxon Schwarzer Löcher&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://de.wikipedia.org/?diff=prev&amp;oldid=126973712#altmetric_citation_0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-01-28T21:41:50+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;REDIRECT Schwarzes Loch#Informationsparadoxon Schwarzer Löcher.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;page_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://de.wikipedia.org/?curid=6283821&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;wiki_lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;de&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doppelback&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://de.wikipedia.org/wiki/User:Doppelback&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Horyzont zdarzeń&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://pl.wikipedia.org/?diff=prev&amp;oldid=38578320#altmetric_citation_0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;citation_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="mi">2068207</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;posted_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2014-02-01T04:33:45+00:00&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;page_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://pl.wikipedia.org/?curid=17610&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;wiki_lang&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pl&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Domaszk&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://pl.wikipedia.org/wiki/User:Domaszk&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3734.705999999944</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;images&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;small&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://badges.altmetric.com/?size=64&amp;score=3735&amp;types=mbvrtwfg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;medium&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://badges.altmetric.com/?size=100&amp;score=3735&amp;types=mbvrtwfg&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;large&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://badges.altmetric.com/?size=180&amp;score=3735&amp;types=mbvrtwfg&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="try-it-yourself">
+<h2>Try it yourself<a class="headerlink" href="#try-it-yourself" title="Permalink to this heading"></a></h2>
+<p>Below is a list of example requests. Before using any of these examples within your application you will need to update the <code class="docutils literal notranslate"><span class="pre">key</span></code> to the one that you were issued. Alternatively you can enter your API key into the field below and click the <strong>Authorize</strong> button to launch the example request directly from the documentation.</p>
+  <script>
+    function authorize() {
+        let custom_api_key = document.getElementById('custom_api_key').value
+        let paragraphs = Array.from(document.querySelectorAll('p'))
+        paragraphs.filter(element => element.textContent.includes("xxx-xxx-xxx-xxx")).forEach(p => {
+          let hrefs = Array.from(p.querySelectorAll('[href*="key=xxx-xxx-xxx-xxx"]'))
+          hrefs.forEach(el => {
+            let authorizedHref = el.href.replace("xxx-xxx-xxx-xxx", custom_api_key)
+            el.href = authorizedHref
+            el.innerHTML = authorizedHref
+          })
+      })
+      const authorize_button = document.getElementById('authorize-btn');
+      authorize_button.innerText = 'Authorized!';
+      setTimeout(() => {
+        authorize_button.innerText = 'Authorize';
+      }, 1000);
+    }
+  </script>
+
+<div style="padding-bottom:30px">
+    <label for="custom_api_key">Enter your API key here: </label>
+    <input type="text" id="custom_api_key" value="xxx-xxx-xxx-xxx"></input>
+    <button id="authorize-btn" class="guilabel" onclick="authorize()">Authorize</button>
+</div><table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Scenario</p></th>
+<th class="head"><p>URL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fetch a research output by its Altmetric Id</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/fetch/id/241939?key=xxx-xxx-xxx-xxx">https://api.altmetric.com/v1/fetch/id/241939?key=xxx-xxx-xxx-xxx</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Fetch a research output by its Digital Object Identifier</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx">https://api.altmetric.com/v1/fetch/doi/10.1038/news.2011.490?key=xxx-xxx-xxx-xxx</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Fetch a research output by its PubMed Id</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx">https://api.altmetric.com/v1/fetch/pmid/21148220?key=xxx-xxx-xxx-xxx</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Fetch a research output by its arXiv Id</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx">https://api.altmetric.com/v1/fetch/arxiv/1108.2455?key=xxx-xxx-xxx-xxx</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Fetch a research output by its bibcode Id</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx">https://api.altmetric.com/v1/fetch/ads/2012apphl.100y3104b?key=xxx-xxx-xxx-xxx</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Fetch a research output by its ISBN number</p></td>
+<td><p><a class="reference external" href="https://api.altmetric.com/v1/fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx">https://api.altmetric.com/v1/fetch/isbn/978-3-319-25557-6?key=xxx-xxx-xxx-xxx</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data-endpoints-counts.html" class="btn btn-neutral float-left" title="Counts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data-endpoints-citations.html" class="btn btn-neutral float-right" title="Citations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Altmetric LLC.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #1a3d74;
+    }
+  </style>
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+.wy-nav-content {
+    max-width: 100% !important;
+}
+
+table tr td > p { 
+  line-height: 1.3rem !important;
+}
+
+table tr td p:not(:first-child) {
+  padding-top: 10px !important;
+}
+
+code {
+  white-space: nowrap !important;
+}
+
+pre {
+  white-space: pre-wrap !important;
+}
+
+/* override table width restrictions */
+@media screen and (min-width: 767px) {
+
+    .wy-table-responsive table td {
+      /* !important prevents the common CSS stylesheets from
+         overriding this as on RTD they are loaded after this stylesheet */
+      white-space: normal !important;
+    }
+  
+    .wy-table-responsive {
+      overflow: visible !important;
+    }
+  
+  }
